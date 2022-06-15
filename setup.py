@@ -13,7 +13,7 @@ setup(
     description="Randomizes enemy stat values for most of the enemies in the game "Metroid Prime".",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/?/?",
+    url="https://github.com/Fantaselion/PARAMETEREDITOR",
     author="Fantaselion",
     author_email="fantaselion@gmail.com",
     license="MIT",
