@@ -167,9 +167,9 @@ void PARAMETEREDITOR::enemy_Param_Editor()
 
     for (unsigned int i = 0; i < 40; i++)
     {
-        for (int o = 1; o < EnemyOffsets[i][0]; o++)
+        for (unsigned int o = 1; o < EnemyOffsets[i][0]; o++)
         {
-            for (int c = 0; c < 6; c++)
+            for (unsigned int c = 0; c < 6; c++)
             {
                 switch (c)
                 {
