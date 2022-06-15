@@ -8,6 +8,7 @@ export PATH="/opt/python/${PYTHON_VERSION}/bin:$PATH"
 
 python --version
 python -m pip install auditwheel "setuptools>=44.0.0" "wheel>=0.34.2" "Cython>=0.29.21" "setuptools_scm[toml]>=3.4"
+python -m pip install wheel
 python setup.py bdist_wheel
 
 python -m auditwheel repair --plat manylinux2010_x86_64 dist/*-linux_x86_64.whl -w dist
