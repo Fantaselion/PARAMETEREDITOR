@@ -1,5 +1,5 @@
 # PARAMETEREDITOR
-Randomizes most enemy (and bosses) scale, health, speed, damage, and knockback power within a user defined range for the game "Metroid Prime"
+Randomizes most enemy (and bosses) stats: scale, health, speed, damage, and knockback power within a user defined range for the game "Metroid Prime"
 
 Build instructions are written for windows but the linux version of them should work.
 
