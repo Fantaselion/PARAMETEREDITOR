@@ -23,5 +23,6 @@ setup(
     python_requires = >=3.10
     install_requires=[
         'cython',
+    ],
     ext_modules=cythonize(PARAMETEREDITOR_module)
 )
