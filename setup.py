@@ -1,9 +1,10 @@
+import sys
 from pathlib import Path
 from distutils.core import setup, Extension
 from Cython.Build import cythonize
 
 PARAMETEREDITOR_module = Extension('Simple_PARAMETER_EDITOR.PARAMETEREDITOR',
-                sources=['Simple_PARAMETER_EDITOR_wrapper.pyx', 'Simple_PARAMETER_EDITOR.cpp'],
+                sources=['Simple_PARAMETER_EDITOR_wrapper.pyx', 'Simple_PARAMETER_EDITOR.cpp',],
                 zip_safe=False,
                 language='c++')
 
@@ -20,9 +21,6 @@ setup(
     author="Fantaselion",
     author_email="fantaselion@gmail.com",
     license="MIT",
-    packages=['Simple_PARAMETER_EDITOR'],
-    install_requires=[
-        'cython',
-    ],
+    packages=['PARAMETEREDITOR'],
     ext_modules=cythonize(PARAMETEREDITOR_module)
 )
