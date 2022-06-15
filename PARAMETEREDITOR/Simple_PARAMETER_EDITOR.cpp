@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 #include <Simple_PARAMETER_EDITOR.h>
 #include <Simple_patternedAI_Array.h>
 #include <Simple_Enemy_Offset_Locations.h>
