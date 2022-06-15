@@ -4,7 +4,7 @@ from distutils.core import setup, Extension
 from Cython.Build import cythonize
 
 PARAMETEREDITOR_module = Extension('Simple_PARAMETER_EDITOR.PARAMETEREDITOR',
-                sources=['Simple_PARAMETER_EDITOR_wrapper.pyx', 'Simple_PARAMETER_EDITOR.cpp',],
+                sources=['Simple_PARAMETER_EDITOR_wrapper.pyx', 'PARAMETEREDITOR/Simple_PARAMETER_EDITOR.cpp'],
                 zip_safe=False,
                 language='c++')
 
@@ -22,5 +22,5 @@ setup(
     author_email="fantaselion@gmail.com",
     license="MIT",
     packages=['PARAMETEREDITOR'],
-    ext_modules=cythonize(PARAMETEREDITOR_module)
+    ext_modules=cythonize(PARAMETEREDITOR_module),
 )
