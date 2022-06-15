@@ -21,7 +21,6 @@ setup(
     author_email="fantaselion@gmail.com",
     license="MIT",
     packages=['Simple_PARAMETER_EDITOR'],
-    python_requires = >=3.10
     install_requires=[
         'cython',
     ],
