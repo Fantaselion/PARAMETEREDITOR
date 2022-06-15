@@ -10,7 +10,7 @@ PARAMETEREDITOR_module = Extension('Simple_PARAMETER_EDITOR.PARAMETEREDITOR',
 setup(
     name="Prime_Stat_editor",
     version="1.0",
-    description="Randomizes enemy stat values for most of the enemies in the game "Metroid Prime".",
+    description="Randomizes enemy stat values for most of the enemies in the game Metroid Prime.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Fantaselion/PARAMETEREDITOR",
