@@ -70,7 +70,7 @@ jobs:
           - 'cp39-cp39'
           - 'cp310-cp310'
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     container: quay.io/pypa/manylinux2014_x86_64
 
     name: Linux - Python ${{ matrix.python }}
@@ -93,7 +93,7 @@ jobs:
           path: dist
 
   pypi:
-    runs-on: 'ubuntu-18.04'
+    runs-on: 'ubuntu-latest'
     needs:
       - build
       - linux-build
