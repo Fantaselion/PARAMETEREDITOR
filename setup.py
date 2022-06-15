@@ -7,8 +7,11 @@ PARAMETEREDITOR_module = Extension('Simple_PARAMETER_EDITOR.PARAMETEREDITOR',
                 zip_safe=False,
                 language='c++')
 
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
+
 setup(
-    name="Prime_Stat_editor",
+    name="PARAMETEREDITOR",
     version="1.0",
     description="Randomizes enemy stat values for most of the enemies in the game Metroid Prime.",
     long_description=long_description,
@@ -17,8 +20,6 @@ setup(
     author="Fantaselion",
     author_email="fantaselion@gmail.com",
     license="MIT",
-    package_dir =
-        = src
     packages=['Simple_PARAMETER_EDITOR'],
     python_requires = >=3.10
     install_requires=[
