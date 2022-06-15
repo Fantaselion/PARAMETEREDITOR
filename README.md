@@ -1,9 +1,11 @@
 # PARAMETEREDITOR
 Randomizes most enemy (and bosses) stats: scale, health, speed, damage, and knockback power within a user defined range for the game "Metroid Prime"
 
-Build instructions are written for windows but the linux version of them should work.
+Build instructions are written for linux but the windows version of them should work. (For windows you can also just run 'python setup.py build_ext --inplace' in the root directory if you have cython and python already)
 
-## Installing Python Module
+# Usage
+
+## Python Module
 ```sh
 > pip install PARAMETEREDITOR
 > python
@@ -11,8 +13,15 @@ Build instructions are written for windows but the linux version of them should 
 >>> PARAMETEREDITOR.PyPARAMETEREDITOR("input.iso", "output.iso", 601310422, 0.25, 4, 0.25, 4, 0.25, 4, 0.25, 4, 0.25, 4, True) # (Input, Output, Seed, ScaleLow, ScaleHigh, HealthLow, HealthHigh, SpeedLow, Speedhigh, DamageLow, DamageHigh, KnockbackPowerLow, KnockbackPowerHigh, RandoScaleXYZSeperatly)
 ```
 
-## Python Build
+# Windows
+
+## Python
 
 ```
-python setup.py build_ext --inplace
+tools/venv.sh
+tools/build-cython.sh
 ```
+
+## Standalone
+```sh
+tools/build-standalone.sh
