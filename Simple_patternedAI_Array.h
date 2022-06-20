@@ -183,6 +183,20 @@ const unsigned int SwarmSpeedDivide[] = { 0x000, 0x000 };
 const unsigned int SwarmDamage[] = { 0x3, 0xD6, 0xEA };
 const unsigned int SwarmKnockbackPower[] = { 0x3, 0xDE, 0xF2 };
 
+const unsigned int IncineratorDroneScale[] = { 0x4, 0x18, 0x1C, 0x20 };
+const unsigned int IncineratorDroneHealth[] = { 0x000, 0x000 };
+const unsigned int IncineratorDroneSpeedMultiply[] = { 0x000, 0x000 };
+const unsigned int IncineratorDroneSpeedDivide[] = { 0x000, 0x000 };
+const unsigned int IncineratorDroneDamage[] = { 0x2, 0x159 };
+const unsigned int IncineratorDroneKnockbackPower[] = { 0x2, 0x161 };
+
+const unsigned int ThardusRockScale[] = { 0x4, 0x18, 0x1C, 0x20 };
+const unsigned int ThardusRockHealth[] = { 0x2, 0x78 };
+const unsigned int ThardusRockSpeedMultiply[] = { 0x3, 0x2C, 0x30 };
+const unsigned int ThardusRockSpeedDivide[] = { 0x5, 0x48, 0x4C, 0x58, 0x70 };
+const unsigned int ThardusRockDamage[] = { 0x2, 0x64 };
+const unsigned int ThardusRockKnockbackPower[] = { 0x2, 0x6C };
+
 
 //bosses
 
@@ -207,20 +221,20 @@ const unsigned int OmegaPirateSpeedDivide[] = { 0x7, 0x1E2, 0x1E6, 0x1EE, 0x1F2,
 const unsigned int OmegaPirateDamage[] = { 0x3, 0x2A7, 0x2F7 };
 const unsigned int OmegaPirateKnockbackPower[] = { 0x3, 0x2AF, 0x2FF };
 
-const unsigned int MetaRidleyScale[] = {0x000, 0x000};
+const unsigned int MetaRidleyScale[] = { 0x000, 0x000 };
 const unsigned int MetaRidleyHealth[] = { 0x4, 0x21A, 0x21E, 0x222 };
 const unsigned int MetaRidleySpeedMultiply[] = { 0x000, 0x000 };
 const unsigned int MetaRidleySpeedDivide[] = { 0x000, 0x000 };
 const unsigned int MetaRidleyDamage[] = { 0x9, 0x232, 0x2AA, 0x2E3, 0x31C, 0x359, 0x371, 0x389, 0x3AD };
 const unsigned int MetaRidleyKnockbackPower[] = { 0x9, 0x23A, 0x2B2, 0x2EB, 0x324, 0x35D, 0x379, 0x391, 0x3B5 };
-/*
-const unsigned int MetroidPrimeStage1Scale[] = { 0x000, 0x000 };
-const unsigned int MetroidPrimeStage1Health[] = { 0x000, 0x000 };
+
+const unsigned int MetroidPrimeStage1Scale[] = { 0x4, 0x18, 0x1C, 0x20 };
+const unsigned int MetroidPrimeStage1Health[] = { 0x3, 0x3E, 0x4A };
 const unsigned int MetroidPrimeStage1SpeedMultiply[] = { 0x000, 0x000 };
 const unsigned int MetroidPrimeStage1SpeedDivide[] = { 0x000, 0x000 };
 const unsigned int MetroidPrimeStage1Damage[] = { 0x000, 0x000 };
 const unsigned int MetroidPrimeStage1KnockbackPower[] = { 0x000, 0x000 };
-*/
+
 
 const unsigned int MetroidPrimeStage2Scale[] = { 0x000, 0x000 };
 const unsigned int MetroidPrimeStage2Health[] = { 0x000, 0x000 };
@@ -228,6 +242,13 @@ const unsigned int MetroidPrimeStage2SpeedMultiply[] = { 0x000, 0x000 };
 const unsigned int MetroidPrimeStage2SpeedDivide[] = { 0x000, 0x000 };
 const unsigned int MetroidPrimeStage2Damage[] = { 0x2, 0x1EE };
 const unsigned int MetroidPrimeStage2KnockbackPower[] = { 0x2, 0x1F6 };
+
+//const unsigned int PlatformScale[] = { 0x4, 0x18, 0x1C, 0x20 };
+//const unsigned int PlatformHealth[] = { 0x000, 0x000 };
+//const unsigned int PlatformSpeedMultiply[] = { 0x000, 0x000 };
+//const unsigned int PlatformSpeedDivide[] = { 0x000, 0x000 };
+//const unsigned int PlatformDamage[] = { 0x000, 0x000 };
+//const unsigned int PlatformKnockbackPower[] = { 0x000, 0x000 };
 
 const unsigned int OmegaPirateArmorScaleOffset[] = { 0x3C40B0A5, 0x3C40B2AA, 0x3C40B4AA, 0x3C40B69E };
 const unsigned int OmegaPirateArmorEffectOffset[] = { 0x3C40A846, 0x3C40A924, 0x3C40AA00, 0x3C40AADE, 0x3C40ABBE, 0x3C40AC9E, 0x3C40AD7E, 0x3C40AE5E, 0x3C40C5F7, 0x3C40C6DC, 0x3C40C7BF, 0x3C40C8A4, 0x3C40C98B, 0x3C40CA72, 0x3C40CB59, 0x3C40CC40, 0x3C40F65D, 0x3C40F73D, 0x3C40F81F, 0x3C40F901, 0x3C40F9E5, 0x3C40FAC9, 0x3C40FBAD, 0x3C40FC91 };
@@ -291,6 +312,14 @@ const unsigned int* Turret[6] = { TurretScale, TurretHealth, TurretSpeedMultiply
 const unsigned int* AmbientAI[6] = { AmbientAIScale, AmbientAIHealth, AmbientAISpeedMultiply, AmbientAISpeedDivide, AmbientAIDamage, AmbientAIKnockbackPower };
 
 const unsigned int* Swarm[6] = { SwarmScale, SwarmHealth, SwarmSpeedMultiply, SwarmSpeedDivide, SwarmDamage, SwarmKnockbackPower };
+
+const unsigned int* IncineratorDrone[6] = { IncineratorDroneScale, IncineratorDroneHealth, IncineratorDroneSpeedMultiply, IncineratorDroneSpeedDivide, IncineratorDroneDamage, IncineratorDroneKnockbackPower };
+
+const unsigned int* MetroidPrimeStage1[6] = { MetroidPrimeStage1Scale, MetroidPrimeStage1Health, MetroidPrimeStage1SpeedMultiply, MetroidPrimeStage1SpeedDivide, MetroidPrimeStage1Damage, MetroidPrimeStage1KnockbackPower };
+
+const unsigned int* ThardusRock[6] = { ThardusRockScale, ThardusRockHealth, ThardusRockSpeedMultiply, ThardusRockSpeedDivide, ThardusRockDamage, ThardusRockKnockbackPower };
+
+//const unsigned int* Platform[6] = { PlatformScale, PlatformHealth, PlatformSpeedMultiply, PlatformSpeedDivide, PlatformDamage, PlatformKnockbackPower };
 
 const unsigned int* PatternedAI[6] = { PatternedAIScale, PatternedAIHealth, PatternedAISpeedMultiply, PatternedAISpeedDivide, PatternedAIDamage, PatternedAIKnockbackPower };
 
