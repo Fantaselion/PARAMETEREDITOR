@@ -12,7 +12,7 @@ public:
 	void Simple_PARAMETER_EDITOR();
 	int return_Data(unsigned int hex_Data, bool small_Value);
 	void enemy_Param_Editor();
-	void write_Data(unsigned int current_offset, float randomized_Value, unsigned int offset, unsigned int conditional, int object_ID);
+	void write_Data(unsigned int current_offset, unsigned int offset, unsigned int conditional, int object_ID, bool small_Value);
 	int combine(int a, int b, int c, int d);
 	float randomFloat(float low, float high);
 	float scaleLow;
