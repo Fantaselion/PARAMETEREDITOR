@@ -153,10 +153,10 @@ int PARAMETEREDITOR::combine(int a, int b, int c, int d)
     char hex_string4[4];
 
     
-    sprintf_s(hex_string1, "%X", a);
-    sprintf_s(hex_string2, "%X", b);
-    sprintf_s(hex_string3, "%X", c);
-    sprintf_s(hex_string4, "%X", d);
+    sprintf(hex_string1, "%X", a);
+    sprintf(hex_string2, "%X", b);
+    sprintf(hex_string3, "%X", c);
+    sprintf(hex_string4, "%X", d);
 
     std::string str1(hex_string1);
     std::string str2(hex_string2);
