@@ -23,8 +23,8 @@ cdef class PyPARAMETEREDITOR:
 	def enemy_Param_Editor(self):
 		self.thisptr.enemy_Param_Editor()
 		
-	def write_Data(self, current_offset, randomized_Value, offset, conditional, object_ID):
-		self.thisptr.write_Data(current_offset, randomized_Value, offset, conditional, object_ID)
+	def write_Data(self, current_offset, offset, conditional, object_ID, small_Value):
+		self.thisptr.write_Data(current_offset, offset, conditional, object_ID, small_Value)
 		
 	def combine(self, a, b, c, d):
 		return self.thisptr.combine(a, b, c, d)
