@@ -17,7 +17,6 @@ jobs:
           - 'macos-latest'
           - 'windows-latest'
         python:
-          - '3.6'
           - '3.7'
           - '3.8'
           - '3.9'
@@ -64,7 +63,6 @@ jobs:
       fail-fast: false
       matrix:
         python:
-          - 'cp36-cp36m'
           - 'cp37-cp37m'
           - 'cp38-cp38'
           - 'cp39-cp39'
@@ -106,7 +104,8 @@ jobs:
           path: dist/
 
       - name: Publish 📦 to PyPI
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         uses: pypa/gh-action-pypi-publish@master
         with:
+          user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}
