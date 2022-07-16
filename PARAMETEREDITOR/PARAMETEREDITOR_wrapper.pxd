@@ -12,7 +12,7 @@ cdef extern from "Simple_PARAMETER_EDITOR.h":
 		void Simple_PARAMETER_EDITOR()
 		int return_Data(unsigned int, bool)
 		void enemy_Param_Editor()
-		void write_Data(unsigned int, float, unsigned int, unsigned int, int)
+		void write_Data(unsigned int, unsigned int, unsigned int, int, bool)
 		int combine(int, int, int, int)
 		float randomFloat(float, float)
 
