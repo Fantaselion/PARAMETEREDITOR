@@ -3,8 +3,8 @@ from pathlib import Path
 from distutils.core import setup, Extension
 from Cython.Build import cythonize
 
-PARAMETEREDITOR_module = Extension('Simple_PARAMETER_EDITOR.PARAMETEREDITOR',
-                sources=['Simple_PARAMETER_EDITOR_wrapper.pyx', 'PARAMETEREDITOR/Simple_PARAMETER_EDITOR.cpp'],
+PARAMETEREDITOR_module = Extension('PARAMETEREDITOR.PARAMETEREDITOR',
+                sources=['PARAMETEREDITOR/PARAMETEREDITOR_wrapper.pyx', 'PARAMETEREDITOR/PARAMETEREDITOR.cpp'],
                 zip_safe=False,
                 language='c++')
 
