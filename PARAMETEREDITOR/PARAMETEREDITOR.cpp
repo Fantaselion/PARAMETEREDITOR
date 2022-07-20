@@ -332,14 +332,14 @@ void PARAMETEREDITOR::SCLY_SEARCH(unsigned int current_Offset)
 void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned int size)
 {
     vector <unsigned int> temp_vec1;
-	temp_vec1 = { 0x0425004C, 0x04250060, 0x04250051, 0x04250053 };
+	temp_vec1.insert(temp_vec1.end(), { 0x0425004C, 0x04250060, 0x04250051, 0x04250053 });
     vector <unsigned int> temp_vec2;
-	temp_vec2 = { 0x141A019B, 0x141A019C, 0x141A019D, 0x141A019E };
+	temp_vec2.insert(temp_vec2.end(), { 0x141A019B, 0x141A019C, 0x141A019D, 0x141A019E });
     vector <unsigned int> IncinActorKeyFramesID;
-	IncinActorKeyFramesID = { 0x00300030, 0x00300032, 0x0030004A, 0x0030004B, 0x00300055, 0x00300056, 0x0030005A, 0x0030005B, 0x00300065, 0x00300069, 0x00300071, 0x00300072, 0x00300073, 0x00300074, 0x00300075, 0x00300076, 0x00302745 };
-    vector <unsigned int> IncinTimersID;
-	IncinTimersID = { 0x0030017B, 0x00302732, 0x00300012, 0x0030006A, 0x00300007, 0x003027D6, 0x0030005C, 0x00300079, 0x00300050, 0x00300078, 0x00302737, 0x00302744, 0x0030005D, 0x0030004D, 0x00302743, 0x00302742, 0x00300062, 0x00300041, 0x00300014, 0x00302744, 0x00302742 };
-    unsigned saved_Offset = 0;
+    IncinActorKeyFramesID.insert(IncinActorKeyFramesID.end(), { 0x00300030, 0x00300032, 0x0030004A, 0x0030004B, 0x00300055, 0x00300056, 0x0030005A, 0x0030005B, 0x00300065, 0x00300069, 0x00300071, 0x00300072, 0x00300073, 0x00300074, 0x00300075, 0x00300076, 0x00302745 });
+	vector <unsigned int> IncinTimersID;
+    IncinTimersID.insert(IncinTimersID.end(), { 0x0030017B, 0x00302732, 0x00300012, 0x0030006A, 0x00300007, 0x003027D6, 0x0030005C, 0x00300079, 0x00300050, 0x00300078, 0x00302737, 0x00302744, 0x0030005D, 0x0030004D, 0x00302743, 0x00302742, 0x00300062, 0x00300041, 0x00300014, 0x00302744, 0x00302742 });
+	unsigned saved_Offset = 0;
     unsigned int initial_Offset = current_Offset;
     current_Offset += 8;
     current_Offset += (PARAMETEREDITOR::return_Data(current_Offset, false) * 4) + 9;
@@ -1800,7 +1800,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         times = 0;
         // Limit speed of space pirates in Elite Pirate room
         vector <int> temp_vec;
-		temp_vec = {143, 144, 145, 146, 147, 148, 149, 150};
+		temp_vec.insert(temp_vec.end(), { 143, 144, 145, 146, 147, 148, 149, 150 });
         while (ID == 20 && conditional == 2 && randomized_Value > 2 && find(temp_vec.begin(), temp_vec.end(), INSTANCE_ID) != temp_vec.end())
         {
             if (times >= 50)
