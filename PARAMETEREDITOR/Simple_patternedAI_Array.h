@@ -124,7 +124,7 @@ const unsigned int ReaperVineHealth[] = { 0x000, 0x000 };
 const unsigned int ReaperVineSpeedMultiply[] = { 0x000, 0x000 };
 const unsigned int ReaperVineSpeedDivide[] = { 0x2, 0x1EF };
 const unsigned int ReaperVineDamage[] = { 0x000, 0x000 };
-const unsigned int ReaperVineKnockbackPower [] = { 0x000, 0x000 };
+const unsigned int ReaperVineKnockbackPower[] = { 0x000, 0x000 };
 
 const unsigned int ScatterBombuScale[] = { 0x000, 0x000 };
 const unsigned int ScatterBombuHealth[] = { 0x000, 0x000 };
@@ -162,7 +162,7 @@ const unsigned int StoneToadDamage[] = { 0x000, 0x000 };
 const unsigned int StoneToadKnockbackPower[] = { 0x000, 0x000 };
 
 const unsigned int TurretScale[] = { 0x4, 0x18, 0x1C, 0x20, };
-const unsigned int TurretHealth[] = { 0x2, 0xC9};
+const unsigned int TurretHealth[] = { 0x2, 0xC9 };
 const unsigned int TurretSpeedMultiply[] = { 0x2, 0x169 };
 const unsigned int TurretSpeedDivide[] = { 0xA, 0x145, 0x149, 0x14D, 0x151, 0x155, 0x159, 0x175, 0x179, 0x1DE };
 const unsigned int TurretDamage[] = { 0x2, 0x18A };
@@ -259,59 +259,59 @@ const unsigned int OmegaPirateArmorEffectOffset[] = { 0x3C40A846, 0x3C40A924, 0x
 
 const unsigned int IncineratorDroneTimers[] = { 0x54FF993B, 0x54FFDD80, 0x54FFC1B5, 0x54FFCA9E, 0x54FFD284, 0x550025E2, 0x54FFBF67, 0x54FFD155, 0x54FFBCE7, 0x54FFD0ED, 0x54FFDF0F, 0x54FFE268, 0x54FFBFAC, 0x54FFBB99, 0x54FFE1F6, 0x54FFE17D, 0x54FFC625, 0x54FFBA95, 0x54FFC201, 0x54FFE268, 0x54FFE10A };
 
-const unsigned int* Flaahgra[6] = {FlaahgraScale, FlaahgraHealth, FlaahgraSpeedMultiply, FlaahgraSpeedDivide, FlaahgraDamage, FlaahgraKnockbackPower};
+const unsigned int* Flaahgra[6] = { FlaahgraScale, FlaahgraHealth, FlaahgraSpeedMultiply, FlaahgraSpeedDivide, FlaahgraDamage, FlaahgraKnockbackPower };
 
-const unsigned int* Thardus[6] = {ThardusScale, ThardusHealth, ThardusSpeedMultiply, ThardusSpeedDivide, ThardusDamage, ThardusKnockbackPower};
+const unsigned int* Thardus[6] = { ThardusScale, ThardusHealth, ThardusSpeedMultiply, ThardusSpeedDivide, ThardusDamage, ThardusKnockbackPower };
 
-const unsigned int* OmegaPirate[6] = {OmegaPirateScale, OmegaPirateHealth, OmegaPirateSpeedMultiply, OmegaPirateSpeedDivide, OmegaPirateDamage, OmegaPirateKnockbackPower};
+const unsigned int* OmegaPirate[6] = { OmegaPirateScale, OmegaPirateHealth, OmegaPirateSpeedMultiply, OmegaPirateSpeedDivide, OmegaPirateDamage, OmegaPirateKnockbackPower };
 
 const unsigned int* MetaRidley[6] = { MetaRidleyScale, MetaRidleyHealth, MetaRidleySpeedMultiply, MetaRidleySpeedDivide, MetaRidleyDamage, MetaRidleyKnockbackPower };
 
 const unsigned int* MetroidPrimeStage2[6] = { MetroidPrimeStage2Scale, MetroidPrimeStage2Health, MetroidPrimeStage2SpeedMultiply, MetroidPrimeStage2SpeedDivide, MetroidPrimeStage2Damage, MetroidPrimeStage2KnockbackPower };
 
-const unsigned int* BabySheegoth[6] = {BabySheegothScale, BabySheegothHealth, BabySheegothSpeedMultiply, BabySheegothSpeedDivide, BabySheegothDamage, BabySheegothKnockbackPower};
+const unsigned int* BabySheegoth[6] = { BabySheegothScale, BabySheegothHealth, BabySheegothSpeedMultiply, BabySheegothSpeedDivide, BabySheegothDamage, BabySheegothKnockbackPower };
 
-const unsigned int* Beetle[6] = {BeetleScale, BeetleHealth, BeetleSpeedMultiply, BeetleSpeedDivide, BeetleDamage, BeetleKnockbackPower};
+const unsigned int* Beetle[6] = { BeetleScale, BeetleHealth, BeetleSpeedMultiply, BeetleSpeedDivide, BeetleDamage, BeetleKnockbackPower };
 
-const unsigned int* BloodFlower[6] = {BloodFlowerScale, BloodFlowerHealth, BloodFlowerSpeedMultiply, BloodFlowerSpeedDivide, BloodFlowerDamage, BloodFlowerKnockbackPower};
+const unsigned int* BloodFlower[6] = { BloodFlowerScale, BloodFlowerHealth, BloodFlowerSpeedMultiply, BloodFlowerSpeedDivide, BloodFlowerDamage, BloodFlowerKnockbackPower };
 
-const unsigned int* ChozoGhost[6] = {ChozoGhostScale, ChozoGhostHealth, ChozoGhostSpeedMultiply, ChozoGhostSpeedDivide, ChozoGhostDamage, ChozoGhostKnockbackPower};
+const unsigned int* ChozoGhost[6] = { ChozoGhostScale, ChozoGhostHealth, ChozoGhostSpeedMultiply, ChozoGhostSpeedDivide, ChozoGhostDamage, ChozoGhostKnockbackPower };
 
-const unsigned int* Drone[6] = {DroneScale, DroneHealth, DroneSpeedMultiply, DroneSpeedDivide, DroneDamage, DroneKnockbackPower};
+const unsigned int* Drone[6] = { DroneScale, DroneHealth, DroneSpeedMultiply, DroneSpeedDivide, DroneDamage, DroneKnockbackPower };
 
-const unsigned int* ElitePirate[6] = {ElitePirateScale, ElitePirateHealth, ElitePirateSpeedMultiply, ElitePirateSpeedDivide, ElitePirateDamage, ElitePirateKnockbackPower};
+const unsigned int* ElitePirate[6] = { ElitePirateScale, ElitePirateHealth, ElitePirateSpeedMultiply, ElitePirateSpeedDivide, ElitePirateDamage, ElitePirateKnockbackPower };
 
-const unsigned int* Eyon[6] = {EyonScale, EyonHealth, EyonSpeedMultiply, EyonSpeedDivide, EyonDamage, EyonKnockbackPower};
+const unsigned int* Eyon[6] = { EyonScale, EyonHealth, EyonSpeedMultiply, EyonSpeedDivide, EyonDamage, EyonKnockbackPower };
 
-const unsigned int* FlyingPirate[6] = {FlyingPirateScale, FlyingPirateHealth, FlyingPirateSpeedMultiply, FlyingPirateSpeedDivide, FlyingPirateDamage, FlyingPirateKnockbackPower};
+const unsigned int* FlyingPirate[6] = { FlyingPirateScale, FlyingPirateHealth, FlyingPirateSpeedMultiply, FlyingPirateSpeedDivide, FlyingPirateDamage, FlyingPirateKnockbackPower };
 
-const unsigned int* HunterMetroid[6] = {HunterMetroidScale, HunterMetroidHealth, HunterMetroidSpeedMultiply, HunterMetroidSpeedDivide, HunterMetroidDamage, HunterMetroidKnockbackPower};
+const unsigned int* HunterMetroid[6] = { HunterMetroidScale, HunterMetroidHealth, HunterMetroidSpeedMultiply, HunterMetroidSpeedDivide, HunterMetroidDamage, HunterMetroidKnockbackPower };
 
-const unsigned int* IceSheegoth[6] = {IceSheegothScale, IceSheegothHealth, IceSheegothSpeedMultiply, IceSheegothSpeedDivide, IceSheegothDamage, IceSheegothKnockbackPower};
+const unsigned int* IceSheegoth[6] = { IceSheegothScale, IceSheegothHealth, IceSheegothSpeedMultiply, IceSheegothSpeedDivide, IceSheegothDamage, IceSheegothKnockbackPower };
 
-const unsigned int* Jelzap[6] = {JelzapScale, JelzapHealth, JelzapSpeedMultiply, JelzapSpeedDivide, JelzapDamage, JelZapKnockbackPower};
+const unsigned int* Jelzap[6] = { JelzapScale, JelzapHealth, JelzapSpeedMultiply, JelzapSpeedDivide, JelzapDamage, JelZapKnockbackPower };
 
-const unsigned int* Magmoor[6] = {MagmoorScale, MagmoorHealth, MagmoorSpeedMultiply, MagmoorSpeedDivide, MagmoorDamage, MagmoorKnockbackPower};
+const unsigned int* Magmoor[6] = { MagmoorScale, MagmoorHealth, MagmoorSpeedMultiply, MagmoorSpeedDivide, MagmoorDamage, MagmoorKnockbackPower };
 
-const unsigned int* Metroid[6] = {MetroidScale, MetroidHealth, MetroidSpeedMultiply, MetroidSpeedDivide, MetroidDamage, MetroidKnockbackPower};
+const unsigned int* Metroid[6] = { MetroidScale, MetroidHealth, MetroidSpeedMultiply, MetroidSpeedDivide, MetroidDamage, MetroidKnockbackPower };
 
-const unsigned int* PuddleSpore[6] = {PuddleSporeScale, PuddleSporeHealth, PuddleSporeSpeedMultiply, PuddleSporeSpeedDivide, PuddleSporeDamage, PuddleSporeKnockbackPower};
+const unsigned int* PuddleSpore[6] = { PuddleSporeScale, PuddleSporeHealth, PuddleSporeSpeedMultiply, PuddleSporeSpeedDivide, PuddleSporeDamage, PuddleSporeKnockbackPower };
 
-const unsigned int* Puffer[6] = {PufferScale, PufferHealth, PufferSpeedMultiply, PufferSpeedDivide, PufferDamage, PufferKnockbackPower};
+const unsigned int* Puffer[6] = { PufferScale, PufferHealth, PufferSpeedMultiply, PufferSpeedDivide, PufferDamage, PufferKnockbackPower };
 
-const unsigned int* PulseBombu[6] = {PulseBombuScale, PulseBombuHealth, PulseBombuSpeedMultiply, PulseBombuSpeedDivide, PulseBombuDamage, PulseBombuKnockbackPower};
+const unsigned int* PulseBombu[6] = { PulseBombuScale, PulseBombuHealth, PulseBombuSpeedMultiply, PulseBombuSpeedDivide, PulseBombuDamage, PulseBombuKnockbackPower };
 
-const unsigned int* ReaperVine[6] = {ReaperVineScale,ReaperVineHealth, ReaperVineSpeedMultiply, ReaperVineSpeedDivide, ReaperVineDamage, ReaperVineKnockbackPower};
+const unsigned int* ReaperVine[6] = { ReaperVineScale,ReaperVineHealth, ReaperVineSpeedMultiply, ReaperVineSpeedDivide, ReaperVineDamage, ReaperVineKnockbackPower };
 
-const unsigned int* ScatterBombu[6] = {ScatterBombuScale, ScatterBombuHealth, ScatterBombuSpeedMultiply,ScatterBombuSpeedDivide, ScatterBombuDamage,ScatterBombuKnockbackPower};
+const unsigned int* ScatterBombu[6] = { ScatterBombuScale, ScatterBombuHealth, ScatterBombuSpeedMultiply,ScatterBombuSpeedDivide, ScatterBombuDamage,ScatterBombuKnockbackPower };
 
-const unsigned int* Seedling[6] = {SeedlingScale, SeedlingHealth, SeedlingSpeedMultiply, SeedlingSpeedDivide, SeedlingDamage, SeedlingKnockbackPower};
+const unsigned int* Seedling[6] = { SeedlingScale, SeedlingHealth, SeedlingSpeedMultiply, SeedlingSpeedDivide, SeedlingDamage, SeedlingKnockbackPower };
 
-const unsigned int* Shriekbat[6] = {ShriekbatScale, ShriekbatHealth, ShriekbatSpeedMultiply, ShriekbatSpeedDivide, ShriekbatDamage, ShriekbatKnockbackPower};
+const unsigned int* Shriekbat[6] = { ShriekbatScale, ShriekbatHealth, ShriekbatSpeedMultiply, ShriekbatSpeedDivide, ShriekbatDamage, ShriekbatKnockbackPower };
 
-const unsigned int* SpacePirate[6] = {SpacePirateScale, SpacePirateHealth, SpacePirateSpeedMultiply, SpacePirateSpeedDivide, SpacePirateDamage, SpacePirateKnockbackPower};
+const unsigned int* SpacePirate[6] = { SpacePirateScale, SpacePirateHealth, SpacePirateSpeedMultiply, SpacePirateSpeedDivide, SpacePirateDamage, SpacePirateKnockbackPower };
 
-const unsigned int* StoneToad[6] = {StoneToadScale, StoneToadHealth, StoneToadSpeedMulitply, StoneToadSpeedDivide, StoneToadDamage, StoneToadKnockbackPower};
+const unsigned int* StoneToad[6] = { StoneToadScale, StoneToadHealth, StoneToadSpeedMulitply, StoneToadSpeedDivide, StoneToadDamage, StoneToadKnockbackPower };
 
 const unsigned int* Turret[6] = { TurretScale, TurretHealth, TurretSpeedMultiply, TurretSpeedDivide, TurretDamage, TurretKnockbackPower };
 
@@ -335,18 +335,4 @@ const unsigned int** EnemyInfo[27] = {
 	Seedling, Shriekbat, SpacePirate, StoneToad, Flaahgra, Thardus, OmegaPirate, MetaRidley, MetroidPrimeStage2
 };
 
-//const unsigned int PlatformModelsPak1[] = { 25, 0x0fa838a6, 0x14f2ae2f, 0x19ee1191, 0x1e9bf6a0, 0x25eaaee3, 0x2b0e11cf, 0x2b393ca0, 0x383c979b, 0x3f21a3a6, 0x454a1308, 0x6556eec5, 0x9a49c3ad, 0x9c35a7a0, 0xa204a72a, 0xa806c893, 0xb3a34aa5, 0xba69bcac, 0xd6fec5d9, 0xda85ffea, 0xe763613f, 0xec9cad3d, 0xecbeb236, 0xf4d664bb, 0xfef8dc6a };
-
-//const unsigned int PlatformModelsPak2[] = { 59, 0x072dd016, 0x08f21022, 0x0acf0949, 0x1ff5a804, 0x20f89138, 0x254ff790, 0x27d0663b, 0x2c53adcc, 0x2e1638f4, 0x2f87fc01, 0x32103b70, 0x3801de98, 0x3852c9cf, 0x3cd8db25, 0x3f802f32, 0x412ff0f8, 0x43acd9da, 0x46c0e07d, 0x4cf2e555, 0x4d6e4a36, 0x53a74797, 0x57ddcb5e, 0x59f307be, 0x5cd82aae, 0x613e630c, 0x786abb89, 0x825ff09c, 0x87ae36f0, 0x881458fd, 0x8a81c9b3, 0x95daa36b, 0x96552147, 0x9c6097e4, 0x9c7b4533, 0xaee96931, 0xaf0ddd9b, 0xafff3775, 0xb36cc5a7, 0xb3a34aa5, 0xb7f45ef5, 0xbe226b20, 0xbfe4daa0, 0xc0a5406a, 0xc3876ef2, 0xc4f4a857, 0xcd58490f, 0xcf2bc7e2, 0xd09715ed, 0xd213e302, 0xd479e6c9, 0xd6ec883a, 0xd7e24e69, 0xd8194744, 0xe1193c3d, 0xe212a765, 0xe3fbf99f, 0xf649ee7e, 0xfc816332 };
-
-//const unsigned int PlatformModelsPak3[] = { 60, 0x00f29d20, 0x09a136c2, 0x09d55763, 0x0d63cd24, 0x1254fed8, 0x133336f4, 0x16f9345b, 0x1723702c, 0x175dbff4, 0x1e228325, 0x28cabd56, 0x2a1651cd, 0x2b2f13f9, 0x2d14d8a1, 0x2fea2d3a, 0x32103b70, 0x32d4cb88, 0x3852c9cf, 0x421eabe7, 0x4a06ab37, 0x4d8d6b13, 0x4f150cc7, 0x53ad25b2, 0x5564509a, 0x57fdb482, 0x5baa47b2, 0x5c10afa0, 0x60dc79aa, 0x63f58641, 0x70f501af, 0x72fa8cc1, 0x74baa85c, 0x7953d934, 0x83dba724, 0x86d1b8b6, 0x881458fd, 0x9191ae40, 0x98b6f18b, 0x9bd4880e, 0xa806c893, 0xb3a34aa5, 0xb64eda45, 0xcb1919bd, 0xcec0d6dd, 0xd0d85eb3, 0xd1ba6b82, 0xd4f5cdea, 0xd7ba8c9b, 0xdcdfd386, 0xdd3e351c, 0xe380d897, 0xe54fa432, 0xe6480b04, 0xea2edca5, 0xef593bf8, 0xf64c9050, 0xf685da00, 0xf871a8b9, 0xfa8d820e };
-
-//const unsigned int PlatformModelsPak4[] = { 63, 0x010994a3, 0x016c2d5f, 0x08352e6d, 0x09837e11, 0x0fe93088, 0x111ae6ee, 0x14fe72b8, 0x19ada58d, 0x1a7b6f6f, 0x1d11a30d, 0x255ad77a, 0x2ad47185, 0x32103b70, 0x32dcd708, 0x3801de98, 0x3a72b2d4, 0x3bfdcf7d, 0x40e523fa, 0x434b8265, 0x43acd9da, 0x578c5d12, 0x5ac84e74, 0x5d171476, 0x62df838c, 0x6456dbdc, 0x658899c7, 0x6a1e4540, 0x726a2da1, 0x7523edda, 0x76974653, 0x77f7ccc2, 0x7d135482, 0x7e336668, 0x881458fd, 0x939b4503, 0x946cdd85, 0x949a25cd, 0x958b9fdb, 0x962e12da, 0x978e9440, 0x98ebad96, 0x99aae3b3, 0x9a8b6ac9, 0x9c6f80e0, 0xa51bda24, 0xb36cc5a7, 0xb64f8727, 0xb715e800, 0xc17ff062, 0xd83bffd8, 0xda30ee4b, 0xda46354b, 0xda7d4b6c, 0xe25377ea, 0xe3dd79fb, 0xea4d7ebd, 0xed320a3c, 0xf33a6018, 0xf7eb1748, 0xfb87262c, 0xfc35846b, 0xfc60cf30 };
-
-//const unsigned int PlatformModelsPak5[] = { 133, 0x0037bfd1, 0x01e12262, 0x034bf8bf, 0x051799a8, 0x05e4806c, 0x0776a1eb, 0x08f07c81, 0x0b7e0559, 0x0c2eddef, 0x0d3bb9b1, 0x0d6553bc, 0x0e7d3bbf, 0x11bd0400, 0x14efe3eb, 0x17648262, 0x18e1b0d4, 0x1a739153, 0x1c6f2c4c, 0x1d9c781e, 0x1e1a3eef, 0x21d69394, 0x26d681aa, 0x2a1651cd, 0x2d0c0847, 0x2d59e799, 0x2f398754, 0x3172f280, 0x34294166, 0x369989e2, 0x3801de98, 0x3802c9ce, 0x3a9ef6fb, 0x3c0cf9e1, 0x3c26f42b, 0x3d0f7852, 0x3f432c9f, 0x3fcdaf2c, 0x4027d056, 0x40fce643, 0x420420f5, 0x42125f45, 0x44d49502, 0x47e7b8ad, 0x48df38a3, 0x4a06ab37, 0x4a0762ed, 0x50254a9f, 0x50c3e3af, 0x53d29fe4, 0x543eb736, 0x554eef5d, 0x58db9501, 0x59cb626b, 0x5b9500c7, 0x5d22e0ee, 0x63389923, 0x65189767, 0x696606ee, 0x6a2f2bef, 0x71c458ea, 0x744572a0, 0x74baa85c, 0x7710b595, 0x7a5ebe4e, 0x7f51a5c1, 0x7f782a68, 0x7ff416e7, 0x8383eb06, 0x8540dfdf, 0x858b7cf9, 0x86a3cd7f, 0x86be70b6, 0x877550cc, 0x881458fd, 0x8980c789, 0x8b5626b1, 0x8ba035e6, 0x8c4128c5, 0x8c795329, 0x8ca113f8, 0x8d9ed26f, 0x93001ade, 0x944bbc58, 0x9597b997, 0x9670888b, 0x98c676be, 0x9b6c54bc, 0xa07a0104, 0xa46a6e8c, 0xa5a3a6c5, 0xa71a4fcd, 0xa79dbbf7, 0xa7e2e23d, 0xa806c893, 0xaac3b212, 0xad468966, 0xb30b0b4d, 0xb8d72430, 0xbae08e55, 0xbf19a105, 0xbfff4333, 0xc048ebaa, 0xc0a4df30, 0xc0c1dbd3, 0xc134fc6b, 0xc2b600f6, 0xc4862deb, 0xc4c9cb36, 0xc4e1ee04, 0xc547f025, 0xcd51d915, 0xd1e045b0, 0xd2b35e7e, 0xd4076eca, 0xd4d7bb67, 0xd793fec8, 0xd9b04e56, 0xde6f3581, 0xe4b66643, 0xea2d1fe6, 0xea2edca5, 0xea551afc, 0xeabe4e04, 0xeff27440, 0xf0c6d5a7, 0xf23cc7f0, 0xf33a6018, 0xf7d73ab5, 0xf871a8b9, 0xf9606449, 0xfbf43823, 0xfec3aa46 };
-
-//const unsigned int PlatformModelsPak6[] = { 26, 0x034bf8bf, 0x04d05317, 0x05bbfeb5, 0x09d55763, 0x133336f4, 0x19a7b788, 0x25cf73b1, 0x2b6cbfb6, 0x32103b70, 0x33ef4d5a, 0x3801de98, 0x3852c9cf, 0x554671c8, 0x5abe03c9, 0x6419a2d2, 0x7b0dfe6c, 0x881458fd, 0x88cc4771, 0x9d6de340, 0xadda14da, 0xb36cc5a7, 0xc417b5cd, 0xcebf474d, 0xd61980bb, 0xf33a6018 };
-
-//const unsigned int PlatformModelsPak7[] = { 21, 0x019baa83, 0x43095ceb, 0x5306bf89, 0x54c90ee1, 0x5886e545, 0x5a9774fb, 0x6d11c8da, 0x71243f69, 0x7eef1549, 0x963d7465, 0x97a501e2, 0x9be3cf70, 0x9f95dd44, 0xa57f1d30, 0xa9336134, 0xbc194b5e, 0xd25d7c4f, 0xd4eb01b2, 0xd663f3d6, 0xf6497355 };
-
-//const unsigned int packLocations[] = { 0x3227b520, 0x3701a5c0, 0x3873cca0, 0x3e31b4a0, 0x42f84de0, 0x46197440, 0x4de6e380 };
+const unsigned int objectPatterned_ID[] = { 0x66, 0x16, 0x2D, 0x28, 0x43, 0x26, 0x67, 0x25, 0x27, 0x4B, 0x54, 0x6B, 0x44, 0x31, 0x79, 0x72, 0x3B, 0x77, 0x7C, 0x37, 0x24, 0x34, 0x4D, 0x58, 0x86, 0x7B, 0x83, 0x2E, 0x3D, 0x3F, 0x7F, 0x6F, 0x36, 0x7A, 0x21, 0xE, 0x5C, 0x64, 0x75, 0x5A, 0x84 };

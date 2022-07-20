@@ -2,6 +2,7 @@
 
 from cpython cimport float 
 
+from libc.stdint cimport uint32_t
 from libcpp cimport bool
 from libcpp.string cimport string
 
@@ -9,13 +10,20 @@ cdef extern from "Simple_PARAMETER_EDITOR.h":
 	cdef cppclass PARAMETEREDITOR:
 		PARAMETEREDITOR()
 		PARAMETEREDITOR(string, string, int, float, float, float, float, float, float, float, float, float, float, bool) except +
-		void Simple_PARAMETER_EDITOR()
+		void start_Here()
 		int return_Data(unsigned int, bool)
+		void find_Pointer_Size(unsigned int)
+		uint32_t ReverseBytes(uint32_t)
+		void MREA_SEARCH(unsigned int, unsigned int)
+		void SCLY_SEARCH(unsigned int)
+		void enemy_Param_Searcher(unsigned int, unsigned int)
+		void enemy_Start_Of_Attributes(unsigned int, unsigned int, unsigned int)
 		void enemy_Param_Editor()
-		void write_Data(unsigned int, unsigned int, unsigned int, int, bool)
-		int combine(int, int, int, int)
+		void write_Data(unsigned int, unsigned int, unsigned int, int, bool, unsigned int)
 		float randomFloat(float, float)
-
+		void add_Offsets_To_Vector(unsigned int, int)
+		
+		bool garbage
 		float scaleLow
 		float scaleHigh
 		float healthLow
@@ -29,4 +37,5 @@ cdef extern from "Simple_PARAMETER_EDITOR.h":
 		bool randoScaleSeperate
 		string inputLocation
 		string outputLocation
-		
+		int times
+		int cur_Pak

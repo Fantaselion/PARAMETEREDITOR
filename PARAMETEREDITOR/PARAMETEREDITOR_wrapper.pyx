@@ -14,23 +14,42 @@ cdef class PyPARAMETEREDITOR:
 	def __dealloc__(self):
 		del self.thisptr
 		
-	def Simple_PARAMETER_EDITOR(self):
-		self.thisptr.Simple_PARAMETER_EDITOR()
+	def start_Here(self):
+		return self.thisptr.start_Here()
 		
 	def return_Data(self, hex_Data, small_Value):
 		return self.thisptr.return_Data(hex_Data, small_Value)
 		
+	def find_Pointer_Size(self, Pointer):
+		return self.thisptr.find_Pointer_Size(Pointer)
+		
+	def ReverseBytes(self, value):
+		return self.thisptr.ReverseBytes(value)
+		
+	def MREA_SEARCH(self, current_Offset, size):
+		return self.thisptr.MREA_SEARCH(current_Offset, size)
+		
+	def SCLY_SEARCH(self, current_Offset):
+		return self.thisptr.SCLY_SEARCH(current_Offset)
+		
+	def enemy_Param_Searcher(self, current_Offset, size):
+		return self.thisptr.enemy_Param_Searcher(current_Offset, size)
+		
+	def enemy_Start_Of_Attributes(self, current_Offset, data_Size, object_ID_Element):
+		return self.thisptr.enemy_Start_Of_Attributes(current_Offset, data_Size, object_ID_Element)
+		
 	def enemy_Param_Editor(self):
 		self.thisptr.enemy_Param_Editor()
 		
-	def write_Data(self, current_offset, offset, conditional, object_ID, small_Value):
-		self.thisptr.write_Data(current_offset, offset, conditional, object_ID, small_Value)
-		
-	def combine(self, a, b, c, d):
-		return self.thisptr.combine(a, b, c, d)
+	def write_Data(self, current_offset, offset, conditional, object_ID, small_Value, offset_Position):
+		self.thisptr.write_Data(current_offset, offset, conditional, object_ID, small_Value, offset_Position)
 		
 	def randomFloat(self, low, high):
 		self.thisptr.randomFloat(low, high)
+		
+	property garbage:
+		def __get__(self): return self.thisptr.garbage
+		def __set__(self, garbage): self.thisptr.garbage = garbage
 		
 	property scaleLow:
 		def __get__(self): return self.thisptr.scaleLow
@@ -86,3 +105,11 @@ cdef class PyPARAMETEREDITOR:
 	property outputLocation:
 		def __get__(self): return self.thisptr.outputLocation
 		def __set__(self, outputLocation): self.thisptr.outputLocation = outputLocation
+		
+	property times:
+		def __get__(self): return self.thisptr.times
+		def __set__(self, times): self.thisptr.times = times
+
+	property cur_Pak:
+		def __get__(self): return self.thisptr.cur_Pak
+		def __set__(self, cur_Pak): self.thisptr.cur_Pak = cur_Pak
