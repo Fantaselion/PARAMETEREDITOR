@@ -273,13 +273,13 @@ void PARAMETEREDITOR::find_Pointer_Size(unsigned int pointer)
 {
     for (unsigned int i = 0, data = 0; data != 0x54585452; i++)
     {
-        data = PARAMETEREDITOR::return_Data(pointer + i, false);
+data = PARAMETEREDITOR::return_Data(pointer + i, false);
 
-        //TXTR in hex
-        if (data == 0x54585452)
-        {
-            pointer += (i + 12);
-        }
+//TXTR in hex
+if (data == 0x54585452)
+{
+    pointer += (i + 12);
+}
 
     }
     unsigned int pointer_Size = PARAMETEREDITOR::return_Data(pointer, false);
@@ -321,13 +321,22 @@ void PARAMETEREDITOR::SCLY_SEARCH(unsigned int current_Offset)
     {
         current_Offset += 4;
     }
+    if (current_Offset == 0x3BBE5620)
+    {
+        cout << "yo" << endl;
+    }
     PARAMETEREDITOR::enemy_Param_Searcher(current_Offset, data_Size);
 }
 
 void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned int size)
 {
-    vector<unsigned int> IncinActorKeyFramesID{ 0x00300030, 0x00300032, 0x0030004A, 0x0030004B, 0x00300055, 0x00300056, 0x0030005A, 0x0030005B, 0x00300065, 0x00300069, 0x00300071, 0x00300072, 0x00300073, 0x00300074, 0x00300075, 0x00300076, 0x00302745 };
-    vector<unsigned int> IncinTimersID{ 0x0030017B, 0x00302732, 0x00300012, 0x0030006A, 0x00300007, 0x003027D6, 0x0030005C, 0x00300079, 0x00300050, 0x00300078, 0x00302737, 0x00302744, 0x0030005D, 0x0030004D, 0x00302743, 0x00302742, 0x00300062, 0x00300041, 0x00300014, 0x00302744, 0x00302742 };
+    set <unsigned int> IncinActorKeyFramesID { 0x00300030, 0x00300032, 0x0030004A, 0x0030004B, 0x00300055,
+        0x00300056, 0x0030005A, 0x0030005B, 0x00300065, 0x00300069, 0x00300071, 0x00300072,
+        0x00300073, 0x00300074, 0x00300075, 0x00300076, 0x00302745 };
+    set <unsigned int> IncinTimersID { 0x0030017B, 0x00302732, 0x00300012, 0x0030006A, 0x00300007,
+        0x003027D6, 0x0030005C, 0x00300079, 0x00300050, 0x00300078, 0x00302737, 0x00302744,
+        0x0030005D, 0x0030004D, 0x00302743, 0x00302742, 0x00300062, 0x00300041, 0x00300014,
+        0x00302744, 0x00302742 };
     unsigned saved_Offset = 0;
     unsigned int initial_Offset = current_Offset;
     current_Offset += 8;
@@ -383,13 +392,11 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
             continue;
         }
         unsigned int value = PARAMETEREDITOR::return_Data(current_Offset, true);
-        //if (IncinActorKeyFramesID.count(INSTANCE_ID) && cur_Pak == 1)
-        if (count(IncinActorKeyFramesID.begin(), IncinActorKeyFramesID.end(), INSTANCE_ID) && cur_Pak == 1)
+        if (IncinActorKeyFramesID.count(INSTANCE_ID) && cur_Pak == 1)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 90);
         }
-        //else if (IncinTimersID.count(INSTANCE_ID) && cur_Pak == 1)
-        else if (count(IncinTimersID.begin(), IncinTimersID.end(), INSTANCE_ID) && cur_Pak == 1)
+        else if (IncinTimersID.count(INSTANCE_ID) && cur_Pak == 1)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 91);
         }
@@ -397,13 +404,11 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 0xFF);
         }
-        //else if (set <unsigned int> {0x0425004C, 0x04250060, 0x04250051, 0x04250053}.count(INSTANCE_ID) && cur_Pak == 1)
-        else if ((INSTANCE_ID == 0x0425004C || INSTANCE_ID == 0x04250060 || INSTANCE_ID == 0x04250051 || INSTANCE_ID == 0x04250053) && cur_Pak == 1)
+        else if (set <unsigned int> {0x0425004C, 0x04250060, 0x04250051, 0x04250053}.count(INSTANCE_ID) && cur_Pak == 1)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 92);
         }
-        //else if (set <unsigned int> {0x141A019B, 0x141A019C, 0x141A019D, 0x141A019E}.count(INSTANCE_ID) && cur_Pak == 4)
-        else if ((INSTANCE_ID == 0x141A019B || INSTANCE_ID == 0x141A019C || INSTANCE_ID == 0x141A019D || INSTANCE_ID == 0x141A019E) && cur_Pak == 1)
+        else if (set <unsigned int> {0x141A019B, 0x141A019C, 0x141A019D, 0x141A019E}.count(INSTANCE_ID) && cur_Pak == 4)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 93);
         }
@@ -448,7 +453,7 @@ void PARAMETEREDITOR::enemy_Start_Of_Attributes(unsigned int current_Offset, uns
     {
         int_IncineratorDrone_offsets = current_Offset;
     }
-    else if (INSTANCE_ID != 0x04090078 && INSTANCE_ID != 0x002900A6 && INSTANCE_ID != 0x1433007C)
+    else if (!(set<unsigned int>{0x04090078, 0x002900A6, 0x1433007C}.count(INSTANCE_ID)))
     {
         PARAMETEREDITOR::add_Offsets_To_Vector(current_Offset, object_ID_Element);
     }
@@ -910,7 +915,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
                             if (c == 0)
                             {
                                 for (int armor = 1; armor < OmegaPirateArmor_offsets[0]; armor++)
-                                    PARAMETEREDITOR::write_Data(OmegaPirateArmor_offsets[armor], 0x18 + ((e - 1) * 4), c, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(OmegaPirateArmor_offsets[armor], 0x18 + ((e - 1) * 4), c, 0xFF, false);
                             }
                             else if (c == 1 && e == 1)
                             {
@@ -966,33 +971,33 @@ void PARAMETEREDITOR::enemy_Param_Editor()
                 }
                 else if (i == 41)
                 {
-                    enemy_Data_Size = IncineratorDrone[c][0];
-                    for (unsigned int e = 1; e < enemy_Data_Size; e++)
+                enemy_Data_Size = IncineratorDrone[c][0];
+                for (unsigned int e = 1; e < enemy_Data_Size; e++)
+                {
+                    if (c == 0 && randoScaleSeperate == true)
                     {
-                        if (c == 0 && randoScaleSeperate == true)
+                        randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
+                    }
+                    PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], IncineratorDrone[c][e], c, i, false);
+                    if (c == 0)
+                    {
+                        PARAMETEREDITOR::write_Data(IncineratorDrone_ActorEye_offset, IncineratorDrone[c][e], c, i, false); // Actor Contraption Eye
+                    }
+                    if (c == 0 && e == 3)
+                    {
+                        randomized_Value = PARAMETEREDITOR::randomFloat(speedLow, speedHigh);
+                        //ActorKeyFrames
+                        for (int a = 1; a < IncineratorDrone_ActorKeyFrame_offsets[0]; a++)
                         {
-                            randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
+                            PARAMETEREDITOR::write_Data(IncineratorDrone_ActorKeyFrame_offsets[a], 0xE, c, 0xFF, false); // 0x00300030
                         }
-                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], IncineratorDrone[c][e], c, i, false);
-                        if (c == 0)
+                        for (int a = 1; a < IncineratorDrone_Timer_offsets[0]; a++)
                         {
-                            PARAMETEREDITOR::write_Data(IncineratorDrone_ActorEye_offset, IncineratorDrone[c][e], c, i, false); // Actor Contraption Eye
-                        }
-                        if (c == 0 && e == 3)
-                        {
-                            randomized_Value = PARAMETEREDITOR::randomFloat(speedLow, speedHigh);
-                            //ActorKeyFrames
-                            for (int a = 1; a < IncineratorDrone_ActorKeyFrame_offsets[0]; a++)
-                            {
-                                PARAMETEREDITOR::write_Data(IncineratorDrone_ActorKeyFrame_offsets[a], 0xE, c, 0xFF, false); // 0x00300030
-                            }
-                            for (int a = 1; a < IncineratorDrone_Timer_offsets[0]; a++)
-                            {
-                                PARAMETEREDITOR::write_Data(IncineratorDrone_Timer_offsets[a], 0x0, 3, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(IncineratorDrone_Timer_offsets[a], 0x4, 3, 0xFF, false);
-                            }
+                            PARAMETEREDITOR::write_Data(IncineratorDrone_Timer_offsets[a], 0x0, 3, 0xFF, false);
+                            PARAMETEREDITOR::write_Data(IncineratorDrone_Timer_offsets[a], 0x4, 3, 0xFF, false);
                         }
                     }
+                }
                 }
             }
         }
@@ -1002,7 +1007,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     /*randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x342BE8D5, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(0x342BE8D5, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
         PARAMETEREDITOR::write_Data(0x342C1678, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
         if (randoScaleSeperate == true)
         {
@@ -1018,7 +1023,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
 
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEDFC2, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(0x34AEDFC2, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1034,7 +1039,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEE2D0, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(0x34AEE2D0, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1050,7 +1055,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEE5E5, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(0x34AEE5E5, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1066,7 +1071,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEE8F9, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(0x34AEE8F9, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1082,7 +1087,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEEC0F, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(0x34AEEC0F, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1098,7 +1103,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEEF8F, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(0x34AEEF8F, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1114,7 +1119,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEFB9C, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(0x34AEFB9C, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1375,7 +1380,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        while (ID == 5 && conditional == 0 && (randomized_Value > 1.3 || randomized_Value < 0.05) && (offset_Position == 4 || offset_Position == 5))
+        while (ID == 5 && conditional == 0 && (randomized_Value > 1.3 || randomized_Value < 0.05) && (set <int> {4, 5}.count(offset_Position)))
         {
             if (times >= 50)
             {
@@ -1709,7 +1714,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         }
         times = 0;
         // Specific Drones get stuck on ceiling if to big
-        while ((offset_Position == 5 || offset_Position == 6 || offset_Position == 7 || offset_Position == 8) && conditional == 0 && (randomized_Value > 1.75 || randomized_Value < 0.05))
+        while ((set <int> {5, 6, 7, 8}.count(offset_Position)) && conditional == 0 && (randomized_Value > 1.75 || randomized_Value < 0.05))
         {
             if (times >= 50)
             {
@@ -1792,7 +1797,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         }
         times = 0;
         // Limit speed of space pirates in Elite Pirate room
-        while (ID == 20 && conditional == 2 && randomized_Value > 2 && (offset_Position == 143 || offset_Position == 144 || offset_Position == 145 || offset_Position == 146 || offset_Position == 147 || offset_Position == 148 || offset_Position == 149 || offset_Position == 150))
+        while (ID == 20 && conditional == 2 && randomized_Value > 2 && (set <unsigned int> {143, 144, 145, 146, 147, 148, 149, 150}.count(offset_Position)))
         {
             if (times >= 50)
             {
