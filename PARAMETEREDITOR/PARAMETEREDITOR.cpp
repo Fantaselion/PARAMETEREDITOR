@@ -331,15 +331,7 @@ void PARAMETEREDITOR::SCLY_SEARCH(unsigned int current_Offset)
 
 void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned int size)
 {
-    vector <unsigned int> temp_vec1;
-	temp_vec1.insert(temp_vec1.end(), { 0x0425004C, 0x04250060, 0x04250051, 0x04250053 });
-    vector <unsigned int> temp_vec2;
-	temp_vec2.insert(temp_vec2.end(), { 0x141A019B, 0x141A019C, 0x141A019D, 0x141A019E });
-    vector <unsigned int> IncinActorKeyFramesID;
-    IncinActorKeyFramesID.insert(IncinActorKeyFramesID.end(), { 0x00300030, 0x00300032, 0x0030004A, 0x0030004B, 0x00300055, 0x00300056, 0x0030005A, 0x0030005B, 0x00300065, 0x00300069, 0x00300071, 0x00300072, 0x00300073, 0x00300074, 0x00300075, 0x00300076, 0x00302745 });
-	vector <unsigned int> IncinTimersID;
-    IncinTimersID.insert(IncinTimersID.end(), { 0x0030017B, 0x00302732, 0x00300012, 0x0030006A, 0x00300007, 0x003027D6, 0x0030005C, 0x00300079, 0x00300050, 0x00300078, 0x00302737, 0x00302744, 0x0030005D, 0x0030004D, 0x00302743, 0x00302742, 0x00300062, 0x00300041, 0x00300014, 0x00302744, 0x00302742 });
-	unsigned saved_Offset = 0;
+    unsigned saved_Offset = 0;
     unsigned int initial_Offset = current_Offset;
     current_Offset += 8;
     current_Offset += (PARAMETEREDITOR::return_Data(current_Offset, false) * 4) + 9;
@@ -394,11 +386,12 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
             continue;
         }
         unsigned int value = PARAMETEREDITOR::return_Data(current_Offset, true);
-        if (find(IncinActorKeyFramesID.begin(), IncinActorKeyFramesID.end(), INSTANCE_ID) != IncinActorKeyFramesID.end() && cur_Pak == 1)
+        //if (find(IncinActorKeyFramesID.begin(), IncinActorKeyFramesID.end(), INSTANCE_ID) != IncinActorKeyFramesID.end() && cur_Pak == 1)
+        if ((INSTANCE_ID == 0x00300030 || INSTANCE_ID == 0x00300032 || INSTANCE_ID == 0x0030004A || INSTANCE_ID == 0x0030004B || INSTANCE_ID == 0x00300055 || INSTANCE_ID == 0x00300056 || INSTANCE_ID == 0x0030005A || INSTANCE_ID == 0x0030005B || INSTANCE_ID == 0x00300065 || INSTANCE_ID == 0x00300069 || INSTANCE_ID == 0x00300071 || INSTANCE_ID == 0x00300072 || INSTANCE_ID == 0x00300073 || INSTANCE_ID == 0x00300074 || INSTANCE_ID == 0x00300075 || INSTANCE_ID == 0x00300076 || INSTANCE_ID == 0x00302745) && cur_Pak == 1)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 90);
         }
-        if (find(IncinTimersID.begin(), IncinTimersID.end(), INSTANCE_ID) != IncinTimersID.end() && cur_Pak == 1)
+        if ((INSTANCE_ID == 0x0030017B || INSTANCE_ID == 0x00302732 || INSTANCE_ID == 0x00300012 || INSTANCE_ID == 0x0030006A || INSTANCE_ID == 0x00300007 || INSTANCE_ID == 0x003027D6 || INSTANCE_ID == 0x0030005C || INSTANCE_ID == 0x00300079 || INSTANCE_ID == 0x00300050 || INSTANCE_ID == 0x00300078 || INSTANCE_ID == 0x00302737 || INSTANCE_ID == 0x00302744 || INSTANCE_ID == 0x0030005D || INSTANCE_ID == 0x0030004D || INSTANCE_ID == 0x00302743 || INSTANCE_ID == 0x00302742 || INSTANCE_ID == 0x00300062 || INSTANCE_ID == 0x00300041 || INSTANCE_ID == 0x00300014 || INSTANCE_ID == 0x00302744 || INSTANCE_ID == 0x00302742) && cur_Pak == 1)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 91);
         }
@@ -406,11 +399,11 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 0xFF);
         }
-        else if (find(temp_vec1.begin(), temp_vec1.end(), INSTANCE_ID) != temp_vec1.end() && cur_Pak == 1)
+        else if ((INSTANCE_ID == 0x0425004C || INSTANCE_ID == 0x04250060 || INSTANCE_ID == 0x04250051 || INSTANCE_ID == 0x04250053) && cur_Pak == 1)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 92);
         }
-        else if (find(temp_vec2.begin(), temp_vec2.end(), INSTANCE_ID) != temp_vec2.end() && cur_Pak == 1)
+        else if ((INSTANCE_ID == 0x141A019B || INSTANCE_ID == 0x141A019C || INSTANCE_ID == 0x141A019D || INSTANCE_ID == 0x141A019E) && cur_Pak == 1)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 93);
         }
@@ -1799,10 +1792,10 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         }
         times = 0;
         // Limit speed of space pirates in Elite Pirate room
-        vector <int> temp_vec;
-		temp_vec.insert(temp_vec.end(), { 143, 144, 145, 146, 147, 148, 149, 150 });
-        while (ID == 20 && conditional == 2 && randomized_Value > 2 && find(temp_vec.begin(), temp_vec.end(), INSTANCE_ID) != temp_vec.end())
+        vector <int> temp_vec {143, 144, 145, 146, 147, 148, 149, 150};
+        while (ID == 20 && conditional == 2 && randomized_Value > 2 && (offset_Position == 143 || offset_Position == 144 || offset_Position == 145 || offset_Position == 146 || offset_Position == 147 || offset_Position == 148 || offset_Position == 149 || offset_Position == 150))
         {
+            cout << "yo" << endl;
             if (times >= 50)
             {
                 randomized_Value = PARAMETEREDITOR::randomFloat(0.05, 2.0);
