@@ -1792,7 +1792,6 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         }
         times = 0;
         // Limit speed of space pirates in Elite Pirate room
-        vector <int> temp_vec {143, 144, 145, 146, 147, 148, 149, 150};
         while (ID == 20 && conditional == 2 && randomized_Value > 2 && (offset_Position == 143 || offset_Position == 144 || offset_Position == 145 || offset_Position == 146 || offset_Position == 147 || offset_Position == 148 || offset_Position == 149 || offset_Position == 150))
         {
             cout << "yo" << endl;
