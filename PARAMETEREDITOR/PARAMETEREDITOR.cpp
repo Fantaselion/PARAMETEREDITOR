@@ -1794,7 +1794,6 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         // Limit speed of space pirates in Elite Pirate room
         while (ID == 20 && conditional == 2 && randomized_Value > 2 && (offset_Position == 143 || offset_Position == 144 || offset_Position == 145 || offset_Position == 146 || offset_Position == 147 || offset_Position == 148 || offset_Position == 149 || offset_Position == 150))
         {
-            cout << "yo" << endl;
             if (times >= 50)
             {
                 randomized_Value = PARAMETEREDITOR::randomFloat(0.05, 2.0);
