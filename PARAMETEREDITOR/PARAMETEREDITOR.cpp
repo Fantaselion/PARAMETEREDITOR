@@ -9,6 +9,7 @@
 #include <vector>
 #include <random>
 #include <cctype>
+#include <algorithm>
 using namespace std;
 unsigned int INSTANCE_ID;
 unsigned int SCYL_SIZE;
@@ -390,6 +391,10 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
         if (IncinActorKeyFramesID.count(INSTANCE_ID) && cur_Pak == 1)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 90);
+        }
+		if (std::find(IncinActorKeyFramesID.begin(), IncinActorKeyFramesID.end(), INSTANCE_ID) != IncinActorKeyFramesID.end() && cur_Pak == 1)
+        {
+            cout << "yo" << endl;
         }
         else if (IncinTimersID.count(INSTANCE_ID) && cur_Pak == 1)
         {
