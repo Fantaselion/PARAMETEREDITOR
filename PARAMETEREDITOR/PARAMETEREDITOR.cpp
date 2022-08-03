@@ -331,6 +331,13 @@ void PARAMETEREDITOR::SCLY_SEARCH(unsigned int current_Offset)
 
 void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned int size)
 {
+    set<unsigned int> IncinActorKeyFramesID{ 0x00300030, 0x00300032, 0x0030004A, 0x0030004B, 0x00300055,
+        0x00300056, 0x0030005A, 0x0030005B, 0x00300065, 0x00300069, 0x00300071, 0x00300072,
+        0x00300073, 0x00300074, 0x00300075, 0x00300076, 0x00302745 };
+    set<unsigned int> IncinTimersID{ 0x0030017B, 0x00302732, 0x00300012, 0x0030006A, 0x00300007,
+        0x003027D6, 0x0030005C, 0x00300079, 0x00300050, 0x00300078, 0x00302737, 0x00302744,
+        0x0030005D, 0x0030004D, 0x00302743, 0x00302742, 0x00300062, 0x00300041, 0x00300014,
+        0x00302744, 0x00302742 };
     unsigned saved_Offset = 0;
     unsigned int initial_Offset = current_Offset;
     current_Offset += 8;
@@ -386,12 +393,11 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
             continue;
         }
         unsigned int value = PARAMETEREDITOR::return_Data(current_Offset, true);
-        //if (find(IncinActorKeyFramesID.begin(), IncinActorKeyFramesID.end(), INSTANCE_ID) != IncinActorKeyFramesID.end() && cur_Pak == 1)
-        if ((INSTANCE_ID == 0x00300030 || INSTANCE_ID == 0x00300032 || INSTANCE_ID == 0x0030004A || INSTANCE_ID == 0x0030004B || INSTANCE_ID == 0x00300055 || INSTANCE_ID == 0x00300056 || INSTANCE_ID == 0x0030005A || INSTANCE_ID == 0x0030005B || INSTANCE_ID == 0x00300065 || INSTANCE_ID == 0x00300069 || INSTANCE_ID == 0x00300071 || INSTANCE_ID == 0x00300072 || INSTANCE_ID == 0x00300073 || INSTANCE_ID == 0x00300074 || INSTANCE_ID == 0x00300075 || INSTANCE_ID == 0x00300076 || INSTANCE_ID == 0x00302745) && cur_Pak == 1)
+        if (IncinActorKeyFramesID.count(INSTANCE_ID) && cur_Pak == 1)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 90);
         }
-        if ((INSTANCE_ID == 0x0030017B || INSTANCE_ID == 0x00302732 || INSTANCE_ID == 0x00300012 || INSTANCE_ID == 0x0030006A || INSTANCE_ID == 0x00300007 || INSTANCE_ID == 0x003027D6 || INSTANCE_ID == 0x0030005C || INSTANCE_ID == 0x00300079 || INSTANCE_ID == 0x00300050 || INSTANCE_ID == 0x00300078 || INSTANCE_ID == 0x00302737 || INSTANCE_ID == 0x00302744 || INSTANCE_ID == 0x0030005D || INSTANCE_ID == 0x0030004D || INSTANCE_ID == 0x00302743 || INSTANCE_ID == 0x00302742 || INSTANCE_ID == 0x00300062 || INSTANCE_ID == 0x00300041 || INSTANCE_ID == 0x00300014 || INSTANCE_ID == 0x00302744 || INSTANCE_ID == 0x00302742) && cur_Pak == 1)
+        else if (IncinTimersID.count(INSTANCE_ID) && cur_Pak == 1)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 91);
         }
@@ -399,11 +405,11 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 0xFF);
         }
-        else if ((INSTANCE_ID == 0x0425004C || INSTANCE_ID == 0x04250060 || INSTANCE_ID == 0x04250051 || INSTANCE_ID == 0x04250053) && cur_Pak == 1)
+        else if (set <unsigned int> {0x0425004C, 0x04250060, 0x04250051, 0x04250053}.count(INSTANCE_ID) && cur_Pak == 1)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 92);
         }
-        else if ((INSTANCE_ID == 0x141A019B || INSTANCE_ID == 0x141A019C || INSTANCE_ID == 0x141A019D || INSTANCE_ID == 0x141A019E) && cur_Pak == 1)
+        else if (set <unsigned int> {0x141A019B, 0x141A019C, 0x141A019D, 0x141A019E}.count(INSTANCE_ID) && cur_Pak == 4)
         {
             PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 93);
         }
@@ -448,7 +454,7 @@ void PARAMETEREDITOR::enemy_Start_Of_Attributes(unsigned int current_Offset, uns
     {
         int_IncineratorDrone_offsets = current_Offset;
     }
-    else if (INSTANCE_ID != 0x04090078 && INSTANCE_ID != 0x002900A6 && INSTANCE_ID != 0x1433007C)
+    else if (!(set<unsigned int>{0x04090078, 0x002900A6, 0x1433007C}.count(INSTANCE_ID)))
     {
         PARAMETEREDITOR::add_Offsets_To_Vector(current_Offset, object_ID_Element);
     }
@@ -1375,7 +1381,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        while (ID == 5 && conditional == 0 && (randomized_Value > 1.3 || randomized_Value < 0.05) && (offset_Position == 4 || offset_Position == 5))
+        while (ID == 5 && conditional == 0 && (randomized_Value > 1.3 || randomized_Value < 0.05) && (set <int> {4, 5}.count(offset_Position)))
         {
             if (times >= 50)
             {
@@ -1709,7 +1715,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         }
         times = 0;
         // Specific Drones get stuck on ceiling if to big
-        while ((offset_Position == 5 || offset_Position == 6 || offset_Position == 7 || offset_Position == 8) && conditional == 0 && (randomized_Value > 1.75 || randomized_Value < 0.05))
+        while ((set <int> {5, 6, 7, 8}.count(offset_Position)) && conditional == 0 && (randomized_Value > 1.75 || randomized_Value < 0.05))
         {
             if (times >= 50)
             {
@@ -1792,7 +1798,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         }
         times = 0;
         // Limit speed of space pirates in Elite Pirate room
-        while (ID == 20 && conditional == 2 && randomized_Value > 2 && (offset_Position == 143 || offset_Position == 144 || offset_Position == 145 || offset_Position == 146 || offset_Position == 147 || offset_Position == 148 || offset_Position == 149 || offset_Position == 150))
+        while (ID == 20 && conditional == 2 && randomized_Value > 2 && (set <unsigned int> {143, 144, 145, 146, 147, 148, 149, 150}.count(offset_Position)))
         {
             if (times >= 50)
             {
@@ -1835,10 +1841,10 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         address[1] = c2;
         address[2] = c1;
         address[3] = c0;
-        if (in_out.is_open())
-        {
-            in_out.write((char*)&value, 4);
-        }
+        //if (in_out.is_open())
+        //{
+        //    in_out.write((char*)&value, 4);
+        //}
     }
     else if (ID != 21)
     {
@@ -1849,11 +1855,11 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         unsigned int value = 0;
         float* pp = (float*)&value;
         (*pp) = ID;
-        if (in_out.is_open())
-        {
-            in_out.seekp(current_Offset + offset);
-            in_out.write((char*)&value, 1);
-        }
+        //if (in_out.is_open())
+        //{
+        //    in_out.seekp(current_Offset + offset);
+        //    in_out.write((char*)&value, 1);
+        //}
     }
 }
 
