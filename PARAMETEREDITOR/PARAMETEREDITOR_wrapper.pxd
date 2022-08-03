@@ -5,6 +5,7 @@ from cpython cimport float
 from libc.stdint cimport uint32_t
 from libcpp cimport bool
 from libcpp.string cimport string
+from libcpp.set cimport set
 
 cdef extern from "Simple_PARAMETER_EDITOR.h":
 	cdef cppclass PARAMETEREDITOR:
