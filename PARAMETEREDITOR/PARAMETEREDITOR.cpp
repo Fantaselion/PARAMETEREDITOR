@@ -10,7 +10,6 @@
 #include <random>
 #include <cctype>
 #include <set>
-#include <iterator>
 using namespace std;
 unsigned int INSTANCE_ID;
 unsigned int SCYL_SIZE;
@@ -332,10 +331,10 @@ void PARAMETEREDITOR::SCLY_SEARCH(unsigned int current_Offset)
 
 void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned int size)
 {
-    set<unsigned int> IncinActorKeyFramesID{ 0x00300030, 0x00300032, 0x0030004A, 0x0030004B, 0x00300055,
+    set<unsigned int> IncinActorKeyFramesID = { 0x00300030, 0x00300032, 0x0030004A, 0x0030004B, 0x00300055,
         0x00300056, 0x0030005A, 0x0030005B, 0x00300065, 0x00300069, 0x00300071, 0x00300072,
         0x00300073, 0x00300074, 0x00300075, 0x00300076, 0x00302745 };
-    set<unsigned int> IncinTimersID{ 0x0030017B, 0x00302732, 0x00300012, 0x0030006A, 0x00300007,
+    set<unsigned int> IncinTimersID = { 0x0030017B, 0x00302732, 0x00300012, 0x0030006A, 0x00300007,
         0x003027D6, 0x0030005C, 0x00300079, 0x00300050, 0x00300078, 0x00302737, 0x00302744,
         0x0030005D, 0x0030004D, 0x00302743, 0x00302742, 0x00300062, 0x00300041, 0x00300014,
         0x00302744, 0x00302742 };
