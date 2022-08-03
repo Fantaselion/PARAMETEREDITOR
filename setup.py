@@ -5,7 +5,8 @@ from Cython.Build import cythonize
 
 PARAMETEREDITOR_module = Extension('PARAMETEREDITOR.PARAMETEREDITOR',
                 sources=['PARAMETEREDITOR/PARAMETEREDITOR_wrapper.pyx', 'PARAMETEREDITOR/PARAMETEREDITOR.cpp'],
-                zip_safe=False,
+                extra_compile_args=["-std=c++14"],
+                extra_link_args=["-std=c++14"],
                 language='c++')
 
 this_directory = Path(__file__).parent
@@ -23,6 +24,4 @@ setup(
     license="MIT",
     packages=['PARAMETEREDITOR'],
     ext_modules=cythonize(PARAMETEREDITOR_module),
-    extra_compile_args=["-std=c++14"],
-    extra_link_args=["-std=c++14"]
 )
