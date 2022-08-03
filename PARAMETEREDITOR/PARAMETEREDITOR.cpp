@@ -9,7 +9,7 @@
 #include <vector>
 #include <random>
 #include <cctype>
-#include <algorithm>
+#include <set>
 using namespace std;
 unsigned int INSTANCE_ID;
 unsigned int SCYL_SIZE;
