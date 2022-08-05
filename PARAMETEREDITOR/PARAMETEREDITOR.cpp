@@ -1841,10 +1841,10 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         address[1] = c2;
         address[2] = c1;
         address[3] = c0;
-        //if (in_out.is_open())
-        //{
-        //    in_out.write((char*)&value, 4);
-        //}
+        if (in_out.is_open())
+        {
+            in_out.write((char*)&value, 4);
+        }
     }
     else if (ID != 21)
     {
@@ -1855,11 +1855,11 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         unsigned int value = 0;
         float* pp = (float*)&value;
         (*pp) = ID;
-        //if (in_out.is_open())
-        //{
-        //    in_out.seekp(current_Offset + offset);
-        //    in_out.write((char*)&value, 1);
-        //}
+        if (in_out.is_open())
+        {
+            in_out.seekp(current_Offset + offset);
+            in_out.write((char*)&value, 1);
+        }
     }
 }
 
