@@ -251,88 +251,136 @@ const unsigned int MetroidPrimeStage2KnockbackPower[] = { 0x2, 0x1F6 };
 //const unsigned int PlatformKnockbackPower[] = { 0x000, 0x000 };
 
 const unsigned int OmegaPirateArmorScaleOffset[] = { 0x3C40B0A5, 0x3C40B2AA, 0x3C40B4AA, 0x3C40B69E };
-const unsigned int OmegaPirateArmorEffectOffset[] = { 0x3C40A846, 0x3C40A924, 0x3C40AA00, 0x3C40AADE, 0x3C40ABBE, 0x3C40AC9E, 0x3C40AD7E, 0x3C40AE5E, 0x3C40C5F7, 0x3C40C6DC, 0x3C40C7BF, 0x3C40C8A4, 0x3C40C98B, 0x3C40CA72, 0x3C40CB59, 0x3C40CC40, 0x3C40F65D, 0x3C40F73D, 0x3C40F81F, 0x3C40F901, 0x3C40F9E5, 0x3C40FAC9, 0x3C40FBAD, 0x3C40FC91 };
+//const unsigned int OmegaPirateArmorEffectOffset[] = { 0x3C40A846, 0x3C40A924, 0x3C40AA00, 0x3C40AADE, 0x3C40ABBE, 0x3C40AC9E, 0x3C40AD7E, 0x3C40AE5E, 0x3C40C5F7, 0x3C40C6DC, 0x3C40C7BF, 0x3C40C8A4, 0x3C40C98B, 0x3C40CA72, 0x3C40CB59, 0x3C40CC40, 0x3C40F65D, 0x3C40F73D, 0x3C40F81F, 0x3C40F901, 0x3C40F9E5, 0x3C40FAC9, 0x3C40FBAD, 0x3C40FC91 };
 
 //const unsigned int Do_Not_Rotate_These_Actors[] = {};
 
 //const unsigned int Do_Not_Rotate_These_Platforms[] = {};
 
-const unsigned int IncineratorDroneTimers[] = { 0x54FF993B, 0x54FFDD80, 0x54FFC1B5, 0x54FFCA9E, 0x54FFD284, 0x550025E2, 0x54FFBF67, 0x54FFD155, 0x54FFBCE7, 0x54FFD0ED, 0x54FFDF0F, 0x54FFE268, 0x54FFBFAC, 0x54FFBB99, 0x54FFE1F6, 0x54FFE17D, 0x54FFC625, 0x54FFBA95, 0x54FFC201, 0x54FFE268, 0x54FFE10A };
+//const unsigned int IncineratorDroneTimers[] = { 0x54FF993B, 0x54FFDD80, 0x54FFC1B5, 0x54FFCA9E, 0x54FFD284, 0x550025E2, 0x54FFBF67, 0x54FFD155, 0x54FFBCE7, 0x54FFD0ED, 0x54FFDF0F, 0x54FFE268, 0x54FFBFAC, 0x54FFBB99, 0x54FFE1F6, 0x54FFE17D, 0x54FFC625, 0x54FFBA95, 0x54FFC201, 0x54FFE268, 0x54FFE10A };
 
-const unsigned int* Flaahgra[6] = { FlaahgraScale, FlaahgraHealth, FlaahgraSpeedMultiply, FlaahgraSpeedDivide, FlaahgraDamage, FlaahgraKnockbackPower };
+const unsigned int* Array_Flaahgra[6] = { FlaahgraScale, FlaahgraHealth, FlaahgraSpeedMultiply, FlaahgraSpeedDivide, FlaahgraDamage, FlaahgraKnockbackPower };
 
-const unsigned int* Thardus[6] = { ThardusScale, ThardusHealth, ThardusSpeedMultiply, ThardusSpeedDivide, ThardusDamage, ThardusKnockbackPower };
+const unsigned int* Array_Thardus[6] = { ThardusScale, ThardusHealth, ThardusSpeedMultiply, ThardusSpeedDivide, ThardusDamage, ThardusKnockbackPower };
 
-const unsigned int* OmegaPirate[6] = { OmegaPirateScale, OmegaPirateHealth, OmegaPirateSpeedMultiply, OmegaPirateSpeedDivide, OmegaPirateDamage, OmegaPirateKnockbackPower };
+const unsigned int* Array_OmegaPirate[6] = { OmegaPirateScale, OmegaPirateHealth, OmegaPirateSpeedMultiply, OmegaPirateSpeedDivide, OmegaPirateDamage, OmegaPirateKnockbackPower };
 
-const unsigned int* MetaRidley[6] = { MetaRidleyScale, MetaRidleyHealth, MetaRidleySpeedMultiply, MetaRidleySpeedDivide, MetaRidleyDamage, MetaRidleyKnockbackPower };
+const unsigned int* Array_MetaRidley[6] = { MetaRidleyScale, MetaRidleyHealth, MetaRidleySpeedMultiply, MetaRidleySpeedDivide, MetaRidleyDamage, MetaRidleyKnockbackPower };
 
-const unsigned int* MetroidPrimeStage2[6] = { MetroidPrimeStage2Scale, MetroidPrimeStage2Health, MetroidPrimeStage2SpeedMultiply, MetroidPrimeStage2SpeedDivide, MetroidPrimeStage2Damage, MetroidPrimeStage2KnockbackPower };
+const unsigned int* Array_MetroidPrimeStage2[6] = { MetroidPrimeStage2Scale, MetroidPrimeStage2Health, MetroidPrimeStage2SpeedMultiply, MetroidPrimeStage2SpeedDivide, MetroidPrimeStage2Damage, MetroidPrimeStage2KnockbackPower };
 
-const unsigned int* BabySheegoth[6] = { BabySheegothScale, BabySheegothHealth, BabySheegothSpeedMultiply, BabySheegothSpeedDivide, BabySheegothDamage, BabySheegothKnockbackPower };
+const unsigned int* Array_BabySheegoth[6] = { BabySheegothScale, BabySheegothHealth, BabySheegothSpeedMultiply, BabySheegothSpeedDivide, BabySheegothDamage, BabySheegothKnockbackPower };
 
-const unsigned int* Beetle[6] = { BeetleScale, BeetleHealth, BeetleSpeedMultiply, BeetleSpeedDivide, BeetleDamage, BeetleKnockbackPower };
+const unsigned int* Array_Beetle[6] = { BeetleScale, BeetleHealth, BeetleSpeedMultiply, BeetleSpeedDivide, BeetleDamage, BeetleKnockbackPower };
 
-const unsigned int* BloodFlower[6] = { BloodFlowerScale, BloodFlowerHealth, BloodFlowerSpeedMultiply, BloodFlowerSpeedDivide, BloodFlowerDamage, BloodFlowerKnockbackPower };
+const unsigned int* Array_BloodFlower[6] = { BloodFlowerScale, BloodFlowerHealth, BloodFlowerSpeedMultiply, BloodFlowerSpeedDivide, BloodFlowerDamage, BloodFlowerKnockbackPower };
 
-const unsigned int* ChozoGhost[6] = { ChozoGhostScale, ChozoGhostHealth, ChozoGhostSpeedMultiply, ChozoGhostSpeedDivide, ChozoGhostDamage, ChozoGhostKnockbackPower };
+const unsigned int* Array_ChozoGhost[6] = { ChozoGhostScale, ChozoGhostHealth, ChozoGhostSpeedMultiply, ChozoGhostSpeedDivide, ChozoGhostDamage, ChozoGhostKnockbackPower };
 
-const unsigned int* Drone[6] = { DroneScale, DroneHealth, DroneSpeedMultiply, DroneSpeedDivide, DroneDamage, DroneKnockbackPower };
+const unsigned int* Array_Drone[6] = { DroneScale, DroneHealth, DroneSpeedMultiply, DroneSpeedDivide, DroneDamage, DroneKnockbackPower };
 
-const unsigned int* ElitePirate[6] = { ElitePirateScale, ElitePirateHealth, ElitePirateSpeedMultiply, ElitePirateSpeedDivide, ElitePirateDamage, ElitePirateKnockbackPower };
+const unsigned int* Array_ElitePirate[6] = { ElitePirateScale, ElitePirateHealth, ElitePirateSpeedMultiply, ElitePirateSpeedDivide, ElitePirateDamage, ElitePirateKnockbackPower };
 
-const unsigned int* Eyon[6] = { EyonScale, EyonHealth, EyonSpeedMultiply, EyonSpeedDivide, EyonDamage, EyonKnockbackPower };
+const unsigned int* Array_Eyon[6] = { EyonScale, EyonHealth, EyonSpeedMultiply, EyonSpeedDivide, EyonDamage, EyonKnockbackPower };
 
-const unsigned int* FlyingPirate[6] = { FlyingPirateScale, FlyingPirateHealth, FlyingPirateSpeedMultiply, FlyingPirateSpeedDivide, FlyingPirateDamage, FlyingPirateKnockbackPower };
+const unsigned int* Array_FlyingPirate[6] = { FlyingPirateScale, FlyingPirateHealth, FlyingPirateSpeedMultiply, FlyingPirateSpeedDivide, FlyingPirateDamage, FlyingPirateKnockbackPower };
 
-const unsigned int* HunterMetroid[6] = { HunterMetroidScale, HunterMetroidHealth, HunterMetroidSpeedMultiply, HunterMetroidSpeedDivide, HunterMetroidDamage, HunterMetroidKnockbackPower };
+const unsigned int* Array_HunterMetroid[6] = { HunterMetroidScale, HunterMetroidHealth, HunterMetroidSpeedMultiply, HunterMetroidSpeedDivide, HunterMetroidDamage, HunterMetroidKnockbackPower };
 
-const unsigned int* IceSheegoth[6] = { IceSheegothScale, IceSheegothHealth, IceSheegothSpeedMultiply, IceSheegothSpeedDivide, IceSheegothDamage, IceSheegothKnockbackPower };
+const unsigned int* Array_IceSheegoth[6] = { IceSheegothScale, IceSheegothHealth, IceSheegothSpeedMultiply, IceSheegothSpeedDivide, IceSheegothDamage, IceSheegothKnockbackPower };
 
-const unsigned int* Jelzap[6] = { JelzapScale, JelzapHealth, JelzapSpeedMultiply, JelzapSpeedDivide, JelzapDamage, JelZapKnockbackPower };
+const unsigned int* Array_Jelzap[6] = { JelzapScale, JelzapHealth, JelzapSpeedMultiply, JelzapSpeedDivide, JelzapDamage, JelZapKnockbackPower };
 
-const unsigned int* Magmoor[6] = { MagmoorScale, MagmoorHealth, MagmoorSpeedMultiply, MagmoorSpeedDivide, MagmoorDamage, MagmoorKnockbackPower };
+const unsigned int* Array_Magmoor[6] = { MagmoorScale, MagmoorHealth, MagmoorSpeedMultiply, MagmoorSpeedDivide, MagmoorDamage, MagmoorKnockbackPower };
 
-const unsigned int* Metroid[6] = { MetroidScale, MetroidHealth, MetroidSpeedMultiply, MetroidSpeedDivide, MetroidDamage, MetroidKnockbackPower };
+const unsigned int* Array_Metroid[6] = { MetroidScale, MetroidHealth, MetroidSpeedMultiply, MetroidSpeedDivide, MetroidDamage, MetroidKnockbackPower };
 
-const unsigned int* PuddleSpore[6] = { PuddleSporeScale, PuddleSporeHealth, PuddleSporeSpeedMultiply, PuddleSporeSpeedDivide, PuddleSporeDamage, PuddleSporeKnockbackPower };
+const unsigned int* Array_PuddleSpore[6] = { PuddleSporeScale, PuddleSporeHealth, PuddleSporeSpeedMultiply, PuddleSporeSpeedDivide, PuddleSporeDamage, PuddleSporeKnockbackPower };
 
-const unsigned int* Puffer[6] = { PufferScale, PufferHealth, PufferSpeedMultiply, PufferSpeedDivide, PufferDamage, PufferKnockbackPower };
+const unsigned int* Array_Puffer[6] = { PufferScale, PufferHealth, PufferSpeedMultiply, PufferSpeedDivide, PufferDamage, PufferKnockbackPower };
 
-const unsigned int* PulseBombu[6] = { PulseBombuScale, PulseBombuHealth, PulseBombuSpeedMultiply, PulseBombuSpeedDivide, PulseBombuDamage, PulseBombuKnockbackPower };
+const unsigned int* Array_PulseBombu[6] = { PulseBombuScale, PulseBombuHealth, PulseBombuSpeedMultiply, PulseBombuSpeedDivide, PulseBombuDamage, PulseBombuKnockbackPower };
 
-const unsigned int* ReaperVine[6] = { ReaperVineScale,ReaperVineHealth, ReaperVineSpeedMultiply, ReaperVineSpeedDivide, ReaperVineDamage, ReaperVineKnockbackPower };
+const unsigned int* Array_ReaperVine[6] = { ReaperVineScale,ReaperVineHealth, ReaperVineSpeedMultiply, ReaperVineSpeedDivide, ReaperVineDamage, ReaperVineKnockbackPower };
 
-const unsigned int* ScatterBombu[6] = { ScatterBombuScale, ScatterBombuHealth, ScatterBombuSpeedMultiply,ScatterBombuSpeedDivide, ScatterBombuDamage,ScatterBombuKnockbackPower };
+const unsigned int* Array_ScatterBombu[6] = { ScatterBombuScale, ScatterBombuHealth, ScatterBombuSpeedMultiply,ScatterBombuSpeedDivide, ScatterBombuDamage,ScatterBombuKnockbackPower };
 
-const unsigned int* Seedling[6] = { SeedlingScale, SeedlingHealth, SeedlingSpeedMultiply, SeedlingSpeedDivide, SeedlingDamage, SeedlingKnockbackPower };
+const unsigned int* Array_Seedling[6] = { SeedlingScale, SeedlingHealth, SeedlingSpeedMultiply, SeedlingSpeedDivide, SeedlingDamage, SeedlingKnockbackPower };
 
-const unsigned int* Shriekbat[6] = { ShriekbatScale, ShriekbatHealth, ShriekbatSpeedMultiply, ShriekbatSpeedDivide, ShriekbatDamage, ShriekbatKnockbackPower };
+const unsigned int* Array_Shriekbat[6] = { ShriekbatScale, ShriekbatHealth, ShriekbatSpeedMultiply, ShriekbatSpeedDivide, ShriekbatDamage, ShriekbatKnockbackPower };
 
-const unsigned int* SpacePirate[6] = { SpacePirateScale, SpacePirateHealth, SpacePirateSpeedMultiply, SpacePirateSpeedDivide, SpacePirateDamage, SpacePirateKnockbackPower };
+const unsigned int* Array_SpacePirate[6] = { SpacePirateScale, SpacePirateHealth, SpacePirateSpeedMultiply, SpacePirateSpeedDivide, SpacePirateDamage, SpacePirateKnockbackPower };
 
-const unsigned int* StoneToad[6] = { StoneToadScale, StoneToadHealth, StoneToadSpeedMulitply, StoneToadSpeedDivide, StoneToadDamage, StoneToadKnockbackPower };
+const unsigned int* Array_StoneToad[6] = { StoneToadScale, StoneToadHealth, StoneToadSpeedMulitply, StoneToadSpeedDivide, StoneToadDamage, StoneToadKnockbackPower };
 
-const unsigned int* Turret[6] = { TurretScale, TurretHealth, TurretSpeedMultiply, TurretSpeedDivide, TurretDamage, TurretKnockbackPower };
+const unsigned int* Array_Turret[6] = { TurretScale, TurretHealth, TurretSpeedMultiply, TurretSpeedDivide, TurretDamage, TurretKnockbackPower };
 
-const unsigned int* AmbientAI[6] = { AmbientAIScale, AmbientAIHealth, AmbientAISpeedMultiply, AmbientAISpeedDivide, AmbientAIDamage, AmbientAIKnockbackPower };
+const unsigned int* Array_AmbientAI[6] = { AmbientAIScale, AmbientAIHealth, AmbientAISpeedMultiply, AmbientAISpeedDivide, AmbientAIDamage, AmbientAIKnockbackPower };
 
-const unsigned int* Swarm[6] = { SwarmScale, SwarmHealth, SwarmSpeedMultiply, SwarmSpeedDivide, SwarmDamage, SwarmKnockbackPower };
+const unsigned int* Array_Swarm[6] = { SwarmScale, SwarmHealth, SwarmSpeedMultiply, SwarmSpeedDivide, SwarmDamage, SwarmKnockbackPower };
 
-const unsigned int* IncineratorDrone[6] = { IncineratorDroneScale, IncineratorDroneHealth, IncineratorDroneSpeedMultiply, IncineratorDroneSpeedDivide, IncineratorDroneDamage, IncineratorDroneKnockbackPower };
+const unsigned int* Array_IncineratorDrone[6] = { IncineratorDroneScale, IncineratorDroneHealth, IncineratorDroneSpeedMultiply, IncineratorDroneSpeedDivide, IncineratorDroneDamage, IncineratorDroneKnockbackPower };
 
-const unsigned int* MetroidPrimeStage1[6] = { MetroidPrimeStage1Scale, MetroidPrimeStage1Health, MetroidPrimeStage1SpeedMultiply, MetroidPrimeStage1SpeedDivide, MetroidPrimeStage1Damage, MetroidPrimeStage1KnockbackPower };
+const unsigned int* Array_MetroidPrimeStage1[6] = { MetroidPrimeStage1Scale, MetroidPrimeStage1Health, MetroidPrimeStage1SpeedMultiply, MetroidPrimeStage1SpeedDivide, MetroidPrimeStage1Damage, MetroidPrimeStage1KnockbackPower };
 
-const unsigned int* ThardusRock[6] = { ThardusRockScale, ThardusRockHealth, ThardusRockSpeedMultiply, ThardusRockSpeedDivide, ThardusRockDamage, ThardusRockKnockbackPower };
+const unsigned int* Array_ThardusRock[6] = { ThardusRockScale, ThardusRockHealth, ThardusRockSpeedMultiply, ThardusRockSpeedDivide, ThardusRockDamage, ThardusRockKnockbackPower };
 
 //const unsigned int* Platform[6] = { PlatformScale, PlatformHealth, PlatformSpeedMultiply, PlatformSpeedDivide, PlatformDamage, PlatformKnockbackPower };
 
 const unsigned int* PatternedAI[6] = { PatternedAIScale, PatternedAIHealth, PatternedAISpeedMultiply, PatternedAISpeedDivide, PatternedAIDamage, PatternedAIKnockbackPower };
 
 const unsigned int** EnemyInfo[27] = {
-	BabySheegoth, Beetle, BloodFlower, ChozoGhost, Drone, ElitePirate, Eyon, FlyingPirate,
-	HunterMetroid, IceSheegoth, Jelzap, Magmoor, Metroid, PuddleSpore, Puffer, PulseBombu, ReaperVine, ScatterBombu,
-	Seedling, Shriekbat, SpacePirate, StoneToad, Flaahgra, Thardus, OmegaPirate, MetaRidley, MetroidPrimeStage2
+	Array_BabySheegoth, Array_Beetle, Array_BloodFlower, Array_ChozoGhost, Array_Drone, Array_ElitePirate, Array_Eyon, Array_FlyingPirate,
+	Array_HunterMetroid, Array_IceSheegoth, Array_Jelzap, Array_Magmoor, Array_Metroid, Array_PuddleSpore, Array_Puffer, Array_PulseBombu, Array_ReaperVine, Array_ScatterBombu,
+	Array_Seedling, Array_Shriekbat, Array_SpacePirate, Array_StoneToad, Array_Flaahgra, Array_Thardus, Array_OmegaPirate, Array_MetaRidley, Array_MetroidPrimeStage2
 };
 
-const unsigned int objectPatterned_ID[] = { 0x66, 0x16, 0x2D, 0x28, 0x43, 0x26, 0x67, 0x25, 0x27, 0x4B, 0x54, 0x6B, 0x44, 0x31, 0x79, 0x72, 0x3B, 0x77, 0x7C, 0x37, 0x24, 0x34, 0x4D, 0x58, 0x86, 0x7B, 0x83, 0x2E, 0x3D, 0x3F, 0x7F, 0x6F, 0x36, 0x7A, 0x21, 0xE, 0x5C, 0x64, 0x75, 0x5A, 0x84 };
+const unsigned int objectPatterned_ID[] = { 0x66, 0x16, 0x2D, 0x28, 0x43, 0x26, 0x67, 0x25, 0x27, 0x4B, 0x54, 0x6B, 0x44, 0x31, 0x79, 0x72, 0x3B, 0x77, 0x7C, 0x37, 0x24, 0x34, 0x4D, 0x58, 0x86, 0x7B, 0x83, 0x2E, 0x3D, 0x3F, 0x7F, 0x6F, 0x36, 0x7A, 0x21, 0xE, 0x5C, 0x64, 0x75, 0x5A, 0x84, 0x6E, 0x1D, 0x5, 0x0, 0x8, 0x8A};
+
+const unsigned int BabySheegoth = 0x66;
+const unsigned int Beetle = 0x16;
+const unsigned int BloodFlower = 0x2D;
+const unsigned int ChozoGhost = 0x28;
+const unsigned int Drone = 0x43;
+const unsigned int ElitePirate = 0x26;
+const unsigned int Eyon = 0x67;
+const unsigned int FlyingPirate = 0x25;
+const unsigned int HunterMetroid = 0x27;
+const unsigned int IceSheegoth = 0x4B;
+const unsigned int JellyZap = 0x54;
+const unsigned int Magdolite = 0x6B;
+const unsigned int MetroidAlpha = 0x44;
+const unsigned int PuddleSpore = 0x31;
+const unsigned int Puffer = 0x79;
+const unsigned int AtomicAlpha = 0x72;
+const unsigned int ReaperVine = 0x3B;
+const unsigned int AtomicBeta = 0x77;
+const unsigned int Seedling = 0x7C;
+const unsigned int Metaree = 0x37;
+const unsigned int SpacePirate = 0x24;
+const unsigned int StoneToad = 0x34;
+const unsigned int Flaahgra = 0x4D;
+const unsigned int Thardus = 0x58;
+const unsigned int OmegaPirate = 0x86;
+const unsigned int Ridley = 0x7B;
+const unsigned int MetroidPrimeEssence = 0x83;
+const unsigned int FlickerBat = 0x2E;
+const unsigned int Parasite = 0x3D;
+const unsigned int Ripper = 0x3F;
+const unsigned int Burrower = 0x7F;
+const unsigned int Oculus = 0x6F;
+const unsigned int FireFlea = 0x36;
+const unsigned int Tryclops = 0x7A;
+const unsigned int WarWasp = 0x21;
+const unsigned int ParasiteQueen = 0xE;
+const unsigned int FlaahgraTentacle = 0x5C;
+const unsigned int GunTurret = 0x64;
+const unsigned int AmbientAI = 0x75;
+const unsigned int WallCrawlerSwarm = 0x5A;
+const unsigned int MetroidPrimeExoskelton = 0x84;
+const unsigned int Zoid = 0x6E;
+const unsigned int ActorKeyFrame = 0x1D;
+const unsigned int Timer = 0x5;
+const unsigned int Actor = 0x0;
+const unsigned int Platform = 0x8;
+const unsigned int ShadowProjector = 0x8A;

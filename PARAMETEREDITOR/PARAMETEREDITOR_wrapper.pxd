@@ -5,7 +5,7 @@ from cpython cimport float
 from libc.stdint cimport uint32_t
 from libcpp cimport bool
 from libcpp.string cimport string
-from libcpp.set cimport set
+from libcpp.vector cimport vector
 
 cdef extern from "Simple_PARAMETER_EDITOR.h":
 	cdef cppclass PARAMETEREDITOR:
@@ -20,9 +20,10 @@ cdef extern from "Simple_PARAMETER_EDITOR.h":
 		void enemy_Param_Searcher(unsigned int, unsigned int)
 		void enemy_Start_Of_Attributes(unsigned int, unsigned int, unsigned int)
 		void enemy_Param_Editor()
-		void write_Data(unsigned int, unsigned int, unsigned int, int, bool, unsigned int)
+		void write_Data(vector[unsigned int], unsigned int, unsigned int, bool, unsigned int)
 		float randomFloat(float, float)
-		void add_Offsets_To_Vector(unsigned int, int)
+		void add_Offsets_To_Vector(unsigned int, int, unsigned int)
+		vector[unsigned int] instance_ID_Offset(const vector[vector[unsigned int]], unsigned int, bool);
 		
 		bool garbage
 		float scaleLow

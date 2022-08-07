@@ -39,9 +39,18 @@ PARAMETEREDITOR::PARAMETEREDITOR()
 
 void PARAMETEREDITOR::start_Here()
 {
+    unsigned int file_Size = in_out.tellg();
     for (int i = 0; i < 7; i++)
     {
         pak_Locations[i] = PARAMETEREDITOR::return_Data(pak_Locations[i], false);
+    }
+    for (int pak_Offset = 0; pak_Offset < 7; pak_Offset++)
+    {
+        if (pak_Locations[pak_Offset] >= file_Size - 0x1000)
+        {
+            cout << "\nCouldn't find pak offsets, your iso version may not be supported\nAborting enemy stat randomizer.";
+            exit(2);
+        }
     }
     for (int i = 0; i < 7; i++)
     {
@@ -83,98 +92,13 @@ void PARAMETEREDITOR::start_Here()
         cur_Pak++;
     }
     cout << " DONE\n";
-    vector_BabySheegoth_offsets.insert(vector_BabySheegoth_offsets.begin(), vector_BabySheegoth_offsets.size() + 1);
-    copy(vector_BabySheegoth_offsets.begin(), vector_BabySheegoth_offsets.end(), BabySheegoth_offsets);
-    vector_Beetle_offsets.insert(vector_Beetle_offsets.begin(), vector_Beetle_offsets.size() + 1);
-    copy(vector_Beetle_offsets.begin(), vector_Beetle_offsets.end(), Beetle_offsets);
-    vector_BloodFlower_offsets.insert(vector_BloodFlower_offsets.begin(), vector_BloodFlower_offsets.size() + 1);
-    copy(vector_BloodFlower_offsets.begin(), vector_BloodFlower_offsets.end(), BloodFlower_offsets);
-    vector_ChozoGhost_offsets.insert(vector_ChozoGhost_offsets.begin(), vector_ChozoGhost_offsets.size() + 1);
-    copy(vector_ChozoGhost_offsets.begin(), vector_ChozoGhost_offsets.end(), ChozoGhost_offsets);
-    vector_Drone_offsets.insert(vector_Drone_offsets.begin(), vector_Drone_offsets.size() + 1);
-    copy(vector_Drone_offsets.begin(), vector_Drone_offsets.end(), Drone_offsets);
-    vector_ElitePirate_offsets.insert(vector_ElitePirate_offsets.begin(), vector_ElitePirate_offsets.size() + 1);
-    copy(vector_ElitePirate_offsets.begin(), vector_ElitePirate_offsets.end(), ElitePirate_offsets);
-    vector_Eyon_offsets.insert(vector_Eyon_offsets.begin(), vector_Eyon_offsets.size() + 1);
-    copy(vector_Eyon_offsets.begin(), vector_Eyon_offsets.end(), Eyon_offsets);
-    vector_FlyingPirate_offsets.insert(vector_FlyingPirate_offsets.begin(), vector_FlyingPirate_offsets.size() + 1);
-    copy(vector_FlyingPirate_offsets.begin(), vector_FlyingPirate_offsets.end(), FlyingPirate_offsets);
-    vector_HunterMetroid_offsets.insert(vector_HunterMetroid_offsets.begin(), vector_HunterMetroid_offsets.size() + 1);
-    copy(vector_HunterMetroid_offsets.begin(), vector_HunterMetroid_offsets.end(), HunterMetroid_offsets);
-    vector_IceSheegoth_offsets.insert(vector_IceSheegoth_offsets.begin(), vector_IceSheegoth_offsets.size() + 1);
-    copy(vector_IceSheegoth_offsets.begin(), vector_IceSheegoth_offsets.end(), IceSheegoth_offsets);
-    vector_Jelzap_offsets.insert(vector_Jelzap_offsets.begin(), vector_Jelzap_offsets.size() + 1);
-    copy(vector_Jelzap_offsets.begin(), vector_Jelzap_offsets.end(), Jelzap_offsets);
-    vector_Magmoor_offsets.insert(vector_Magmoor_offsets.begin(), vector_Magmoor_offsets.size() + 1);
-    copy(vector_Magmoor_offsets.begin(), vector_Magmoor_offsets.end(), Magmoor_offsets);
-    vector_Metroid_offsets.insert(vector_Metroid_offsets.begin(), vector_Metroid_offsets.size() + 1);
-    copy(vector_Metroid_offsets.begin(), vector_Metroid_offsets.end(), Metroid_offsets);
-    vector_PuddleSpore_offsets.insert(vector_PuddleSpore_offsets.begin(), vector_PuddleSpore_offsets.size() + 1);
-    copy(vector_PuddleSpore_offsets.begin(), vector_PuddleSpore_offsets.end(), PuddleSpore_offsets);
-    vector_Puffer_offsets.insert(vector_Puffer_offsets.begin(), vector_Puffer_offsets.size() + 1);
-    copy(vector_Puffer_offsets.begin(), vector_Puffer_offsets.end(), Puffer_offsets);
-    vector_PulseBombu_offsets.insert(vector_PulseBombu_offsets.begin(), vector_PulseBombu_offsets.size() + 1);
-    copy(vector_PulseBombu_offsets.begin(), vector_PulseBombu_offsets.end(), PulseBombu_offsets);
-    vector_ReaperVine_offsets.insert(vector_ReaperVine_offsets.begin(), vector_ReaperVine_offsets.size() + 1);
-    copy(vector_ReaperVine_offsets.begin(), vector_ReaperVine_offsets.end(), ReaperVine_offsets);
-    vector_ScatterBombu_offsets.insert(vector_ScatterBombu_offsets.begin(), vector_ScatterBombu_offsets.size() + 1);
-    copy(vector_ScatterBombu_offsets.begin(), vector_ScatterBombu_offsets.end(), ScatterBombu_offsets);
-    vector_Seedling_offsets.insert(vector_Seedling_offsets.begin(), vector_Seedling_offsets.size() + 1);
-    copy(vector_Seedling_offsets.begin(), vector_Seedling_offsets.end(), Seedling_offsets);
-    vector_Shriekbat_offsets.insert(vector_Shriekbat_offsets.begin(), vector_Shriekbat_offsets.size() + 1);
-    copy(vector_Shriekbat_offsets.begin(), vector_Shriekbat_offsets.end(), Shriekbat_offsets);
-    vector_SpacePirate_offsets.insert(vector_SpacePirate_offsets.begin(), vector_SpacePirate_offsets.size() + 1);
-    copy(vector_SpacePirate_offsets.begin(), vector_SpacePirate_offsets.end(), SpacePirate_offsets);
-    vector_StoneToad_offsets.insert(vector_StoneToad_offsets.begin(), vector_StoneToad_offsets.size() + 1);
-    copy(vector_StoneToad_offsets.begin(), vector_StoneToad_offsets.end(), StoneToad_offsets);
-    vector_Flaahgra_offsets.insert(vector_Flaahgra_offsets.begin(), vector_Flaahgra_offsets.size() + 1);
-    copy(vector_Flaahgra_offsets.begin(), vector_Flaahgra_offsets.end(), Flaahgra_offsets);
-    vector_Thardus_offsets.insert(vector_Thardus_offsets.begin(), vector_Thardus_offsets.size() + 1);
-    copy(vector_Thardus_offsets.begin(), vector_Thardus_offsets.end(), Thardus_offsets);
-    vector_OmegaPirate_offsets.insert(vector_OmegaPirate_offsets.begin(), vector_OmegaPirate_offsets.size() + 1);
-    copy(vector_OmegaPirate_offsets.begin(), vector_OmegaPirate_offsets.end(), OmegaPirate_offsets);
-    vector_MetaRidley_offsets.insert(vector_MetaRidley_offsets.begin(), vector_MetaRidley_offsets.size() + 1);
-    copy(vector_MetaRidley_offsets.begin(), vector_MetaRidley_offsets.end(), MetaRidley_offsets);
-    vector_MetroidPrimeStage2_offsets.insert(vector_MetroidPrimeStage2_offsets.begin(), vector_MetroidPrimeStage2_offsets.size() + 1);
-    copy(vector_MetroidPrimeStage2_offsets.begin(), vector_MetroidPrimeStage2_offsets.end(), MetroidPrimeStage2_offsets);
-    vector_Flickerbat_offsets.insert(vector_Flickerbat_offsets.begin(), vector_Flickerbat_offsets.size() + 1);
-    copy(vector_Flickerbat_offsets.begin(), vector_Flickerbat_offsets.end(), Flickerbat_offsets);
-    vector_GroundProwlers_offsets.insert(vector_GroundProwlers_offsets.begin(), vector_GroundProwlers_offsets.size() + 1);
-    copy(vector_GroundProwlers_offsets.begin(), vector_GroundProwlers_offsets.end(), GroundProwlers_offsets);
-    vector_Glider_offsets.insert(vector_Glider_offsets.begin(), vector_Glider_offsets.size() + 1);
-    copy(vector_Glider_offsets.begin(), vector_Glider_offsets.end(), Glider_offsets);
-    vector_Burrower_offsets.insert(vector_Burrower_offsets.begin(), vector_Burrower_offsets.size() + 1);
-    copy(vector_Burrower_offsets.begin(), vector_Burrower_offsets.end(), Burrower_offsets);
-    vector_Oculus_offsets.insert(vector_Oculus_offsets.begin(), vector_Oculus_offsets.size() + 1);
-    copy(vector_Oculus_offsets.begin(), vector_Oculus_offsets.end(), Oculus_offsets);
-    vector_Plazmite_offsets.insert(vector_Plazmite_offsets.begin(), vector_Plazmite_offsets.size() + 1);
-    copy(vector_Plazmite_offsets.begin(), vector_Plazmite_offsets.end(), Plazmite_offsets);
-    vector_Triclops_offsets.insert(vector_Triclops_offsets.begin(), vector_Triclops_offsets.size() + 1);
-    copy(vector_Triclops_offsets.begin(), vector_Triclops_offsets.end(), Triclops_offsets);
-    vector_WarWasp_offsets.insert(vector_WarWasp_offsets.begin(), vector_WarWasp_offsets.size() + 1);
-    copy(vector_WarWasp_offsets.begin(), vector_WarWasp_offsets.end(), WarWasp_offsets);
-    vector_ParasiteQueen_offsets.insert(vector_ParasiteQueen_offsets.begin(), vector_ParasiteQueen_offsets.size() + 1);
-    copy(vector_ParasiteQueen_offsets.begin(), vector_ParasiteQueen_offsets.end(), ParasiteQueen_offsets);
-    vector_FlaahgraTentacle_offsets.insert(vector_FlaahgraTentacle_offsets.begin(), vector_FlaahgraTentacle_offsets.size() + 1);
-    copy(vector_FlaahgraTentacle_offsets.begin(), vector_FlaahgraTentacle_offsets.end(), FlaahgraTentacle_offsets);
-    vector_Turret_offsets.insert(vector_Turret_offsets.begin(), vector_Turret_offsets.size() + 1);
-    copy(vector_Turret_offsets.begin(), vector_Turret_offsets.end(), Turret_offsets);
-    vector_AmbientAI_offsets.insert(vector_AmbientAI_offsets.begin(), vector_AmbientAI_offsets.size() + 1);
-    copy(vector_AmbientAI_offsets.begin(), vector_AmbientAI_offsets.end(), AmbientAI_offsets);
-    vector_Swarm_offsets.insert(vector_Swarm_offsets.begin(), vector_Swarm_offsets.size() + 1);
-    copy(vector_Swarm_offsets.begin(), vector_Swarm_offsets.end(), Swarm_offsets);
-    vector_MetroidPrimeStage1_offsets.insert(vector_MetroidPrimeStage1_offsets.begin(), vector_MetroidPrimeStage1_offsets.size() + 1);
-    copy(vector_MetroidPrimeStage1_offsets.begin(), vector_MetroidPrimeStage1_offsets.end(), MetroidPrimeStage1_offsets);
-    IncineratorDrone_offsets[0] = 2;
-    IncineratorDrone_offsets[1] = int_IncineratorDrone_offsets;
-    vector_IncineratorDrone_ActorKeyFrame_offsets.insert(vector_IncineratorDrone_ActorKeyFrame_offsets.begin(), vector_IncineratorDrone_ActorKeyFrame_offsets.size() + 1);
-    copy(vector_IncineratorDrone_ActorKeyFrame_offsets.begin(), vector_IncineratorDrone_ActorKeyFrame_offsets.end(), IncineratorDrone_ActorKeyFrame_offsets);
-    vector_IncineratorDrone_Timer_offsets.insert(vector_IncineratorDrone_Timer_offsets.begin(), vector_IncineratorDrone_Timer_offsets.size() + 1);
-    copy(vector_IncineratorDrone_Timer_offsets.begin(), vector_IncineratorDrone_Timer_offsets.end(), IncineratorDrone_Timer_offsets);
-    vector_Flaahgra_Timer_offsets.insert(vector_Flaahgra_Timer_offsets.begin(), vector_Flaahgra_Timer_offsets.size() + 1);
-    copy(vector_Flaahgra_Timer_offsets.begin(), vector_Flaahgra_Timer_offsets.end(), Flaahgra_Timer_offsets);
-    vector_OmegaPirateArmor_offsets.insert(vector_OmegaPirateArmor_offsets.begin(), vector_OmegaPirateArmor_offsets.size() + 1);
-    copy(vector_OmegaPirateArmor_offsets.begin(), vector_OmegaPirateArmor_offsets.end(), OmegaPirateArmor_offsets);
+    for (int i = 0; i < 47; i++)
+    {
+        vector<unsigned int> enemy_Data = { unsigned int(EnemyOffsets[i].size()) + (1)};
+        //EnemyOffsets[i].insert(EnemyOffsets[i].begin(), vector<unsigned int>( EnemyOffsets[i].size() + 1 ));
+        EnemyOffsets[i].insert(EnemyOffsets[i].begin(), enemy_Data);
+    }
+
     cout << "Randomizing enemy stats";
     PARAMETEREDITOR::enemy_Param_Editor();
     cout << " DONE" << endl;
@@ -195,6 +119,15 @@ PARAMETEREDITOR::PARAMETEREDITOR(string in_File, string out_File, int gen_Seed, 
     knockbackPowerHigh = KNOCK_H;
     randoScaleSeperate = Seperate;
     gen.seed(gen_Seed);
+
+    int position = outputLocation.find_last_of(".");
+    string file_Extension = outputLocation.substr(position + 1);
+    if (file_Extension != "iso")
+    {
+        cout << "Enemy Stat Randomizer only supports output file extension of type 'iso', not '" << file_Extension << "'\nAborting enemy stat randomizer." << endl;
+        exit(1);
+    }
+
 
     if (scaleLow > scaleHigh)
     {
@@ -272,16 +205,25 @@ int PARAMETEREDITOR::return_Data(unsigned int hex_Data, bool small_Value)
 
 void PARAMETEREDITOR::find_Pointer_Size(unsigned int pointer)
 {
+    bool correct_Pak_Data = false;
     for (unsigned int i = 0, data = 0; data != 0x54585452; i++)
     {
-data = PARAMETEREDITOR::return_Data(pointer + i, false);
-
-//TXTR in hex
-if (data == 0x54585452)
-{
-    pointer += (i + 12);
-}
-
+        if (i > 30 && !correct_Pak_Data)
+        {
+            cout << "\nCouldn't find pak offsets, your iso version may not be supported\nAborting enemy stat randomizer.";
+            exit(2);
+        }
+        data = PARAMETEREDITOR::return_Data(pointer + i, false);
+        //MLVL in hex
+        if (data == 0x4D4C564C)
+        {
+            correct_Pak_Data = true;
+        }
+        //TXTR in hex
+        if (data == 0x54585452 && correct_Pak_Data)
+        {
+            pointer += (i + 12);
+        }
     }
     unsigned int pointer_Size = PARAMETEREDITOR::return_Data(pointer, false);
     PARAMETEREDITOR::MREA_SEARCH((pointer - 12), pointer_Size);
@@ -314,7 +256,6 @@ void PARAMETEREDITOR::SCLY_SEARCH(unsigned int current_Offset)
     {
         new_Offset += PARAMETEREDITOR::return_Data(current_Offset + (4 * i), false);
     }
-    //cout << new_Offset << endl;
     current_Offset += new_Offset + (data_sections * 4);
 
     //SCLY in hex
@@ -322,22 +263,11 @@ void PARAMETEREDITOR::SCLY_SEARCH(unsigned int current_Offset)
     {
         current_Offset += 4;
     }
-    if (current_Offset == 0x3BBE5620)
-    {
-        cout << "yo" << endl;
-    }
-    PARAMETEREDITOR::enemy_Param_Searcher(current_Offset, data_Size);
+PARAMETEREDITOR::enemy_Param_Searcher(current_Offset, data_Size);
 }
 
 void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned int size)
 {
-    set<unsigned int> IncinActorKeyFramesID = { 0x00300030, 0x00300032, 0x0030004A, 0x0030004B, 0x00300055,
-        0x00300056, 0x0030005A, 0x0030005B, 0x00300065, 0x00300069, 0x00300071, 0x00300072,
-        0x00300073, 0x00300074, 0x00300075, 0x00300076, 0x00302745 };
-    set<unsigned int> IncinTimersID = { 0x0030017B, 0x00302732, 0x00300012, 0x0030006A, 0x00300007,
-        0x003027D6, 0x0030005C, 0x00300079, 0x00300050, 0x00300078, 0x00302737, 0x00302744,
-        0x0030005D, 0x0030004D, 0x00302743, 0x00302742, 0x00300062, 0x00300041, 0x00300014,
-        0x00302744, 0x00302742 };
     unsigned saved_Offset = 0;
     unsigned int initial_Offset = current_Offset;
     current_Offset += 8;
@@ -393,36 +323,12 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
             continue;
         }
         unsigned int value = PARAMETEREDITOR::return_Data(current_Offset, true);
-        if (IncinActorKeyFramesID.count(INSTANCE_ID) && cur_Pak == 1)
-        {
-            PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 90);
-        }
-        else if (IncinTimersID.count(INSTANCE_ID) && cur_Pak == 1)
-        {
-            PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 91);
-        }
-        else if (INSTANCE_ID == 0x00300004 && cur_Pak == 1)
-        {
-            PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 0xFF);
-        }
-        else if (set <unsigned int> {0x0425004C, 0x04250060, 0x04250051, 0x04250053}.count(INSTANCE_ID) && cur_Pak == 1)
-        {
-            PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 92);
-        }
-        else if (set <unsigned int> {0x141A019B, 0x141A019C, 0x141A019D, 0x141A019E}.count(INSTANCE_ID) && cur_Pak == 4)
-        {
-            PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 93);
-        }
-        else if (INSTANCE_ID == 0x0030000E && cur_Pak == 1)
-        {
-            PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, 0xFF);
-        }
-        for (unsigned int i = 0; i < 41; i++)
+        for (unsigned int i = 0; i < 47; i++)
         {
             if (value == objectPatterned_ID[i])
             {
                 PARAMETEREDITOR::enemy_Start_Of_Attributes(current_Offset, SCYL_SIZE, i);
-                i = 99;
+                break;
             }
         }
         current_Offset += SCYL_SIZE + 5;
@@ -432,7 +338,8 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
 
 void PARAMETEREDITOR::enemy_Start_Of_Attributes(unsigned int current_Offset, unsigned int data_Size, unsigned int object_ID_Element)
 {
-    unsigned int Start_Of_Data = current_Offset + 5;
+    unsigned int TYPE = PARAMETEREDITOR::return_Data(current_Offset, true);
+    //unsigned int Start_Of_Data = current_Offset + 5;
     current_Offset += 9;
     unsigned int size = PARAMETEREDITOR::return_Data(current_Offset, false);
     current_Offset += 8 + (size * 0x0C);
@@ -445,160 +352,156 @@ void PARAMETEREDITOR::enemy_Start_Of_Attributes(unsigned int current_Offset, uns
         current_Offset++;
     }
     current_Offset++;
-
-    if (INSTANCE_ID == 0x00300004 && cur_Pak == 1)
+    if (!(set<unsigned int>{0x04090078, 0x002900A6, 0x1433007C}.count(INSTANCE_ID)))
     {
-        IncineratorDrone_ActorEye_offset = current_Offset;
-    }
-    else if (INSTANCE_ID == 0x0030000E && cur_Pak == 1)
-    {
-        int_IncineratorDrone_offsets = current_Offset;
-    }
-    else if (!(set<unsigned int>{0x04090078, 0x002900A6, 0x1433007C}.count(INSTANCE_ID)))
-    {
-        PARAMETEREDITOR::add_Offsets_To_Vector(current_Offset, object_ID_Element);
+        vector<unsigned int> enemy_Data = { INSTANCE_ID, current_Offset, TYPE };
+        EnemyOffsets[object_ID_Element].push_back(enemy_Data);
     }
 
 }
 
-void PARAMETEREDITOR::add_Offsets_To_Vector(unsigned int current_Offset, int o)
+void PARAMETEREDITOR::add_Offsets_To_Vector(unsigned int current_Offset, int o, unsigned int enemy_Type)
 {
+    vector<unsigned int> enemy_Data = { INSTANCE_ID, current_Offset, enemy_Type };
     switch (o)
     {
     case 0:
-        vector_BabySheegoth_offsets.push_back(current_Offset);
+        vector_BabySheegoth_offsets.push_back(enemy_Data);
         break;
     case 1:
-        vector_Beetle_offsets.push_back(current_Offset);
+        vector_Beetle_offsets.push_back(enemy_Data);
         break;
     case 2:
-        vector_BloodFlower_offsets.push_back(current_Offset);
+        vector_BloodFlower_offsets.push_back(enemy_Data);
         break;
     case 3:
-        vector_ChozoGhost_offsets.push_back(current_Offset);
+        vector_ChozoGhost_offsets.push_back(enemy_Data);
         break;
     case 4:
-        vector_Drone_offsets.push_back(current_Offset);
+        vector_Drone_offsets.push_back(enemy_Data);
         break;
     case 5:
-        vector_ElitePirate_offsets.push_back(current_Offset);
+        vector_ElitePirate_offsets.push_back(enemy_Data);
         break;
     case 6:
-        vector_Eyon_offsets.push_back(current_Offset);
+        vector_Eyon_offsets.push_back(enemy_Data);
         break;
     case 7:
-        vector_FlyingPirate_offsets.push_back(current_Offset);
+        vector_FlyingPirate_offsets.push_back(enemy_Data);
         break;
     case 8:
-        vector_HunterMetroid_offsets.push_back(current_Offset);
+        vector_HunterMetroid_offsets.push_back(enemy_Data);
         break;
     case 9:
-        vector_IceSheegoth_offsets.push_back(current_Offset);
+        vector_IceSheegoth_offsets.push_back(enemy_Data);
         break;
     case 10:
-        vector_Jelzap_offsets.push_back(current_Offset);
+        vector_Jelzap_offsets.push_back(enemy_Data);
         break;
     case 11:
-        vector_Magmoor_offsets.push_back(current_Offset);
+        vector_Magmoor_offsets.push_back(enemy_Data);
         break;
     case 12:
-        vector_Metroid_offsets.push_back(current_Offset);
+        vector_Metroid_offsets.push_back(enemy_Data);
         break;
     case 13:
-        vector_PuddleSpore_offsets.push_back(current_Offset);
+        vector_PuddleSpore_offsets.push_back(enemy_Data);
         break;
     case 14:
-        vector_Puffer_offsets.push_back(current_Offset);
+        vector_Puffer_offsets.push_back(enemy_Data);
         break;
     case 15:
-        vector_PulseBombu_offsets.push_back(current_Offset);
+        vector_PulseBombu_offsets.push_back(enemy_Data);
         break;
     case 16:
-        vector_ReaperVine_offsets.push_back(current_Offset);
+        vector_ReaperVine_offsets.push_back(enemy_Data);
         break;
     case 17:
-        vector_ScatterBombu_offsets.push_back(current_Offset);
+        vector_ScatterBombu_offsets.push_back(enemy_Data);
         break;
     case 18:
-        vector_Seedling_offsets.push_back(current_Offset);
+        vector_Seedling_offsets.push_back(enemy_Data);
         break;
     case 19:
-        vector_Shriekbat_offsets.push_back(current_Offset);
+        vector_Shriekbat_offsets.push_back(enemy_Data);
         break;
     case 20:
-        vector_SpacePirate_offsets.push_back(current_Offset);
+        vector_SpacePirate_offsets.push_back(enemy_Data);
         break;
     case 21:
-        vector_StoneToad_offsets.push_back(current_Offset);
+        vector_StoneToad_offsets.push_back(enemy_Data);
         break;
     case 22:
-        vector_Flaahgra_offsets.push_back(current_Offset);
+        vector_Flaahgra_offsets.push_back(enemy_Data);
         break;
     case 23:
-        vector_Thardus_offsets.push_back(current_Offset);
+        vector_Thardus_offsets.push_back(enemy_Data);
         break;
     case 24:
-        vector_OmegaPirate_offsets.push_back(current_Offset);
+        vector_OmegaPirate_offsets.push_back(enemy_Data);
         break;
     case 25:
-        vector_MetaRidley_offsets.push_back(current_Offset);
+        vector_MetaRidley_offsets.push_back(enemy_Data);
         break;
     case 26:
-        vector_MetroidPrimeStage2_offsets.push_back(current_Offset);
+        vector_MetroidPrimeStage2_offsets.push_back(enemy_Data);
         break;
     case 27:
-        vector_Flickerbat_offsets.push_back(current_Offset);
+        vector_Flickerbat_offsets.push_back(enemy_Data);
         break;
     case 28:
-        vector_GroundProwlers_offsets.push_back(current_Offset);
+        vector_GroundProwlers_offsets.push_back(enemy_Data);
         break;
     case 29:
-        vector_Glider_offsets.push_back(current_Offset);
+        vector_Glider_offsets.push_back(enemy_Data);
         break;
     case 30:
-        vector_Burrower_offsets.push_back(current_Offset);
+        vector_Burrower_offsets.push_back(enemy_Data);
         break;
     case 31:
-        vector_Oculus_offsets.push_back(current_Offset);
+        vector_Oculus_offsets.push_back(enemy_Data);
         break;
     case 32:
-        vector_Plazmite_offsets.push_back(current_Offset);
+        vector_Plazmite_offsets.push_back(enemy_Data);
         break;
     case 33:
-        vector_Triclops_offsets.push_back(current_Offset);
+        vector_Triclops_offsets.push_back(enemy_Data);
         break;
     case 34:
-        vector_WarWasp_offsets.push_back(current_Offset);
+        vector_WarWasp_offsets.push_back(enemy_Data);
         break;
     case 35:
-        vector_ParasiteQueen_offsets.push_back(current_Offset);
+        vector_ParasiteQueen_offsets.push_back(enemy_Data);
         break;
     case 36:
-        vector_FlaahgraTentacle_offsets.push_back(current_Offset);
+        vector_FlaahgraTentacle_offsets.push_back(enemy_Data);
         break;
     case 37:
-        vector_Turret_offsets.push_back(current_Offset);
+        vector_Turret_offsets.push_back(enemy_Data);
         break;
     case 38:
-        vector_AmbientAI_offsets.push_back(current_Offset);
+        vector_AmbientAI_offsets.push_back(enemy_Data);
         break;
     case 39:
-        vector_Swarm_offsets.push_back(current_Offset);
+        vector_Swarm_offsets.push_back(enemy_Data);
         break;
     case 40:
-        vector_MetroidPrimeStage1_offsets.push_back(current_Offset);
+        vector_MetroidPrimeStage1_offsets.push_back(enemy_Data);
         break;
-    case 90:
-        vector_IncineratorDrone_ActorKeyFrame_offsets.push_back(current_Offset);
+    case 41:
+        vector_IncineratorDrone_offsets.push_back(enemy_Data);
         break;
-    case 91:
-        vector_IncineratorDrone_Timer_offsets.push_back(current_Offset);
+    case 42:
+        vector_ActorKeyFrame_offsets.push_back(enemy_Data);
         break;
-    case 92:
-        vector_Flaahgra_Timer_offsets.push_back(current_Offset);
+    case 43:
+        vector_Timer_offsets.push_back(enemy_Data);
         break;
-    case 93:
-        vector_OmegaPirateArmor_offsets.push_back(current_Offset);
+    case 44:
+        vector_Actor_offsets.push_back(enemy_Data);
+        break;
+    case 45:
+        vector_Platform_offsets.push_back(enemy_Data);
         break;
     default:
         cout << "Something went wrong, aborting enemy stat randomizer." << endl;
@@ -610,11 +513,19 @@ void PARAMETEREDITOR::add_Offsets_To_Vector(unsigned int current_Offset, int o)
 void PARAMETEREDITOR::enemy_Param_Editor()
 {
     unsigned int enemy_Data_Size;
-
-    for (unsigned int i = 0; i < 43; i++)
+    unsigned int instance_ID;
+    unsigned int enemy_Type;
+    vector_ActorKeyFrame_offsets = EnemyOffsets[42];
+    vector_Timer_offsets = EnemyOffsets[43];
+    vector_Actor_offsets = EnemyOffsets[44];
+    vector_Platform_offsets = EnemyOffsets[45];
+    vector_ShadowProjector_offsets = EnemyOffsets[46];
+    for (unsigned int i = 0; i < 42; i++)
     {
-        for (unsigned int o = 1; o < EnemyOffsets[i][0]; o++)
+        for (unsigned int o = 1; o < EnemyOffsets[i][0][0]; o++)
         {
+            instance_ID = EnemyOffsets[i][o][0];
+            enemy_Type = EnemyOffsets[i][o][2];
             for (unsigned int c = 0; c < 6; c++)
             {
                 switch (c)
@@ -658,7 +569,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
                         {
                             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
                         }
-                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], EnemyInfo[i][c][e], c, i, false, o);
+                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], EnemyInfo[i][c][e], c);
                     }
                 }
                 if (i == 23 && c == 0)
@@ -667,14 +578,14 @@ void PARAMETEREDITOR::enemy_Param_Editor()
                     {
                         float temp = randomized_Value;
                         randomized_Value = 2.0 / randomized_Value;
-                        PARAMETEREDITOR::write_Data(Thardus_offsets[1], 0x244, 0xFF, 0xFF, false); //ThardusRollSpeed
+                        PARAMETEREDITOR::write_Data(vector_Thardus_offsets[1], 0x244, 0xFF); //ThardusRollSpeed
                         randomized_Value = temp;
                     }
                     else if (randomized_Value < 1.0)
                     {
                         float temp = randomized_Value;
                         randomized_Value = 1.0 / randomized_Value;
-                        PARAMETEREDITOR::write_Data(Thardus_offsets[1], 0x244, 0xFF, 0xFF, false); //ThardusRollSpeed
+                        PARAMETEREDITOR::write_Data(vector_Thardus_offsets[1], 0x244, 0xFF); //ThardusRollSpeed
                         randomized_Value = temp;
                     }
                 }
@@ -690,312 +601,289 @@ void PARAMETEREDITOR::enemy_Param_Editor()
                 {
                     for (unsigned int e = 1; e < enemy_Data_Size; e++)
                     {
-                        if (c == 0 && i != 0 && i != 3 && i != 9 && i != 23 && i != 25 && randoScaleSeperate == true && EnemyOffsets[i][o] != 0x53411AAD && EnemyOffsets[i][o] != 0x53411D44 && EnemyOffsets[i][o] != 0x53411821 && EnemyOffsets[i][o] != 0x49f9c846 && EnemyOffsets[i][o] != 0x406e14c9)
+                        if (c == 0 && i != 0 && i != 3 && i != 9 && i != 23 && i != 25 && randoScaleSeperate == true && EnemyOffsets[i][o][1] != 0x53411AAD && EnemyOffsets[i][o][1] != 0x53411D44 && EnemyOffsets[i][o][1] != 0x53411821 && EnemyOffsets[i][o][1] != 0x49f9c846 && EnemyOffsets[i][o][1] != 0x406e14c9)
                         {
                             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
                         }
-                        if (i == 23)
-                        {
-                            PARAMETEREDITOR::write_Data(0x49F9CC10, ThardusRock[c][e], c, i, false);
-                        }
-                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], PatternedAI[c][e], c, i, false, o);
-                        if (c == 3 && e == 1 && EnemyOffsets[i][o] == 0x5382bf8f)
+                        //if (i == 23)
+                        //{
+                        //    PARAMETEREDITOR::write_Data(0x49F9CC10, Array_ThardusRock[c][e], c);
+                        //}
+                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], PatternedAI[c][e], c);
+                        if (c == 3 && e == 1 && i == 23) //??25001E
                         {
                             float temp = randomized_Value;
                             randomized_Value *= 2;
-                            for (int f = 1; f < Flaahgra_Timer_offsets[0]; f++)
+                            for (int f = 0; f < 4; f++)
                             {
-                                PARAMETEREDITOR::write_Data(Flaahgra_Timer_offsets[f], 0x0, c, i, false); //0425004C
+                                const unsigned int timer_ID_Array[4] = {0x0425004C, 0x04250060, 0x04250051, 0x04250053};
+                                vector<unsigned int> object_Data = instance_ID_Offset(vector_Timer_offsets, timer_ID_Array[f]);
+                                PARAMETEREDITOR::write_Data(object_Data, 0x0, c);
                             }
                             randomized_Value = temp;
                         }
-                        // BIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIG
-                        // Parasite Queen
-                        //if (EnemyOffsets[i][o] == 0x3516cb1f)
-                        //{
-                        //    if (c == 0)
-                        //    {
-                        //        PARAMETEREDITOR::write_Data(0x3517268A, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //    }
-                        //    else if (c == 2 && e == 1)
-                        //    {
-                        //        PARAMETEREDITOR::write_Data(0x35174345, 0xE, 0xFF, 0xFF, false);
-                        //    }
-                        //}
-                        //Metroids In Phendrana Drifts
-                        //else if (EnemyOffsets[i][o] == 0x4C530038 && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x4C52B7CB, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x4C52FCEA && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x4C52B958, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x4C530386 && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x4C52BAE5, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x4D537B80 && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x4D5379D5, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x4D54D9AD && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x4D54D81A, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x4D55380B && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x4D5535FA, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x4A33E15C && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x4A33C313, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x4A33DE02 && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x4A33D08E, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        // Ridley
-                        //else if (EnemyOffsets[i][o] == 0x406e14c9)
-                        //{
-                        //    if (c == 0)
-                        //    {
-                        //        PARAMETEREDITOR::write_Data(0x406EE12D, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406EB813, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406ED650, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406ED971, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406EE712, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406F052B, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406EB40D, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406EAD5C, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //    }
-                        //    else if (c == 2 && e == 1)
-                        //    {
-                        //        PARAMETEREDITOR::write_Data(0x406EBE9D, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406EBEDF, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406EBF21, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406EBF66, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406ED369, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406F0289, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x406F497B, 0xE, 0xFF, 0xFF, false);
-                        //    }
-                        //}
-                        // Elite Pirates
-                        //else if (EnemyOffsets[i][o] == 0x3BBDF960 && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x3BBDF0CD, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x3B03B855 && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x3B03B62E, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //    PARAMETEREDITOR::write_Data(0x3B03BD4D, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //    if (c == 2 && e == 1)
-                        //    {
-                        //        PARAMETEREDITOR::write_Data(0x3B03BEF7, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x3B03BF4D, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x3B03C000, 0xE, 0xFF, 0xFF, false);
-                        //    }
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x3A58DE9A && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x3A59C6C0, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //    PARAMETEREDITOR::write_Data(0x3A58E1D3, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x3B8A7136 && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x3B8A45BC, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x3B8A7136 && c == 2 && e == 1)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x3BBDDC7C, 0xE, 0xFF, 0xFF, false);
-                        //}
-                        // Omega Pirate
-                        //else if (EnemyOffsets[i][o] == 0x3c40a252)
-                        //{
-                        //    if (c == 0)
-                        //    {
-                        //        PARAMETEREDITOR::write_Data(0x3C408897, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false); //platform
-                        //        PARAMETEREDITOR::write_Data(0x3C408BD8, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x3C407BCE, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //    }
-                        //    else if (c == 2 && e == 1)
-                        //    {
-                        //        PARAMETEREDITOR::write_Data(0x3C407D77, 0xE, 0xFF, 0xFF, false);
-                        //    }
-                        //}
-                        // Metroids in Phazon Mines
-                        //else if (EnemyOffsets[i][o] == 0x3D5FA7DE && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x3D5FB089, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x3D5FA484 && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x3D5FB20C, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x3D08383C && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x3D083FFA, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-                        //else if (EnemyOffsets[i][o] == 0x3D083B72 && c == 0)
-                        //{
-                        //    PARAMETEREDITOR::write_Data(0x3D08417D, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //}
-
-                        // Metroid Prime Essense
-                        //else if (EnemyOffsets[i][o] == 0x3870f0ca)
-                        //{
-                        //    if (c == 0)
-                        //    {
-                        //        PARAMETEREDITOR::write_Data(0x3870FE95, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38710FAE, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38711E69, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38712156, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38712656, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38712EAF, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x387133CC, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x3871479E, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x387149F2, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38714B77, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38714E4A, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38715FC0, 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                        //    }
-                        //    else if (c == 2 && e == 1)
-                        //    {
-                        //        PARAMETEREDITOR::write_Data(0x38714739, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x3871009B, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38711264, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x387123C9, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38712415, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38712526, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38713595, 0xE, 0xFF, 0xFF, false);
-                        //        PARAMETEREDITOR::write_Data(0x38713604, 0xE, 0xFF, 0xFF, false);
-                        //    }
-                        //}
-                        // END BIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIG
-                        if (EnemyOffsets[i][o] == OmegaPirate_offsets[1])
+                        //BIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIG
+                        if (instance_ID == 0x00190004 && enemy_Type == ParasiteQueen)
                         {
-                            //if (c == 0)
-                            //{
-                                //switch (e)
-                                //{
-                                //case 1:
-                                    //for (int armor = 0; armor < 4; armor++)
-                                    //{
-                                    //    PARAMETEREDITOR::write_Data(OmegaPirateArmorScaleOffset[armor], 0x0, c, 0xFF, false);
-                                    //}
-                                    //for (int omega = 0; omega < 24; omega++)
-                                    //{
-                                    //    PARAMETEREDITOR::write_Data(OmegaPirateArmorEffectOffset[omega], 0x0, c, 0xFF, false);
-                                    //}
-                                    //break;
-                                //case 2:
-                                    //for (int armor = 0; armor < 4; armor++)
-                                    //{
-                                    //    PARAMETEREDITOR::write_Data(OmegaPirateArmorScaleOffset[armor], 0x4, c, 0xFF, false);
-                                    //}
-                                    //for (int omega = 0; omega < 24; omega++)
-                                    //{
-                                    //    PARAMETEREDITOR::write_Data(OmegaPirateArmorEffectOffset[omega], 0x4, c, 0xFF, false);
-                                    //}
-                                    //break;
-                                //case 3:
-                                    //for (int armor = 0; armor < 4; armor++)
-                                    //{
-                                    //    PARAMETEREDITOR::write_Data(OmegaPirateArmorScaleOffset[armor], 0x8, c, 0xFF, false);
-                                    //}
-                                    //for (int omega = 0; omega < 24; omega++)
-                                    //{
-                                    //    PARAMETEREDITOR::write_Data(OmegaPirateArmorEffectOffset[omega], 0x8, c, 0xFF, false);
-                                    //}
-                                    //break;
-                                //default:
-                                //    std::cout << "something went wrong, aborting enemy stat randomizer\n" << std::endl;
-                                //    exit(1);
-                                //}
-                            //}
                             if (c == 0)
                             {
-                                for (int armor = 1; armor < OmegaPirateArmor_offsets[0]; armor++)
-                                PARAMETEREDITOR::write_Data(OmegaPirateArmor_offsets[armor], 0x18 + ((e - 1) * 4), c, 0xFF, false);
+                                //vector<unsigned int> returned_Data{}
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0019006C), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                            }
+                            else if (c == 2 && e == 1)
+                            {
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x001900C6), 0xE, 0xFF, 0xFF, false);
+                            }
+                        }
+                    //Metroids In Phendrana Drifts
+                        else if (instance_ID == 0x002802E1 && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0028026c), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                        }
+                        else if (instance_ID == 0x002802E0 && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0028026d), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                        }
+                        else if (instance_ID == 0x002802E2 && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0028026e), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                        }
+                        else if (instance_ID == 0x00330038 && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0033004b), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                        }
+                        else if (instance_ID == 0x083301C8 && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x083301c7), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                        }
+                        else if (instance_ID == 0x143300AA && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x14330004), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                        }
+                        else if (instance_ID == 0x08190599 && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x081901cc), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                        }
+                        else if (instance_ID == 0x08190598 && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0819026b), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                        }
+                        else if (instance_ID == 0x04100101 && enemy_Type == Ridley)
+                        {
+                            if (c == 0)
+                            {
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381003d6), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x3810028c), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100377), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381003c3), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381003e1), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100472), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100222), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100218), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                            }
+                            else if (c == 2 && e == 1)
+                            {
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x38100299), 0xE, 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810029a), 0xE, 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810029b), 0xE, 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810029c), 0xE, 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810030f), 0xE, 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x38100444), 0xE, 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x38100572), 0xE, 0xFF, 0xFF, false);
+                            }
+                        }
+                        else if (instance_ID == 0x0C180137 && c == 0 && enemy_Type == ElitePirate)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0c180126), 0x18 + ((e - 1) * 4), 0xFF);
+                        }
+                        else if (instance_ID == 0x04100338 && c == 0 && enemy_Type == ElitePirate)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x04100337), 0x18 + ((e - 1) * 4), 0xFF);
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0410036a), 0x18 + ((e - 1) * 4), 0xFF);
+                            if (c == 2 && e == 1)
+                            {
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x0410036b), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x0410036c), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x0410036e), 0xE, 0xFF);
+                            }
+                        }
+                        else if (instance_ID == 0x040D01A4 && c == 0 && enemy_Type == ElitePirate)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x140d03fa), 0x18 + ((e - 1) * 4), 0xFF);
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x040d01a7), 0x18 + ((e - 1) * 4), 0xFF);
+                        }
+                        else if (instance_ID == 0x081401CE && c == 0 && enemy_Type == ElitePirate)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x04140385), 0x18 + ((e - 1) * 4), 0xFF);
+                        }
+                        else if (instance_ID == 0x081401CE && c == 2 && e == 1 && enemy_Type == ElitePirate)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x0c18010c), 0xE, 0xFF);
+                        }
+                        else if (instance_ID == 0x141A0126 && enemy_Type == OmegaPirate)
+                        {
+                            if (c == 0)
+                            {
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Platform_offsets, 0x041A0441), 0x18 + ((e - 1) * 4), 0xFF); //platform
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x041a046d), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x041a03ad), 0x18 + ((e - 1) * 4), 0xFF);
+                            }
+                            else if (c == 2 && e == 1)
+                            {
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x41a03ae), 0xE, 0xFF);
+                            }
+                        }
+                    //Metroids in Phazon Mines
+                        else if (instance_ID == 0x08200256 && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0820074d), 0x18 + ((e - 1) * 4), 0xFF);
+                        }
+                        else if (instance_ID == 0x08200255 && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0820074e), 0x18 + ((e - 1) * 4), 0xFF);
+                        }
+                        else if (instance_ID == 0x141F02F3 && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x141f035a), 0x18 + ((e - 1) * 4), 0xFF);
+                        }
+                        else if (instance_ID == 0x141F02F4 && c == 0 && enemy_Type == MetroidAlpha)
+                        {
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x141f035b), 0x18 + ((e - 1) * 4), 0xFF);
+                        }
+                        else if (instance_ID == 0x3870f0ca && enemy_Type == MetroidPrimeEssence)
+                        {
+                            if (c == 0)
+                            {
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b009f), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b00d2), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b00ee), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b00f4), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b0101), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b0121), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b012b), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b015d), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b0162), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b0163), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b0168), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000b0195), 0x18 + ((e - 1) * 4), 0xFF);
+
+                            }
+                            else if (c == 2 && e == 1)
+                            {
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x000b015b), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x000b00a3), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x000b00d4), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x000b00f8), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x000b00f9), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x000b00fe), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x000b012d), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x000b0131), 0xE, 0xFF);
+                            }
+                        }
+                        //END BIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIG
+                        if (enemy_Type == OmegaPirate && instance_ID == 0x141A0126)
+                        {
+                            if (c == 0)
+                            {
+                                for (int f = 0; f < 4; f++)
+                                {
+                                    const unsigned int platform_ID_Array[4] = { 0x141A019B, 0x141A019C, 0x141A019D, 0x141A019E };
+                                    vector<unsigned int> object_Data = instance_ID_Offset(vector_Platform_offsets, platform_ID_Array[f]);
+                                    PARAMETEREDITOR::write_Data(object_Data, 0x18 + ((e - 1) * 4), c);
+                                }
                             }
                             else if (c == 1 && e == 1)
                             {
-                                for (int armor = 1; armor < OmegaPirateArmor_offsets[0]; armor++)
-                                    PARAMETEREDITOR::write_Data(OmegaPirateArmor_offsets[armor], 0xD6, c, 0xFF, false);
+                                for (int f = 0; f < 4; f++)
+                                {
+                                    const unsigned int platform_ID_Array[4] = { 0x141A019B, 0x141A019C, 0x141A019D, 0x141A019E };
+                                    vector<unsigned int> object_Data = instance_ID_Offset(vector_Platform_offsets, platform_ID_Array[f]);
+                                    PARAMETEREDITOR::write_Data(object_Data, 0xD6, c);
+                                }
                             }
                         }
                     }
                 }
                 else if (i == 37)
                 {
-                    enemy_Data_Size = Turret[c][0];
+                    enemy_Data_Size = Array_Turret[c][0];
                     for (unsigned int e = 1; e < enemy_Data_Size; e += 1)
                     {
                         if (c == 0 && randoScaleSeperate == true)
                         {
                             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
                         }
-                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], Turret[c][e], c, i, false);
+                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], Array_Turret[c][e], c);
                     }
                 }
                 else if (i == 38)
                 {
-                    enemy_Data_Size = AmbientAI[c][0];
+                    enemy_Data_Size = Array_AmbientAI[c][0];
                     for (unsigned int e = 1; e < enemy_Data_Size; e++)
                     {
                         if (c == 0 && randoScaleSeperate == true)
                         {
                             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
                         }
-                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], AmbientAI[c][e], c, i, false);
+                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], Array_AmbientAI[c][e], c);
                     }
                 }
                 else if (i == 39)
                 {
-                    enemy_Data_Size = Swarm[c][0];
+                    enemy_Data_Size = Array_Swarm[c][0];
                     for (unsigned int e = 1; e < enemy_Data_Size; e++)
                     {
                         if (c == 0 && randoScaleSeperate == true)
                         {
                             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
                         }
-                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], Swarm[c][e], c, i, false);
+                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], Array_Swarm[c][e], c);
                     }
                 }
                 else if (i == 40)
                 {
-                    enemy_Data_Size = MetroidPrimeStage1[c][0];
+                    enemy_Data_Size = Array_MetroidPrimeStage1[c][0];
                     for (unsigned int e = 1; e < enemy_Data_Size; e++)
                     {
-                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], MetroidPrimeStage1[c][e], c, i, false);
+                        PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], Array_MetroidPrimeStage1[c][e], c);
                     }
                 }
                 else if (i == 41)
                 {
-                enemy_Data_Size = IncineratorDrone[c][0];
+                enemy_Data_Size = Array_IncineratorDrone[c][0];
                 for (unsigned int e = 1; e < enemy_Data_Size; e++)
                 {
                     if (c == 0 && randoScaleSeperate == true)
                     {
                         randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
                     }
-                    PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], IncineratorDrone[c][e], c, i, false);
+                    PARAMETEREDITOR::write_Data(EnemyOffsets[i][o], Array_IncineratorDrone[c][e], c);
                     if (c == 0)
                     {
-                        PARAMETEREDITOR::write_Data(IncineratorDrone_ActorEye_offset, IncineratorDrone[c][e], c, i, false); // Actor Contraption Eye
+                        vector<unsigned int> object_Data = instance_ID_Offset(vector_Actor_offsets, 0x00300004); // Actor Contraption Eye
+                        PARAMETEREDITOR::write_Data(object_Data, Array_IncineratorDrone[c][e], c);
                     }
                     if (c == 0 && e == 3)
                     {
                         randomized_Value = PARAMETEREDITOR::randomFloat(speedLow, speedHigh);
-                        //ActorKeyFrames
-                        for (int a = 1; a < IncineratorDrone_ActorKeyFrame_offsets[0]; a++)
+
+                        for (int f = 0; f < 17; f++)
                         {
-                            PARAMETEREDITOR::write_Data(IncineratorDrone_ActorKeyFrame_offsets[a], 0xE, c, 0xFF, false); // 0x00300030
+                            const unsigned int actorKeyFrame_ID_Array[17] = { 0x00300030, 0x00300032, 0x0030004A, 0x0030004B, 0x00300055, 
+                                0x00300056, 0x0030005A, 0x0030005B, 0x00300065, 0x00300069, 0x00300071, 0x00300072,
+                                0x00300073, 0x00300074, 0x00300075, 0x00300076, 0x00302745 };
+                            vector<unsigned int> object_Data = instance_ID_Offset(vector_ActorKeyFrame_offsets, actorKeyFrame_ID_Array[f]);
+                            PARAMETEREDITOR::write_Data(object_Data, 0xE, c);
                         }
-                        for (int a = 1; a < IncineratorDrone_Timer_offsets[0]; a++)
+                        for (int f = 0; f < 21; f++)
                         {
-                            PARAMETEREDITOR::write_Data(IncineratorDrone_Timer_offsets[a], 0x0, 3, 0xFF, false);
-                            PARAMETEREDITOR::write_Data(IncineratorDrone_Timer_offsets[a], 0x4, 3, 0xFF, false);
+                            const unsigned int timer_ID_Array[21] = { 0x0030017B, 0x00302732, 0x00300012, 0x0030006A, 0x00300007,
+                                0x003027D6, 0x0030005C, 0x00300079, 0x00300050, 0x00300078, 0x00302737, 0x00302744,
+                                0x0030005D, 0x0030004D, 0x00302743, 0x00302742, 0x00300062, 0x00300041, 0x00300014,
+                                0x00302744, 0x00302742 };
+                            vector<unsigned int> object_Data = instance_ID_Offset(vector_Timer_offsets, timer_ID_Array[f]);
+                            PARAMETEREDITOR::write_Data(object_Data, 0x0, 3);
+                            PARAMETEREDITOR::write_Data(object_Data, 0x4, 3);
                         }
                     }
                 }
@@ -1005,26 +893,27 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     // Extra Actors to randomize Scale
     // Parasite Queens in tube
-    /*randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
+    randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x342BE8D5, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
-        PARAMETEREDITOR::write_Data(0x342C1678, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        //PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, instance_ID_Offset(vector_Actor_offsets, 0x0028026e), 0x18 + ((e - 1) * 4), 0xFF);
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x000E0093), 0x18 + (i * 4), 0xFF); //Actor 
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x040e000a), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
     }
     randomized_Value = PARAMETEREDITOR::randomFloat(speedLow, speedHigh);
-    PARAMETEREDITOR::write_Data(0x342BE89D, 0xE, 0xFF, 0xFF, false); //ActorKeyFrame
-    PARAMETEREDITOR::write_Data(0x342C1855, 0xE, 0xFF, 0xFF, false); //ActorKeyFrame
-    PARAMETEREDITOR::write_Data(0x342C1FCB, 0xE, 0xFF, 0xFF, false); //ActorKeyFrame
+    PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x000E0092), 0xE, 0xFF); //ActorKeyFrame
+    PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x040E000D), 0xE, 0xFF); //ActorKeyFrame
+    PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x040E0023), 0xE, 0xFF); //ActorKeyFrame
 
     //Samples in Biohazard Containment
 
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEDFC2, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00140028), 0x18 + (i * 4), 0xFF); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1032,7 +921,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEE149, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00140029), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1040,7 +929,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEE2D0, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0014002a), 0x18 + (i * 4), 0xFF); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1048,7 +937,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEE45A, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0014002c), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1056,7 +945,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEE5E5, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0014002d), 0x18 + (i * 4), 0xFF); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1064,7 +953,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEE770, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0014002e), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1072,7 +961,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEE8F9, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00140030), 0x18 + (i * 4), 0xFF); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1080,7 +969,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEEA84, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00140031), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1088,7 +977,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEEC0F, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00140032), 0x18 + (i * 4), 0xFF); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1096,7 +985,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEED99, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00140033), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1104,7 +993,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEEF8F, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00140036), 0x18 + (i * 4), 0xFF); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1112,7 +1001,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEF119, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00140037), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1120,7 +1009,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x34AEFB9C, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor 
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00140046), 0x18 + (i * 4), 0xFF); //Actor 
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1130,31 +1019,31 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x335FA6A9, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00070098), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
     }
     randomized_Value = PARAMETEREDITOR::randomFloat(speedLow, speedHigh);
-    PARAMETEREDITOR::write_Data(0x335FC1BF, 0xE, 0xFF, 0xFF, false); //ActorKeyFrame
+    PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x000700D0), 0xE, 0xFF); //ActorKeyFrame
     //Ridely Flyby in Phendrana Drifts
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x46C465C1, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Platform_offsets, 0x100202A3), 0x18 + (i * 4), 0xFF); //Platform
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
     }
-    PARAMETEREDITOR::write_Data(0x46C4657D, 0xE, 0xFF, 0xFF, false); //ActorKeyFrame
-    PARAMETEREDITOR::write_Data(0x46C46477, 0xD, 0xFF, 0xFF, false); //Shadow Projector
+    PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x1002029E), 0xE, 0xFF); //ActorKeyFrame
+    PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ShadowProjector_offsets, 0x1002029c), 0xD, 0xFF); //Shadow Projector
     //Drone in Research Entrance
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x496275BE, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
-        PARAMETEREDITOR::write_Data(0x49627E85, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x081402e4), 0x18 + (i * 4), 0xFF); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x081402f9), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1164,7 +1053,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F0C35, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004a6), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1173,7 +1062,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F0DB6, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004a7), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1182,7 +1071,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F0F37, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004a8), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1191,7 +1080,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F10B8, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004a9), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1200,7 +1089,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F1239, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004aa), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1209,7 +1098,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F13BA, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004ab), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1218,7 +1107,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F153B, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004ac), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1227,7 +1116,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F16BC, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004ad), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1236,7 +1125,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F183E, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004ae), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1245,7 +1134,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F19C0, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004af), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1254,7 +1143,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F1B42, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004b0), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1263,7 +1152,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x406F1CC3, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381004b1), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1273,7 +1162,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x3B899F5D, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x001401c4), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1282,7 +1171,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x3B89A0DE, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x001401c3), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
@@ -1290,33 +1179,31 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     }
 
     //Elite Pirate Actors to make not solid
-    PARAMETEREDITOR::write_Data(0x3B899F5D, 0x153, 0xFF, 0x00, true);
-    PARAMETEREDITOR::write_Data(0x3B89A0DE, 0x153, 0xFF, 0x00, true);
-    PARAMETEREDITOR::write_Data(0x3B8A45BC, 0x153, 0xFF, 0x00, true);
+    PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x001401c4), 0x153, 0xFF, true, 0x00);
+    PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x001401c3), 0x153, 0xFF, true, 0x00);
+    PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x04140385), 0x153, 0xFF, true, 0x00);
     // Metroid Prime Exo Intro
     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
     for (int i = 0; i < 3; i++)
     {
-        PARAMETEREDITOR::write_Data(0x37D37E92, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
-        PARAMETEREDITOR::write_Data(0x37D3ADE4, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
-        PARAMETEREDITOR::write_Data(0x37D3A0B0, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
-        PARAMETEREDITOR::write_Data(0x37D3AC4F, 0x18 + (i * 4), 0xFF, 0xFF, false); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00050002), 0x18 + (i * 4), 0xFF); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00050090), 0x18 + (i * 4), 0xFF); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x00050076), 0x18 + (i * 4), 0xFF); //Actor
+        PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0005008f), 0x18 + (i * 4), 0xFF); //Actor
         if (randoScaleSeperate == true)
         {
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
     }
     randomized_Value = PARAMETEREDITOR::randomFloat(speedLow, speedHigh);
-    PARAMETEREDITOR::write_Data(0x37D39E58, 0xE, 0xFF, 0xFF, false); //ActorKeyFrame
-    */
+    PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x0005006E), 0xE, 0xFF); //ActorKeyFrame
 }
 
-void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offset, unsigned int conditional, int ID, bool small_Value, unsigned int offset_Position)
+void PARAMETEREDITOR::write_Data(vector<unsigned int> enemy_Data, unsigned int offset, unsigned int conditional, bool small_Value, unsigned int tiny_Value)
 {
-    //if (offset_Position != 0xFFFF)
-    //{
-    //    cout << ID << " = " << offset_Position << endl;
-    //}
+    unsigned int instance_ID = enemy_Data[0];
+    unsigned int current_Offset = enemy_Data[1];
+    unsigned int enemy_Type = enemy_Data[2];
     if (current_Offset < 0x00001000)
     {
         cout << "whoops, better add 1 to the iteration" << endl;
@@ -1324,17 +1211,16 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
     }
     if (small_Value == false)
     {
-        if (ID == 1 || ID == 4 || ID == 6 || ID == 12 || ID == 13 || ID == 21 || ID == 27 || ID == 28 || ID == 29 || ID == 34 || ID == 37)
+        if (set <unsigned int> {Beetle, ChozoGhost, Eyon, MetroidAlpha, PuddleSpore, StoneToad, FlickerBat, Parasite, Ripper, WarWasp, GunTurret}.count(enemy_Type));
         {
             offset += 0x4;
-            if (ID == 4 && conditional != 0)
+            if (enemy_Type == Drone && conditional != 0)
             {
                 offset += 0x4;
             }
         }
         times = 0;
-        // Drone
-        while (ID == 4 && conditional == 0 && (randomized_Value > 6 || randomized_Value < 0.05))
+        while (enemy_Type == Drone && conditional == 0 && (randomized_Value > 6 || randomized_Value < 0.05))
         {
             if (times >= 50)
             {
@@ -1357,8 +1243,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        // ElitePirate
-        while (ID == 5 && conditional == 0 && (randomized_Value > 2.3 || randomized_Value < 0.05) && offset_Position == 7)
+        while (enemy_Type == ElitePirate && conditional == 0 && (randomized_Value > 2.3 || randomized_Value < 0.05) && instance_ID == 0x0C180137)
         {
             if (times >= 50)
             {
@@ -1381,7 +1266,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        while (ID == 5 && conditional == 0 && (randomized_Value > 1.3 || randomized_Value < 0.05) && (set <int> {4, 5}.count(offset_Position)))
+        while (enemy_Type == ElitePirate && conditional == 0 && (randomized_Value > 1.3 || randomized_Value < 0.05) && (set <int> {0x040D01A4, 0x04100338}.count(instance_ID)))
         {
             if (times >= 50)
             {
@@ -1404,31 +1289,30 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        while (ID == 5 && conditional == 0 && (randomized_Value > 2 || randomized_Value < 0.1) && offset_Position == 4)
-        {
-            if (times >= 50)
-            {
-                randomized_Value = PARAMETEREDITOR::randomFloat(0.1, 2.0);
-                break;
-            }
-            if ((scaleLow < 0.1 && scaleHigh < 0.1) || (scaleLow > 2 && scaleHigh > 2))
-            {
-                if (scaleHigh > 2)
-                {
-                    randomized_Value = 2;
-                }
-                else if (scaleLow < 0.1)
-                {
-                    randomized_Value = 0.1;
-                }
-                break;
-            }
-            times++;
-            randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
-        }
-        times = 0;
-        // IceSheegoth
-        while (ID == 9 && conditional == 0 && (randomized_Value > 1.5 || randomized_Value < 0.1))
+        //while (enemy_Type == ElitePirate && conditional == 0 && (randomized_Value > 2 || randomized_Value < 0.1) && offset_Position == 4)
+        //{
+            //if (times >= 50)
+            //{
+                //randomized_Value = PARAMETEREDITOR::randomFloat(0.1, 2.0);
+                //break;
+            //}
+            //if ((scaleLow < 0.1 && scaleHigh < 0.1) || (scaleLow > 2 && scaleHigh > 2))
+            //{
+                //if (scaleHigh > 2)
+                //{
+                    //randomized_Value = 2;
+                //}
+                //else if (scaleLow < 0.1)
+                //{
+                    //randomized_Value = 0.1;
+                //}
+                //break;
+            //}
+            //times++;
+            //randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
+        //}
+        //times = 0;
+        while (enemy_Type == IceSheegoth && conditional == 0 && (randomized_Value > 1.5 || randomized_Value < 0.1))
         {
             if (times >= 50)
             {
@@ -1451,8 +1335,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        // Flaahgra
-        while (ID == 22 && conditional == 0 && (randomized_Value > 3.3 || randomized_Value < 0.15))
+        while (enemy_Type == Flaahgra && conditional == 0 && (randomized_Value > 3.3 || randomized_Value < 0.15))
         {
             if (times >= 50)
             {
@@ -1475,8 +1358,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        // Flaahgra && Flaahgra's tentacles [speed]
-        while (ID == 22 && conditional == 2 && (randomized_Value > 3 || randomized_Value < 0.05))
+        while ((enemy_Type == Flaahgra || enemy_Type == FlaahgraTentacle) && conditional == 2 && (randomized_Value > 3 || randomized_Value < 0.05))
         {
             if (times >= 50)
             {
@@ -1499,8 +1381,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(speedLow, speedHigh);
         }
         times = 0;
-        // Thardus
-        while (ID == 23 && conditional == 0 && (randomized_Value > 2 || randomized_Value < 0.05))
+        while (enemy_Type == Thardus && conditional == 0 && (randomized_Value > 2 || randomized_Value < 0.05))
         {
             if (times >= 50)
             {
@@ -1523,8 +1404,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        // OmegaPirate
-        while (ID == 24 && conditional == 0 && (randomized_Value > 2 || randomized_Value < 0.05))
+        while (enemy_Type == OmegaPirate && conditional == 0 && (randomized_Value > 2 || randomized_Value < 0.05))
         {
             if (times >= 50)
             {
@@ -1547,7 +1427,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        while (ID == 24 && conditional == 2 && (randomized_Value > 1.5 || randomized_Value < 0.50))
+        while (enemy_Type == OmegaPirate && conditional == 2 && (randomized_Value > 1.5 || randomized_Value < 0.50))
         {
             if (times >= 50)
             {
@@ -1570,8 +1450,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(speedLow, speedHigh);
         }
         times = 0;
-        // MetaRidley
-        while (ID == 25 && conditional == 0 && (randomized_Value > 1.3 || randomized_Value < 0.2))
+        while (enemy_Type == Ridley && conditional == 0 && (randomized_Value > 1.3 || randomized_Value < 0.2))
         {
             if (times >= 50)
             {
@@ -1594,8 +1473,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        // MetroidPrimeEssense
-        while (ID == 26 && conditional == 0 && (randomized_Value > 1.8 || randomized_Value < 0.05))
+        while (enemy_Type == MetroidPrimeEssence && conditional == 0 && (randomized_Value > 1.8 || randomized_Value < 0.05))
         {
             if (times >= 50)
             {
@@ -1618,8 +1496,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        // MetroidPrimeExo
-        while (ID == 40 && conditional == 0 && (randomized_Value > 1.8 || randomized_Value < 0.15))
+        while (enemy_Type == MetroidPrimeExoskelton && conditional == 0 && (randomized_Value > 1.8 || randomized_Value < 0.15))
         {
             if (times >= 50)
             {
@@ -1642,8 +1519,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        // ParasiteQueen
-        while (ID == 35 && conditional == 0 && (randomized_Value > 3 || randomized_Value < 0.1))
+        while (enemy_Type == ParasiteQueen && conditional == 0 && (randomized_Value > 3 || randomized_Value < 0.1))
         {
             if (times >= 50)
             {
@@ -1666,8 +1542,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        // FlaahgraTentacle
-        while (ID == 36 && conditional == 0 && (randomized_Value > 3 || randomized_Value < 0.05))
+        while (enemy_Type == FlaahgraTentacle && conditional == 0 && (randomized_Value > 3 || randomized_Value < 0.05))
         {
             if (times >= 50)
             {
@@ -1690,8 +1565,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        // IncineratorDrone
-        while (ID == 41 && conditional == 0 && (randomized_Value > 3 || randomized_Value < 0.2))
+        while (enemy_Type == Zoid && conditional == 0 && (randomized_Value > 3 || randomized_Value < 0.2))
         {
             if (times >= 50)
             {
@@ -1714,8 +1588,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
-        // Specific Drones get stuck on ceiling if to big
-        while ((set <int> {5, 6, 7, 8}.count(offset_Position)) && conditional == 0 && (randomized_Value > 1.75 || randomized_Value < 0.05))
+        while (enemy_Type == Drone && (set <int> {0x081C008F, 0x081C0094, 0x082C006C, 0x082C0124}.count(instance_ID)) && conditional == 0 && (randomized_Value > 1.75 || randomized_Value < 0.05))
         {
             if (times >= 50)
             {
@@ -1739,25 +1612,22 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         }
         times = 0;
         // change this so that Flaahgra's yellow health is randomized
-        if (ID == 22 && conditional == 1)
+        if (enemy_Type == Flaahgra && conditional == 1)
         {
             return;
         }
-        // don't randomized scale of StoneToad or Reaper Vine
-        if (ID == 16 || ID == 21)
+        if (enemy_Type == ReaperVine || enemy_Type == StoneToad)
         {
             if (conditional == 0)
             {
                 return;
             }
         }
-        // Don't randomized speed of Eyon and Stone Toad
-        if ((ID == 6 || ID == 21 || ID == 25) && (conditional == 2 || conditional == 3))
+        if ((enemy_Type == Eyon || enemy_Type == StoneToad || enemy_Type == Ridley) && (conditional == 2 || conditional == 3))
         {
             return;
         }
-        // limit annoyingness of Chozo Ghost
-        while (ID == 3 && conditional == 2 && (randomized_Value > 2.5 || randomized_Value < 0.05))
+        while (enemy_Type == ChozoGhost && conditional == 2 && (randomized_Value > 2.5 || randomized_Value < 0.05))
         {
             if (times >= 50)
             {
@@ -1781,7 +1651,7 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         }
         times = 0;
         // If Chozo ghost is to small sometimes it can't reach its "waypoint" when it spawns
-        while (ID == 3 && conditional == 0 && randomized_Value < 0.5)
+        while (enemy_Type == ChozoGhost && conditional == 0 && randomized_Value < 0.5)
         {
             if (times >= 50)
             {
@@ -1798,7 +1668,8 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
         }
         times = 0;
         // Limit speed of space pirates in Elite Pirate room
-        while (ID == 20 && conditional == 2 && randomized_Value > 2 && (set <unsigned int> {143, 144, 145, 146, 147, 148, 149, 150}.count(offset_Position)))
+        while (enemy_Type == SpacePirate && conditional == 2 && randomized_Value > 2 && (set <unsigned int> {0x141A0273, 0x141A0274, 0x141A02FE, 0x141A0448, 
+            0x141A0463, 0x141A0464, 0x141A0465, 0x141A0466}.count(instance_ID)))
         {
             if (times >= 50)
             {
@@ -1846,15 +1717,15 @@ void PARAMETEREDITOR::write_Data(unsigned int current_Offset, unsigned int offse
             in_out.write((char*)&value, 4);
         }
     }
-    else if (ID != 21)
+    else if (enemy_Type != StoneToad)
     {
-        if (ID == 1 || ID == 4 || ID == 6 || ID == 12 || ID == 13 || ID == 21 || ID == 27 || ID == 28 || ID == 29 || ID == 34 || ID == 37)
+        if (set <unsigned int> {Beetle, ChozoGhost, Eyon, MetroidAlpha, PuddleSpore, StoneToad, FlickerBat, Parasite, Ripper, WarWasp, GunTurret}.count(enemy_Type));
         {
             offset += 0x4;
         }
         unsigned int value = 0;
         float* pp = (float*)&value;
-        (*pp) = ID;
+        (*pp) = tiny_Value;
         if (in_out.is_open())
         {
             in_out.seekp(current_Offset + offset);
@@ -1873,4 +1744,21 @@ float PARAMETEREDITOR::randomFloat(float low, float high)
     std::uniform_real_distribution<> RNG(low, high);
 
     return RNG(gen);
+}
+
+vector <unsigned int> PARAMETEREDITOR::instance_ID_Offset(const vector< vector<unsigned int> >&v, unsigned int ID, bool offset)
+{
+    for (int first_element = 1; first_element < v[0][0]; first_element++)
+    {
+        if (v[first_element][0] == ID && !offset)
+        {
+            return v[first_element];
+        }
+        else if (v[first_element][1] == ID && offset)
+        {
+            return v[first_element];
+        }
+    }
+    cout << "Instance ID " << hex << ID << " not found in vector" << endl;
+    return vector<unsigned int>{};
 }

@@ -41,11 +41,17 @@ cdef class PyPARAMETEREDITOR:
 	def enemy_Param_Editor(self):
 		self.thisptr.enemy_Param_Editor()
 		
-	def write_Data(self, current_offset, offset, conditional, object_ID, small_Value, offset_Position):
-		self.thisptr.write_Data(current_offset, offset, conditional, object_ID, small_Value, offset_Position)
+	def write_Data(self, enemy_Data, offset, conditional, small_Value, tiny_Value):
+		self.thisptr.write_Data(enemy_Data, offset, conditional, small_Value, tiny_Value)
 		
 	def randomFloat(self, low, high):
 		self.thisptr.randomFloat(low, high)
+		
+	def add_Offsets_To_Vector(self, current_Offset, o, enemy_Type):
+		self.thisptr.add_Offsets_To_Vector(current_Offset, o, enemy_Type)
+		
+	def instance_ID_Offset(self, v, ID, offset):
+		self.thisptr.instance_ID_Offset(v, ID, offset)
 		
 	property garbage:
 		def __get__(self): return self.thisptr.garbage
