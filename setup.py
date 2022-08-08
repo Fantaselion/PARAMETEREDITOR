@@ -14,7 +14,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="PARAMETEREDITOR",
-    version="2.1.2",
+    version="2.2.0",
     description="Randomizes enemy stat values for most of the enemies in the game Metroid Prime.",
     long_description=long_description,
     long_description_content_type="text/markdown",
