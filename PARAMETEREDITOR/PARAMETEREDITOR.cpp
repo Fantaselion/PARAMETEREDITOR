@@ -19,10 +19,17 @@ bool problem_Skiped = false;
 float randomized_Value = 0;
 std::random_device rd;
 std::mt19937 gen;
-unsigned int pak_Locations[7] = { 0x00020504, 0x00020564, 0x00020558, 0x00020540, 0x00020534, 0x0002054C, 0x00020528 };
+unsigned int pak_Pointers[7] = { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+unsigned int pak_Locations[7] = { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
 unsigned int temp;
 unsigned int ttemp;
 unsigned int tteemmpp;
+unsigned int random_Scale;
+unsigned int random_Health;
+unsigned int random_Speed;
+unsigned int random_Damage;
+unsigned int random_Knockback;
+unsigned int file_Size;
 
 int main()
 {
@@ -32,24 +39,103 @@ int main()
 
 PARAMETEREDITOR::PARAMETEREDITOR()
 {
-    gen.seed(283052733);
-    in_out.open("C:/Users/nevin/Documents/Dolphin-x64/Games/a.iso", std::ios::in | std::ios::out | std::ios::binary | std::ios::ate);
+    gen.seed(506174510);
+    in_out.open("C:/Users/nevin/Documents/Dolphin-x64/Games/b.iso", std::ios::in | std::ios::out | std::ios::binary | std::ios::ate);
     PARAMETEREDITOR::start_Here();
+}
+
+void PARAMETEREDITOR::get_Pak_Pointers()
+{
+    //20450 - 20CC0
+    unsigned int pointer = 0x00020450;
+    unsigned int current_Offset;
+    string area_Name;
+    int pointer_size = 0;
+    unsigned int pointer_Offset = 0;
+    while (pointer_size < 7 || pointer >= 0x00020CC0)
+    {
+        current_Offset = PARAMETEREDITOR::return_Data(pointer + pointer_Offset, false);
+        if (current_Offset >= file_Size - 0x1000)
+        {
+            continue;
+        }
+        for (unsigned int i = 0, data = 0; data != 0x54585452; i++)
+        {
+            if (i >= 0x20)
+            {
+                break;
+            }
+            data = PARAMETEREDITOR::return_Data(current_Offset + i, false);
+            //MLVL in hex
+            if (data == 0x4D4C564C)
+            {
+                i += 0xE;
+                while (data != 0x00)
+                {
+                    data = PARAMETEREDITOR::return_Data(current_Offset + i, true);
+                    area_Name.push_back(data);
+                    i++;
+                }
+                if (area_Name.substr(0, 10) == "IntroLevel" || area_Name.substr(0, 10) == "IntroWorld")
+                {
+                    pak_Pointers[0] = pointer + pointer_Offset;
+                    pointer_size++;
+                }
+                else if (area_Name.substr(0, 14) == "TalonOverworld" || area_Name.substr(0, 9) == "OverWorld")
+                {
+                    pak_Pointers[3] = pointer + pointer_Offset;
+                    pointer_size++;
+                }
+                else if (area_Name.substr(0, 10) == "RuinsWorld")
+                {
+                    pak_Pointers[1] = pointer + pointer_Offset;
+                    pointer_size++;
+                }
+                else if (area_Name.substr(0, 8) == "IceWorld")
+                {
+                    pak_Pointers[2] = pointer + pointer_Offset;
+                    pointer_size++;
+                }
+                else if (area_Name.substr(0, 10) == "MinesWorld")
+                {
+                    pak_Pointers[4] = pointer + pointer_Offset;
+                    pointer_size++;
+                }
+                else if (area_Name.substr(0, 9) == "LavaWorld")
+                {
+                    pak_Pointers[5] = pointer + pointer_Offset;
+                    pointer_size++;
+                }
+                else if (area_Name.substr(0, 11) == "CraterWorld")
+                {
+                    pak_Pointers[6] = pointer + pointer_Offset;
+                    pointer_size++;
+                }
+                area_Name.clear();
+                break;
+            }
+        }
+        pointer_Offset += 0xC;
+    }
+    if (pointer_size < 7 || pointer_size > 7)
+    {
+        throw invalid_argument("\nCouldn't find pak offsets, your iso version may not be supported\nAborting enemy stat randomizer.\n");
+    }
 }
 
 void PARAMETEREDITOR::start_Here()
 {
-    unsigned int file_Size = in_out.tellg();
+    file_Size = in_out.tellg();
+    PARAMETEREDITOR::get_Pak_Pointers();
     for (int i = 0; i < 7; i++)
     {
-        pak_Locations[i] = PARAMETEREDITOR::return_Data(pak_Locations[i], false);
+        pak_Locations[i] = PARAMETEREDITOR::return_Data(pak_Pointers[i], false);
     }
     for (int pak_Offset = 0; pak_Offset < 7; pak_Offset++)
     {
         if (pak_Locations[pak_Offset] >= file_Size - 0x1000)
         {
-            cout << "\nCouldn't find pak offsets, your iso version may not be supported\nAborting enemy stat randomizer.";
-            exit(2);
+            throw invalid_argument("\nCouldn't find pak offsets, your iso version may not be supported\nAborting enemy stat randomizer.\n");
         }
     }
     for (int i = 0; i < 7; i++)
@@ -94,7 +180,9 @@ void PARAMETEREDITOR::start_Here()
     cout << " DONE\n";
     for (int i = 0; i < 47; i++)
     {
-        vector<unsigned int> enemy_Data = { unsigned int(EnemyOffsets[i].size()) + (1)};
+        unsigned int vector_Size = EnemyOffsets[i].size(); // Wheel for linux and mac-os throw an error if I do it the saner way.
+        vector_Size++;
+        vector<unsigned int> enemy_Data = { vector_Size };
         //EnemyOffsets[i].insert(EnemyOffsets[i].begin(), vector<unsigned int>( EnemyOffsets[i].size() + 1 ));
         EnemyOffsets[i].insert(EnemyOffsets[i].begin(), enemy_Data);
     }
@@ -124,8 +212,11 @@ PARAMETEREDITOR::PARAMETEREDITOR(string in_File, string out_File, int gen_Seed, 
     string file_Extension = outputLocation.substr(position + 1);
     if (file_Extension != "iso")
     {
-        cout << "Enemy Stat Randomizer only supports output file extension of type 'iso', not '" << file_Extension << "'\nAborting enemy stat randomizer." << endl;
-        exit(1);
+        stringstream exception_Message;
+        exception_Message << "Enemy Stat Randomizer only supports output file extension of type 'iso', not '" << file_Extension << "'\nAborting enemy stat randomizer.\n" << endl;
+        const std::string s = exception_Message.str();
+        cout << "Enemy Stat Randomizer only supports output file extension of type 'iso', not '" << file_Extension << "'" << endl;
+        throw invalid_argument(s);
     }
 
 
@@ -169,7 +260,7 @@ PARAMETEREDITOR::PARAMETEREDITOR(string in_File, string out_File, int gen_Seed, 
     }
     else
     {
-        cout << "Couldn't find output file.\n" << endl;
+        cout << "Couldn't find output file.\nAborting Enemy Stat Randomizer" << endl;
     }
 }
 
@@ -198,8 +289,7 @@ int PARAMETEREDITOR::return_Data(unsigned int hex_Data, bool small_Value)
     }
     else
     {
-        cout << "Unable to open file, aborting enemy stat randomizer\n";
-        exit(0);
+        throw invalid_argument("File closed during reading, aborting enemy stat randomizer\n");
     }
 }
 
@@ -210,8 +300,7 @@ void PARAMETEREDITOR::find_Pointer_Size(unsigned int pointer)
     {
         if (i > 30 && !correct_Pak_Data)
         {
-            cout << "\nCouldn't find pak offsets, your iso version may not be supported\nAborting enemy stat randomizer.";
-            exit(2);
+            throw invalid_argument("\nCouldn't find pak offsets, your iso version may not be supported\nAborting enemy stat randomizer.\n");
         }
         data = PARAMETEREDITOR::return_Data(pointer + i, false);
         //MLVL in hex
@@ -234,7 +323,6 @@ void PARAMETEREDITOR::MREA_SEARCH(unsigned int current_Offset, unsigned int size
     for (unsigned int i = 0, data = 0; i < size; i += 0x14)
     {
         data = PARAMETEREDITOR::return_Data(current_Offset + i, false);
-
 
         //MREA in hex
         if (data == 0x4D524541)
@@ -272,14 +360,8 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
     unsigned int initial_Offset = current_Offset;
     current_Offset += 8;
     current_Offset += (PARAMETEREDITOR::return_Data(current_Offset, false) * 4) + 9;
-    while (initial_Offset + size > current_Offset)
+    while (initial_Offset + size - 0x10 > current_Offset)
     {
-        if (INSTANCE_ID == 0x0C0801B7 && !problem_Skiped)
-        {
-            problem_Skiped = true;
-            break;
-        }
-
         TYPE = PARAMETEREDITOR::return_Data(current_Offset, true);
         SCYL_SIZE = PARAMETEREDITOR::return_Data(current_Offset + 1, false);
         INSTANCE_ID = PARAMETEREDITOR::return_Data(current_Offset + 5, false);
@@ -293,6 +375,20 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
                 if ((SCYL_SIZE + 6 + current_Offset + 100) < (initial_Offset + size))
                 {
                     current_Offset += 5;
+                    for (int i = 0; i < 0xFF; i++)
+                    {
+                        int TEMP_A = PARAMETEREDITOR::return_Data(current_Offset + 1 + i, true);
+                        int TEMP_B = PARAMETEREDITOR::return_Data(current_Offset + 2 + i, true);
+                        if (TEMP_A == 0x00 && TEMP_B == 0x00)
+                        {
+                            current_Offset += i;
+                            break;
+                        }
+                        else if (i > 0xF0)
+                        {
+                            throw invalid_argument("Uh oh something went wrong in garbage data-tiny. (yes I know this is vauge)\nAborting Enemy Stat Randomizer\n");
+                        }
+                    }
                     continue;
                 }
             }
@@ -505,7 +601,7 @@ void PARAMETEREDITOR::add_Offsets_To_Vector(unsigned int current_Offset, int o, 
         break;
     default:
         cout << "Something went wrong, aborting enemy stat randomizer." << endl;
-        exit(1);
+        throw invalid_argument("Attempting to add enemy offset to a vector outside its index range\nAborting Enemy Stat Randomizer");
     }
 }
 
@@ -515,6 +611,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
     unsigned int enemy_Data_Size;
     unsigned int instance_ID;
     unsigned int enemy_Type;
+    vector_Thardus_offsets = EnemyOffsets[23];
     vector_ActorKeyFrame_offsets = EnemyOffsets[42];
     vector_Timer_offsets = EnemyOffsets[43];
     vector_Actor_offsets = EnemyOffsets[44];
@@ -532,24 +629,28 @@ void PARAMETEREDITOR::enemy_Param_Editor()
                 {
                 case 0:
                     randomized_Value = PARAMETEREDITOR::randomFloat(scaleLow, scaleHigh);
+                    random_Scale = randomized_Value;
                     break;
                 case 1:
                     randomized_Value = PARAMETEREDITOR::randomFloat(healthLow, healthHigh);
+                    random_Health = randomized_Value;
                     break;
                 case 2:
                     randomized_Value = PARAMETEREDITOR::randomFloat(speedLow, speedHigh);
+                    random_Speed = randomized_Value;
                     break;
                 case 3:
                     break;
                 case 4:
                     randomized_Value = PARAMETEREDITOR::randomFloat(damageLow, damageHigh);
+                    random_Damage = randomized_Value;
                     break;
                 case 5:
                     randomized_Value = PARAMETEREDITOR::randomFloat(knockbackPowerLow, knockbackPowerHigh);
+                    random_Knockback = randomized_Value;
                     break;
                 default:
-                    std::cout << "something went wrong, aborting enemy stat randomizer\n" << std::endl;
-                    exit(1);
+                    throw invalid_argument("This error will never happen but its in a switch statement and I need a default\nAborting Enemy Stat Randomizer");
                 }
 
 
@@ -627,69 +728,68 @@ void PARAMETEREDITOR::enemy_Param_Editor()
                         {
                             if (c == 0)
                             {
-                                //vector<unsigned int> returned_Data{}
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0019006C), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0019006C), 0x18 + ((e - 1) * 4), 0xFF);
                             }
                             else if (c == 2 && e == 1)
                             {
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x001900C6), 0xE, 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x001900C6), 0xE, 0xFF);
                             }
                         }
                     //Metroids In Phendrana Drifts
                         else if (instance_ID == 0x002802E1 && c == 0 && enemy_Type == MetroidAlpha)
                         {
-                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0028026c), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0028026c), 0x18 + ((e - 1) * 4), 0xFF);
                         }
                         else if (instance_ID == 0x002802E0 && c == 0 && enemy_Type == MetroidAlpha)
                         {
-                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0028026d), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0028026d), 0x18 + ((e - 1) * 4), 0xFF);
                         }
                         else if (instance_ID == 0x002802E2 && c == 0 && enemy_Type == MetroidAlpha)
                         {
-                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0028026e), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0028026e), 0x18 + ((e - 1) * 4), 0xFF);
                         }
                         else if (instance_ID == 0x00330038 && c == 0 && enemy_Type == MetroidAlpha)
                         {
-                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0033004b), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0033004b), 0x18 + ((e - 1) * 4), 0xFF);
                         }
                         else if (instance_ID == 0x083301C8 && c == 0 && enemy_Type == MetroidAlpha)
                         {
-                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x083301c7), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x083301c7), 0x18 + ((e - 1) * 4), 0xFF);
                         }
                         else if (instance_ID == 0x143300AA && c == 0 && enemy_Type == MetroidAlpha)
                         {
-                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x14330004), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x14330004), 0x18 + ((e - 1) * 4), 0xFF);
                         }
                         else if (instance_ID == 0x08190599 && c == 0 && enemy_Type == MetroidAlpha)
                         {
-                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x081901cc), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x081901cc), 0x18 + ((e - 1) * 4), 0xFF);
                         }
                         else if (instance_ID == 0x08190598 && c == 0 && enemy_Type == MetroidAlpha)
                         {
-                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0819026b), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                            PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x0819026b), 0x18 + ((e - 1) * 4), 0xFF);
                         }
                         else if (instance_ID == 0x04100101 && enemy_Type == Ridley)
                         {
                             if (c == 0)
                             {
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381003d6), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x3810028c), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100377), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381003c3), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381003e1), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100472), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100222), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100218), 0x18 + ((e - 1) * 4), 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381003d6), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x3810028c), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100377), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381003c3), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x381003e1), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100472), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100222), 0x18 + ((e - 1) * 4), 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_Actor_offsets, 0x38100218), 0x18 + ((e - 1) * 4), 0xFF);
                             }
                             else if (c == 2 && e == 1)
                             {
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x38100299), 0xE, 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810029a), 0xE, 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810029b), 0xE, 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810029c), 0xE, 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810030f), 0xE, 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x38100444), 0xE, 0xFF, 0xFF, false);
-                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x38100572), 0xE, 0xFF, 0xFF, false);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x38100299), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810029a), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810029b), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810029c), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x3810030f), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x38100444), 0xE, 0xFF);
+                                PARAMETEREDITOR::write_Data(instance_ID_Offset(vector_ActorKeyFrame_offsets, 0x38100572), 0xE, 0xFF);
                             }
                         }
                         else if (instance_ID == 0x0C180137 && c == 0 && enemy_Type == ElitePirate)
@@ -1211,7 +1311,7 @@ void PARAMETEREDITOR::write_Data(vector<unsigned int> enemy_Data, unsigned int o
     }
     if (small_Value == false)
     {
-        if (set <unsigned int> {Beetle, ChozoGhost, Eyon, MetroidAlpha, PuddleSpore, StoneToad, FlickerBat, Parasite, Ripper, WarWasp, GunTurret}.count(enemy_Type));
+        if (set <unsigned int> {Beetle, Drone, Eyon, MetroidAlpha, PuddleSpore, StoneToad, FlickerBat, Parasite, Ripper, WarWasp, GunTurret}.count(enemy_Type))
         {
             offset += 0x4;
             if (enemy_Type == Drone && conditional != 0)
@@ -1220,6 +1320,10 @@ void PARAMETEREDITOR::write_Data(vector<unsigned int> enemy_Data, unsigned int o
             }
         }
         times = 0;
+        if (enemy_Type == BabySheegoth && conditional == 2 && randomized_Value > 1.0)
+        {
+            randomized_Value /= random_Scale;
+        }
         while (enemy_Type == Drone && conditional == 0 && (randomized_Value > 6 || randomized_Value < 0.05))
         {
             if (times >= 50)
@@ -1651,16 +1755,23 @@ void PARAMETEREDITOR::write_Data(vector<unsigned int> enemy_Data, unsigned int o
         }
         times = 0;
         // If Chozo ghost is to small sometimes it can't reach its "waypoint" when it spawns
-        while (enemy_Type == ChozoGhost && conditional == 0 && randomized_Value < 0.5)
+        while (enemy_Type == ChozoGhost && conditional == 0 && (randomized_Value > 2.0 || randomized_Value < 0.5))
         {
             if (times >= 50)
             {
                 randomized_Value = 0.5;
                 break;
             }
-            if (scaleLow > 0.5 || (scaleLow < 0.5 && scaleHigh < 0.5))
+            if ((scaleLow < 0.5 && scaleHigh < 0.5) || (scaleLow > 2.0 && scaleHigh > 2.0))
             {
-                randomized_Value = 2;
+                if (scaleHigh > 2.0)
+                {
+                    randomized_Value = 2.0;
+                }
+                else if (scaleLow < 0.5)
+                {
+                    randomized_Value = 0.5;
+                }
                 break;
             }
             times++;
@@ -1719,7 +1830,7 @@ void PARAMETEREDITOR::write_Data(vector<unsigned int> enemy_Data, unsigned int o
     }
     else if (enemy_Type != StoneToad)
     {
-        if (set <unsigned int> {Beetle, ChozoGhost, Eyon, MetroidAlpha, PuddleSpore, StoneToad, FlickerBat, Parasite, Ripper, WarWasp, GunTurret}.count(enemy_Type));
+        if (set <unsigned int> {Beetle, ChozoGhost, Eyon, MetroidAlpha, PuddleSpore, StoneToad, FlickerBat, Parasite, Ripper, WarWasp, GunTurret}.count(enemy_Type))
         {
             offset += 0x4;
         }
@@ -1759,6 +1870,17 @@ vector <unsigned int> PARAMETEREDITOR::instance_ID_Offset(const vector< vector<u
             return v[first_element];
         }
     }
-    cout << "Instance ID " << hex << ID << " not found in vector" << endl;
-    return vector<unsigned int>{};
+    stringstream exception_Message;
+    if (offset)
+    {
+        cout << "Offset" << hex << ID << " not found in vector" << endl;
+        exception_Message << "Offset" << hex << ID << " not found in vector" << endl;
+    }
+    else
+    {
+        cout << "Instance ID " << hex << ID << " not found in vector" << endl;
+        exception_Message << "Offset" << hex << ID << " not found in vector" << endl;
+    }
+    const std::string s = exception_Message.str();
+    throw invalid_argument(s);
 }

@@ -53,6 +53,9 @@ cdef class PyPARAMETEREDITOR:
 	def instance_ID_Offset(self, v, ID, offset):
 		self.thisptr.instance_ID_Offset(v, ID, offset)
 		
+	def get_Pak_Pointers(self):
+		self.thisptr.get_Pak_Pointers()
+		
 	property garbage:
 		def __get__(self): return self.thisptr.garbage
 		def __set__(self, garbage): self.thisptr.garbage = garbage

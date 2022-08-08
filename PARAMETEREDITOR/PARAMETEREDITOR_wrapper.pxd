@@ -23,7 +23,8 @@ cdef extern from "Simple_PARAMETER_EDITOR.h":
 		void write_Data(vector[unsigned int], unsigned int, unsigned int, bool, unsigned int)
 		float randomFloat(float, float)
 		void add_Offsets_To_Vector(unsigned int, int, unsigned int)
-		vector[unsigned int] instance_ID_Offset(const vector[vector[unsigned int]], unsigned int, bool);
+		vector[unsigned int] instance_ID_Offset(const vector[vector[unsigned int]], unsigned int, bool)
+		void get_Pak_Pointers()
 		
 		bool garbage
 		float scaleLow
