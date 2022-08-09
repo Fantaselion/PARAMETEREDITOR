@@ -10,6 +10,18 @@
 #include <random>
 #include <cctype>
 #include <set>
+#include <iostream>
+#include <PARAMETEREDITOR_Randovania.h>
+#include <patternedAI_Array_Randovania.h>
+#include <enemy_Offsets_Randovania.h>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <cstdint>
+#include <vector>
+#include <random>
+#include <cctype>
+#include <set>
 using namespace std;
 unsigned int INSTANCE_ID;
 unsigned int SCYL_SIZE;
@@ -52,7 +64,7 @@ void PARAMETEREDITOR::get_Pak_Pointers()
     string area_Name;
     int pointer_size = 0;
     unsigned int pointer_Offset = 0;
-    while (pointer_size < 7 || pointer >= 0x00020CC0)
+    while (pointer_size < 7 && pointer + pointer_Offset < 0x00020CC0)
     {
         current_Offset = PARAMETEREDITOR::return_Data(pointer + pointer_Offset, false);
         if (current_Offset >= file_Size - 0x1000)
@@ -96,7 +108,7 @@ void PARAMETEREDITOR::get_Pak_Pointers()
                     pak_Pointers[2] = pointer + pointer_Offset;
                     pointer_size++;
                 }
-                else if (area_Name.substr(0, 10) == "MinesWorld")
+                else if (area_Name.substr(0, 10) == "MinesWorld" || area_Name.substr(0, 9) == "Mines0201")
                 {
                     pak_Pointers[4] = pointer + pointer_Offset;
                     pointer_size++;
@@ -142,37 +154,37 @@ void PARAMETEREDITOR::start_Here()
     {
         if (cur_Pak == 0)
         {
-            cout << "\nGetting enemy locations in 'Space Pirate Frigate'";
+            cout << "\nRetriving enemy locations from 'Space Pirate Frigate'";
         }
         else if (cur_Pak == 1)
         {
             cout << " DONE\n";
-            cout << "Getting enemy locations in 'Chozo Ruins'";
+            cout << "Retriving enemy locations from 'Chozo Ruins'";
         }
         else if (cur_Pak == 2)
         {
             cout << " DONE\n";
-            cout << "Getting enemy locations in 'Phendrana Drifts'";
+            cout << "Retriving enemy locations from 'Phendrana Drifts'";
         }
         else if (cur_Pak == 3)
         {
             cout << " DONE\n";
-            cout << "Getting enemy locations in 'Tallon Overworld'";
+            cout << "Retriving enemy locations from 'Tallon Overworld'";
         }
         else if (cur_Pak == 4)
         {
             cout << " DONE\n";
-            cout << "Getting enemy locations in 'Phazon Mines'";
+            cout << "Retriving enemy locations from 'Phazon Mines'";
         }
         else if (cur_Pak == 5)
         {
             cout << " DONE\n";
-            cout << "Getting enemy locations in 'Magmoor Caverns'";
+            cout << "Retriving enemy locations from 'Magmoor Caverns'";
         }
         else if (cur_Pak == 6)
         {
             cout << " DONE\n";
-            cout << "Getting enemy locations in 'Impact Crater'";
+            cout << "Retriving enemy locations from 'Impact Crater'";
         }
         PARAMETEREDITOR::find_Pointer_Size(pak_Locations[i]);
         cur_Pak++;
@@ -190,7 +202,33 @@ void PARAMETEREDITOR::start_Here()
     cout << "Randomizing enemy stats";
     PARAMETEREDITOR::enemy_Param_Editor();
     cout << " DONE" << endl;
+    clean_Up();
 }
+
+void PARAMETEREDITOR::clean_Up()
+{
+    in_out.close();
+    randomized_Value = 0;
+    fill(pak_Pointers, pak_Pointers + 7, 0);
+    fill(pak_Locations, pak_Locations + 7, 0);
+    garbage = false;
+    scaleLow = 0.0;
+    scaleHigh = 0.0;
+    healthLow = 0.0;
+    healthHigh = 0.0;
+    speedLow = 0.0;
+    speedHigh = 0.0;
+    damageLow = 0.0;
+    damageHigh = 0.0;
+    knockbackPowerLow = 0.0;
+    knockbackPowerHigh = 0.0;
+    randoScaleSeperate = false;
+    times = 0;
+    cur_Pak = 0;
+    file_Size = 0;
+    problem_Skiped = false;
+}
+
 PARAMETEREDITOR::PARAMETEREDITOR(string in_File, string out_File, int gen_Seed, float SCALE_L, float SCALE_H, float HEALTH_L, float HEALTH_H, float SPEED_L, float SPEED_H, float DAMAGE_L, float DAMAGE_H, float KNOCK_L, float KNOCK_H, bool Seperate)
 {
     inputLocation = in_File;
@@ -215,7 +253,7 @@ PARAMETEREDITOR::PARAMETEREDITOR(string in_File, string out_File, int gen_Seed, 
         stringstream exception_Message;
         exception_Message << "Enemy Stat Randomizer only supports output file extension of type 'iso', not '" << file_Extension << "'\nAborting enemy stat randomizer.\n" << endl;
         const std::string s = exception_Message.str();
-        cout << "Enemy Stat Randomizer only supports output file extension of type 'iso', not '" << file_Extension << "'" << endl;
+        clean_Up();
         throw invalid_argument(s);
     }
 
@@ -289,6 +327,7 @@ int PARAMETEREDITOR::return_Data(unsigned int hex_Data, bool small_Value)
     }
     else
     {
+        clean_Up();
         throw invalid_argument("File closed during reading, aborting enemy stat randomizer\n");
     }
 }
@@ -300,6 +339,7 @@ void PARAMETEREDITOR::find_Pointer_Size(unsigned int pointer)
     {
         if (i > 30 && !correct_Pak_Data)
         {
+            clean_Up();
             throw invalid_argument("\nCouldn't find pak offsets, your iso version may not be supported\nAborting enemy stat randomizer.\n");
         }
         data = PARAMETEREDITOR::return_Data(pointer + i, false);
@@ -386,6 +426,7 @@ void PARAMETEREDITOR::enemy_Param_Searcher(unsigned int current_Offset, unsigned
                         }
                         else if (i > 0xF0)
                         {
+                            clean_Up();
                             throw invalid_argument("Uh oh something went wrong in garbage data-tiny. (yes I know this is vauge)\nAborting Enemy Stat Randomizer\n");
                         }
                     }
@@ -600,7 +641,7 @@ void PARAMETEREDITOR::add_Offsets_To_Vector(unsigned int current_Offset, int o, 
         vector_Platform_offsets.push_back(enemy_Data);
         break;
     default:
-        cout << "Something went wrong, aborting enemy stat randomizer." << endl;
+        clean_Up();
         throw invalid_argument("Attempting to add enemy offset to a vector outside its index range\nAborting Enemy Stat Randomizer");
     }
 }
@@ -650,6 +691,7 @@ void PARAMETEREDITOR::enemy_Param_Editor()
                     random_Knockback = randomized_Value;
                     break;
                 default:
+                    clean_Up();
                     throw invalid_argument("This error will never happen but its in a switch statement and I need a default\nAborting Enemy Stat Randomizer");
                 }
 
@@ -1882,5 +1924,6 @@ vector <unsigned int> PARAMETEREDITOR::instance_ID_Offset(const vector< vector<u
         exception_Message << "Offset" << hex << ID << " not found in vector" << endl;
     }
     const std::string s = exception_Message.str();
+    clean_Up();
     throw invalid_argument(s);
 }

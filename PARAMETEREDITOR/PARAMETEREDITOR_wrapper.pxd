@@ -25,6 +25,7 @@ cdef extern from "Simple_PARAMETER_EDITOR.h":
 		void add_Offsets_To_Vector(unsigned int, int, unsigned int)
 		vector[unsigned int] instance_ID_Offset(const vector[vector[unsigned int]], unsigned int, bool)
 		void get_Pak_Pointers()
+		void clean_Up()
 		
 		bool garbage
 		float scaleLow

@@ -56,6 +56,9 @@ cdef class PyPARAMETEREDITOR:
 	def get_Pak_Pointers(self):
 		self.thisptr.get_Pak_Pointers()
 		
+	def clean_Up(self):
+		self.thisptr.clean_Up()
+		
 	property garbage:
 		def __get__(self): return self.thisptr.garbage
 		def __set__(self, garbage): self.thisptr.garbage = garbage
