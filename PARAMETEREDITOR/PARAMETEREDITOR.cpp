@@ -10,18 +10,6 @@
 #include <random>
 #include <cctype>
 #include <set>
-#include <iostream>
-#include <PARAMETEREDITOR_Randovania.h>
-#include <patternedAI_Array_Randovania.h>
-#include <enemy_Offsets_Randovania.h>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <cstdint>
-#include <vector>
-#include <random>
-#include <cctype>
-#include <set>
 using namespace std;
 unsigned int INSTANCE_ID;
 unsigned int SCYL_SIZE;
