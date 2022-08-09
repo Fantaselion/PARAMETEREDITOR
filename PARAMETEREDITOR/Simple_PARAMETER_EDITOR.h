@@ -27,6 +27,7 @@ public:
 	void add_Offsets_To_Vector(unsigned int current_Offset, int o, unsigned int enemy_Type);
 	vector<unsigned int> instance_ID_Offset(const vector< vector<unsigned int> >& v, unsigned int ID, bool offset = false);
 	void get_Pak_Pointers();
+	void clean_Up();
 	bool garbage = false;
 	float scaleLow = 0.1;
 	float scaleHigh = 4.0;
