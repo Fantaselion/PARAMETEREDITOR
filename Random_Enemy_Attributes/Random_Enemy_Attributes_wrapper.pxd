@@ -8,7 +8,7 @@ from libcpp.string cimport string
 from libcpp.vector cimport vector
 
 cdef extern from "Random_Enemy_Attributes.h":
-	cdef cppclass PyRandom_Enemy_Attributes:
+	cdef cppclass Random_Enemy_Attributes:
 		Random_Enemy_Attributes()
 		Random_Enemy_Attributes(string, string, int, float, float, float, float, float, float, float, float, float, float, bool) except +
 		void start_Here()
