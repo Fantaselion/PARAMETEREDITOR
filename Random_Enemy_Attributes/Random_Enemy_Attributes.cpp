@@ -24,12 +24,12 @@ unsigned int pak_Locations[7] = { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
 unsigned int temp;
 unsigned int ttemp;
 unsigned int tteemmpp;
-unsigned int random_Scale;
-unsigned int random_Health;
-unsigned int random_Speed;
-unsigned int random_Damage;
-unsigned int random_Knockback;
-unsigned int file_Size;
+float random_Scale;
+float random_Health;
+float random_Speed;
+float random_Damage;
+float random_Knockback;
+unsigned file_Size;
 
 int main()
 {
@@ -39,7 +39,7 @@ int main()
 
 Random_Enemy_Attributes::Random_Enemy_Attributes()
 {
-    gen.seed(506174510);
+    gen.seed(1533968409);
     in_out.open("C:/Users/nevin/Documents/Dolphin-x64/Games/b.iso", std::ios::in | std::ios::out | std::ios::binary | std::ios::ate);
     Random_Enemy_Attributes::start_Here();
 }
@@ -117,7 +117,7 @@ void Random_Enemy_Attributes::get_Pak_Pointers()
         }
         pointer_Offset += 0xC;
     }
-    if (pointer_size < 7 || pointer_size > 7)
+    if (pointer_size != 7)
     {
         throw invalid_argument("\nCouldn't find pak offsets, your iso version may not be supported\nAborting enemy stat randomizer.\n");
     }
@@ -286,7 +286,7 @@ Random_Enemy_Attributes::Random_Enemy_Attributes(string in_File, string out_File
     }
     else
     {
-        cout << "Couldn't find output file.\nAborting Enemy Stat Randomizer" << endl;
+        throw invalid_argument("Couldn't find output file.\nAborting Enemy Stat Randomizer");
     }
 }
 
@@ -1446,27 +1446,55 @@ void Random_Enemy_Attributes::write_Data(vector<unsigned int> enemy_Data, unsign
             //randomized_Value = Random_Enemy_Attributes::randomFloat(scaleLow, scaleHigh);
         //}
         //times = 0;
-        while (enemy_Type == IceSheegoth && conditional == 0 && (randomized_Value > 1.5 || randomized_Value < 0.1))
+        if (instance_ID == 0x000E0010 && enemy_Type == IceSheegoth && conditional == 0)
         {
-            if (times >= 50)
+            while (randomized_Value > 1.5 || randomized_Value < 0.1)
             {
-                randomized_Value = Random_Enemy_Attributes::randomFloat(0.1, 1.5);
-                break;
+                if (times >= 50)
+                {
+                    randomized_Value = Random_Enemy_Attributes::randomFloat(0.1, 1.5);
+                    break;
+                }
+                if ((scaleLow < 0.1 && scaleHigh < 0.1) || (scaleLow > 1.5 && scaleHigh > 1.5))
+                {
+                    if (scaleHigh > 1.5)
+                    {
+                        randomized_Value = 1.5;
+                    }
+                    else if (scaleLow < 0.1)
+                    {
+                        randomized_Value = 0.1;
+                    }
+                    break;
+                }
+                times++;
+                randomized_Value = Random_Enemy_Attributes::randomFloat(scaleLow, scaleHigh);
             }
-            if ((scaleLow < 0.1 && scaleHigh < 0.1) || (scaleLow > 1.5 && scaleHigh > 1.5))
+        }
+        else if (enemy_Type == IceSheegoth && conditional == 0)
+        {
+            while (randomized_Value > 1.1 || randomized_Value < 0.1)
             {
-                if (scaleHigh > 1.5)
+                if (times >= 50)
                 {
-                    randomized_Value = 1.5;
+                    randomized_Value = Random_Enemy_Attributes::randomFloat(0.1, 1.5);
+                    break;
                 }
-                else if (scaleLow < 0.1)
+                if ((scaleLow < 0.1 && scaleHigh < 0.1) || (scaleLow > 1.5 && scaleHigh > 1.5))
                 {
-                    randomized_Value = 0.1;
+                    if (scaleHigh > 1.5)
+                    {
+                        randomized_Value = 1.5;
+                    }
+                    else if (scaleLow < 0.1)
+                    {
+                        randomized_Value = 0.1;
+                    }
+                    break;
                 }
-                break;
+                times++;
+                randomized_Value = Random_Enemy_Attributes::randomFloat(scaleLow, scaleHigh);
             }
-            times++;
-            randomized_Value = Random_Enemy_Attributes::randomFloat(scaleLow, scaleHigh);
         }
         times = 0;
         while (enemy_Type == Flaahgra && conditional == 0 && (randomized_Value > 3.3 || randomized_Value < 0.15))
@@ -1853,6 +1881,10 @@ void Random_Enemy_Attributes::write_Data(vector<unsigned int> enemy_Data, unsign
         address[1] = c2;
         address[2] = c1;
         address[3] = c0;
+        if (randomized_Value == INFINITY)
+        {
+            throw invalid_argument("randomized Value is 'INFINITY', Fantaselion dun goofed");
+        }
         if (in_out.is_open())
         {
             in_out.write((char*)&value, 4);
@@ -1882,7 +1914,7 @@ float Random_Enemy_Attributes::randomFloat(float low, float high)
         return high;
     }
 
-    std::uniform_real_distribution<> RNG(low, high);
+    uniform_real_distribution<> RNG(low, high);
 
     return RNG(gen);
 }
@@ -1903,13 +1935,11 @@ vector <unsigned int> Random_Enemy_Attributes::instance_ID_Offset(const vector< 
     stringstream exception_Message;
     if (offset)
     {
-        cout << "Offset" << hex << ID << " not found in vector" << endl;
         exception_Message << "Offset" << hex << ID << " not found in vector" << endl;
     }
     else
     {
-        cout << "Instance ID " << hex << ID << " not found in vector" << endl;
-        exception_Message << "Offset" << hex << ID << " not found in vector" << endl;
+        exception_Message << "Instance ID " << hex << ID << " not found in vector" << endl;
     }
     const std::string s = exception_Message.str();
     clean_Up();
