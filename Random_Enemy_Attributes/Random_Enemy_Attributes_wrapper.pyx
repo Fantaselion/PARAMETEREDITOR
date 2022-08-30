@@ -9,55 +9,56 @@ from Random_Enemy_Attributes_wrapper cimport Random_Enemy_Attributes
 
 cdef class PyRandom_Enemy_Attributes:
 	cdef Random_Enemy_Attributes *thisptr
-	def __cinit__(self, string in_File, string out_File, int gen_Seed, float SCALE_L, float SCALE_H, float HEALTH_L, float HEALTH_H, float SPEED_L, float SPEED_H, float DAMAGE_L, float DAMAGE_H, float KNOCK_L, float KNOCK_H, bool Seperate):
-		self.thisptr = new Random_Enemy_Attributes(in_File, out_File, gen_Seed, SCALE_L, SCALE_H, HEALTH_L, HEALTH_H, SPEED_L, SPEED_H, DAMAGE_L, DAMAGE_H, KNOCK_L, KNOCK_H, Seperate)
-	def __dealloc__(self):
-		del self.thisptr
-		
-	def start_Here(self):
-		return self.thisptr.start_Here()
-		
-	def return_Data(self, hex_Data, small_Value):
-		return self.thisptr.return_Data(hex_Data, small_Value)
-		
-	def find_Pointer_Size(self, Pointer):
-		return self.thisptr.find_Pointer_Size(Pointer)
-		
-	def ReverseBytes(self, value):
-		return self.thisptr.ReverseBytes(value)
-		
-	def MREA_SEARCH(self, current_Offset, size):
-		return self.thisptr.MREA_SEARCH(current_Offset, size)
-		
-	def SCLY_SEARCH(self, current_Offset):
-		return self.thisptr.SCLY_SEARCH(current_Offset)
-		
-	def enemy_Param_Searcher(self, current_Offset, size):
-		return self.thisptr.enemy_Param_Searcher(current_Offset, size)
-		
-	def enemy_Start_Of_Attributes(self, current_Offset, data_Size, object_ID_Element):
-		return self.thisptr.enemy_Start_Of_Attributes(current_Offset, data_Size, object_ID_Element)
-		
-	def enemy_Param_Editor(self):
-		self.thisptr.enemy_Param_Editor()
-		
-	def write_Data(self, enemy_Data, offset, conditional, small_Value, tiny_Value):
-		self.thisptr.write_Data(enemy_Data, offset, conditional, small_Value, tiny_Value)
-		
-	def randomFloat(self, low, high):
-		self.thisptr.randomFloat(low, high)
-		
-	def add_Offsets_To_Vector(self, current_Offset, o, enemy_Type):
-		self.thisptr.add_Offsets_To_Vector(current_Offset, o, enemy_Type)
-		
-	def instance_ID_Offset(self, v, ID, offset):
-		self.thisptr.instance_ID_Offset(v, ID, offset)
-		
-	def get_Pak_Pointers(self):
-		self.thisptr.get_Pak_Pointers()
-		
-	def clean_Up(self):
-		self.thisptr.clean_Up()
+	with nogil:
+		def __cinit__(self, string in_File, string out_File, int gen_Seed, float SCALE_L, float SCALE_H, float HEALTH_L, float HEALTH_H, float SPEED_L, float SPEED_H, float DAMAGE_L, float DAMAGE_H, float KNOCK_L, float KNOCK_H, bool Seperate):
+			self.thisptr = new Random_Enemy_Attributes(in_File, out_File, gen_Seed, SCALE_L, SCALE_H, HEALTH_L, HEALTH_H, SPEED_L, SPEED_H, DAMAGE_L, DAMAGE_H, KNOCK_L, KNOCK_H, Seperate)
+		def __dealloc__(self):
+			del self.thisptr
+			
+		def start_Here(self):
+			return self.thisptr.start_Here()
+			
+		def return_Data(self, hex_Data, small_Value):
+			return self.thisptr.return_Data(hex_Data, small_Value)
+			
+		def find_Pointer_Size(self, Pointer):
+			return self.thisptr.find_Pointer_Size(Pointer)
+			
+		def ReverseBytes(self, value):
+			return self.thisptr.ReverseBytes(value)
+			
+		def MREA_SEARCH(self, current_Offset, size):
+			return self.thisptr.MREA_SEARCH(current_Offset, size)
+			
+		def SCLY_SEARCH(self, current_Offset):
+			return self.thisptr.SCLY_SEARCH(current_Offset)
+			
+		def enemy_Param_Searcher(self, current_Offset, size):
+			return self.thisptr.enemy_Param_Searcher(current_Offset, size)
+			
+		def enemy_Start_Of_Attributes(self, current_Offset, data_Size, object_ID_Element):
+			return self.thisptr.enemy_Start_Of_Attributes(current_Offset, data_Size, object_ID_Element)
+			
+		def enemy_Param_Editor(self):
+			self.thisptr.enemy_Param_Editor()
+			
+		def write_Data(self, enemy_Data, offset, conditional, small_Value, tiny_Value):
+			self.thisptr.write_Data(enemy_Data, offset, conditional, small_Value, tiny_Value)
+			
+		def randomFloat(self, low, high):
+			self.thisptr.randomFloat(low, high)
+			
+		def add_Offsets_To_Vector(self, current_Offset, o, enemy_Type):
+			self.thisptr.add_Offsets_To_Vector(current_Offset, o, enemy_Type)
+			
+		def instance_ID_Offset(self, v, ID, offset):
+			self.thisptr.instance_ID_Offset(v, ID, offset)
+			
+		def get_Pak_Pointers(self):
+			self.thisptr.get_Pak_Pointers()
+			
+		def clean_Up(self):
+			self.thisptr.clean_Up()
 		
 	property garbage:
 		def __get__(self): return self.thisptr.garbage

@@ -10,6 +10,7 @@
 #include <random>
 #include <cctype>
 #include <set>
+#include <iomanip>
 using namespace std;
 unsigned int INSTANCE_ID;
 unsigned int SCYL_SIZE;
@@ -1477,14 +1478,14 @@ void Random_Enemy_Attributes::write_Data(vector<unsigned int> enemy_Data, unsign
             {
                 if (times >= 50)
                 {
-                    randomized_Value = Random_Enemy_Attributes::randomFloat(0.1, 1.5);
+                    randomized_Value = Random_Enemy_Attributes::randomFloat(0.1, 1.1);
                     break;
                 }
-                if ((scaleLow < 0.1 && scaleHigh < 0.1) || (scaleLow > 1.5 && scaleHigh > 1.5))
+                if ((scaleLow < 0.1 && scaleHigh < 0.1) || (scaleLow > 1.1 && scaleHigh > 1.1))
                 {
-                    if (scaleHigh > 1.5)
+                    if (scaleHigh > 1.1)
                     {
-                        randomized_Value = 1.5;
+                        randomized_Value = 1.1;
                     }
                     else if (scaleLow < 0.1)
                     {
@@ -1921,25 +1922,40 @@ float Random_Enemy_Attributes::randomFloat(float low, float high)
 
 vector <unsigned int> Random_Enemy_Attributes::instance_ID_Offset(const vector< vector<unsigned int> >&v, unsigned int ID, bool offset)
 {
+    bool take_second = false;
+    if (set <unsigned int> {0x00050090, 0x0005008f, 0x001401c3, 0x001401c4}.count(ID))
+    {
+        take_second = true;
+    }
     for (int first_element = 1; first_element < v[0][0]; first_element++)
     {
         if (v[first_element][0] == ID && !offset)
         {
+            if (take_second)
+            {
+                take_second = false;
+                continue;
+            }
             return v[first_element];
         }
         else if (v[first_element][1] == ID && offset)
         {
+            if (take_second)
+            {
+                take_second = false;
+                continue;
+            }
             return v[first_element];
         }
     }
     stringstream exception_Message;
     if (offset)
     {
-        exception_Message << "Offset" << hex << ID << " not found in vector" << endl;
+        exception_Message << "Offset" << "0x" << hex << setw(8) << setfill('0') << ID << " not found in vector" << endl;
     }
     else
     {
-        exception_Message << "Instance ID " << hex << ID << " not found in vector" << endl;
+        exception_Message << "Instance ID " << "0x" << hex << setw(8) << setfill('0') << ID << " not found in vector" << endl;
     }
     const std::string s = exception_Message.str();
     clean_Up();
