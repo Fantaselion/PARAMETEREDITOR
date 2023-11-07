@@ -5,5 +5,3 @@ PYTHON=$SCRIPT_DIR/venv/bin/python3
 cd $SCRIPT_DIR/..
 
 $PYTHON setup.py build_ext --inplace
-pip uninstall cython
-pip install cython==0.29.31
