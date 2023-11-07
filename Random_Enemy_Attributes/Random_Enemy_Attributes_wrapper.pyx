@@ -10,13 +10,12 @@ from Random_Enemy_Attributes_wrapper cimport Random_Enemy_Attributes
 cdef class PyRandom_Enemy_Attributes:
 	cdef Random_Enemy_Attributes *thisptr
 	with nogil:
-	with gil:
 		def __cinit__(self, string in_File, string out_File, int gen_Seed, float SCALE_L, float SCALE_H, float HEALTH_L, float HEALTH_H, float SPEED_L, float SPEED_H, float DAMAGE_L, float DAMAGE_H, float KNOCK_L, float KNOCK_H, bool Seperate):
 			self.thisptr = new Random_Enemy_Attributes(in_File, out_File, gen_Seed, SCALE_L, SCALE_H, HEALTH_L, HEALTH_H, SPEED_L, SPEED_H, DAMAGE_L, DAMAGE_H, KNOCK_L, KNOCK_H, Seperate)
 		def __dealloc__(self):
 			del self.thisptr
 			
-		def start_Here(self):
+		def start_Here(self) nogil:
 			return self.thisptr.start_Here()
 			
 		def return_Data(self, hex_Data, small_Value):
