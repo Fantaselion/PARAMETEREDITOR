@@ -71,7 +71,7 @@ jobs:
           - 'cp312-cp312'
 
     runs-on: ubuntu-latest
-    container: quay.io/pypa/manylinux2014_x86_64
+    container: quay.io/pypa/manylinux_2_28_x86_64
 
     name: Linux - Python ${{ matrix.python }}
 
