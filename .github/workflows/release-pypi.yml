@@ -56,7 +56,7 @@ jobs:
       - name: Store the packages
         uses: actions/upload-artifact@v4
         with:
-          name: python-package-distributions
+          name: python-package-distributions-${{ matrix.os }}-${{ matrix.python }}
           path: dist
 
   linux-build:
@@ -87,9 +87,9 @@ jobs:
           chmod 777 ./tools/build-ci.sh && PYTHON_VERSION=${{ matrix.python }} ./tools/build-ci.sh
       
       - name: Store the packages
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          name: python-package-distributions
+          name: python-package-distributions-linux-${{ matrix.python }}
           path: dist
 
   pypi:
@@ -102,8 +102,9 @@ jobs:
       - name: Download all the dists
         uses: actions/download-artifact@v4
         with:
-          name: python-package-distributions
           path: dist/
+          pattern: python-package-distributions-*
+          merge-multiple: true
 
       - name: Publish 📦 to PyPI
         if: ${{ github.ref == 'refs/heads/master' }}
