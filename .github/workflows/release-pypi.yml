@@ -104,6 +104,7 @@ jobs:
         with:
           name: python-package-distributions
           path: dist/
+          merge-multiple: true
 
       - name: Publish 📦 to PyPI
         if: ${{ github.ref == 'refs/heads/master' }}
