@@ -30,4 +30,5 @@ setup(
             "py_limited_api": "cp310",
         }
     },
+    python_requires=">=3.10",
 )

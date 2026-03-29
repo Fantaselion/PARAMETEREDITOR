@@ -16,8 +16,6 @@ jobs:
         os:
           - 'macos-latest'
           - 'windows-latest'
-          - '3.11'
-          - '3.12'
 
     runs-on: ${{ matrix.os }}
     name: Wheel for ${{ matrix.os }}
