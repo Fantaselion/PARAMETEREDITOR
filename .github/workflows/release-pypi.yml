@@ -110,5 +110,5 @@ jobs:
           merge-multiple: true
 
       - name: Publish 📦 to PyPI
-        if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: pypa/gh-action-pypi-publish@release/v1
