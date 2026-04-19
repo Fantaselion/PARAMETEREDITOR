@@ -15,7 +15,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="Random_Enemy_Attributes",
-    version="1.0.8",
+    version="1.0.9",
     description="Randomizes enemy stat values for most of the enemies in the game Metroid Prime.",
     long_description=long_description,
     long_description_content_type="text/markdown",
